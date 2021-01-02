@@ -6,6 +6,7 @@ const theme = {
       buttonPrimary: '#5a4fff',
       buttonGhost: 'transparent',
       cardBackground: '#ffffff',
+      
 
     },
     dark: {

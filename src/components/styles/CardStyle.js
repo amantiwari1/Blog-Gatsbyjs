@@ -23,3 +23,35 @@ export const CardCustom = styled(Card)`
         margin-right: auto;
         margin-top: 20px;
 `
+
+export const Category = styled.button`
+        background-color: ${(props) => props.theme.textColor};
+    width: auto;
+    height: auto;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    color: ${(props) => props.theme.background};
+    margin-bottom: 10px;
+    
+    &:hover {
+        outline: none;
+        
+    }
+
+    &:focus {
+        opacity: 1;
+        outline: none;
+        border: none;
+    }
+
+`
+
+export const CardBorder = styled.div`
+
+ border: 2px solid ${(props) => props.theme.textColors};
+  border-radius: 30px;
+  padding: 20px;
+  padding-bottom: 5px !important;
+
+` 

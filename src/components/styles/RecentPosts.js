@@ -13,6 +13,7 @@ const Card = styled.div`
     /* position: sticky; */
     /* top: 60px; */
     /* z-index: 1; */
+    margin-bottom: 50px;
 
 
 

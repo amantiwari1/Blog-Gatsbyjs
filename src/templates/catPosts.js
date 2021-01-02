@@ -18,7 +18,7 @@ const allPosts = ({ data }) => {
         <>
         <>
         <Col sm={6} md={4}  lg={4} >
-        <CardContent title={post.title} content={ReactHtmlParser(post.content)} link={`/${post.slug}`} />
+        <CardContent catlink={post.categories.nodes[0].slug} cat={post.categories.nodes[0].name} title={post.title} content={ReactHtmlParser(post.content)} link={`/${post.slug}`} />
         </Col>
         </>
         </>
@@ -41,6 +41,12 @@ export const CatQuery = graphql`
         title
         content
         slug
+        categories {
+            nodes {
+              name
+              slug
+            }
+          }
       }
     }
   }

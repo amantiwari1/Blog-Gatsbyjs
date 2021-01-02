@@ -24,10 +24,17 @@ import { motion } from "framer-motion";
   display: inline;
   margin-right: 20px !important;
   font-size: 1.2rem;
+  padding: 10px;
+  border: 2px solid ${(props) => props.theme.textColors};
+  border-radius: 30px;
+
+  filter: brightness(80%);
+
 
   &:hover {
-    border-bottom: 2px ridge red;
     cursor: pointer;
+    filter: brightness(150%);
+
   }
 `;
 
@@ -52,7 +59,6 @@ import { motion } from "framer-motion";
   width: 300px;
   background:  ${props => props.theme.background};
   z-index: 1;
-
 `
 
  const sidebar = {
@@ -77,6 +83,8 @@ import { motion } from "framer-motion";
 
 
 const Brand = styled.h1`
+
+padding-bottom: 20px;
 
 @media (max-width: 940px) {
       margin-left: 60px;
@@ -106,6 +114,8 @@ const NavBackgroudColor = styled.div`
   z-index: 1;
   padding-bottom: 15px;
   height: 65px;
+  padding-top: 5px;
+
 
   @media (max-width: 940px) {
       display: none;

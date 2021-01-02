@@ -27,8 +27,12 @@ exports.createPages = async function ({ actions, graphql }) {
 
 
     actions.createPage({
-          path: `/`,
+          path: `/posts`,
           component: require.resolve("./src/templates/allPosts.js"),
+        })
+    actions.createPage({
+          path: `/`,
+          component: require.resolve("./src/templates/Home.js"),
         })
 
 

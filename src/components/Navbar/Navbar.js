@@ -31,6 +31,7 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
         <NavShort>
           <div>
             <LinkButton style={{ textDecoration: 'none'  }} to="/" > <P>Home</P></LinkButton>
+            <LinkButton style={{ textDecoration: 'none'  }} to="/posts" > <P>All Posts</P></LinkButton>
             <P>Internship</P>
             <P>Course</P>
             <P>Data structure</P>

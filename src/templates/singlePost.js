@@ -7,6 +7,7 @@ import { LinkButton } from "../components/styles/Link";
 import { Post } from "../components/styles/SingePost";
 import { BreadcrumbLayout } from "../components/styles/BreadcrumbLayout";
 import {  RecentPost} from "../components/RecentPost/RecentPost";
+import {  CategoryPost} from "../components/CategoryPost/CategoryPost";
 
 const singlePost = ({ data }) => {
   const post = data.wordpress.post;
@@ -44,6 +45,7 @@ const singlePost = ({ data }) => {
           <Row>
             <Col>
               <RecentPost data={data}></RecentPost>
+              <CategoryPost data={data}></CategoryPost>
             </Col>
           </Row>
         </Row>
@@ -86,6 +88,12 @@ export const pageQuery = graphql`
           }
         }
       }
+      categories {
+      nodes {
+        name
+        slug
+      }
+    }
     }
   }
 `;

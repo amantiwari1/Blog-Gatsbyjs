@@ -14,7 +14,7 @@ export const Button = styled.button`
     &:hover {
         filter: brightness(130%);
         outline: none;
-        border: none;
+        
     }
 
     &:focus {
