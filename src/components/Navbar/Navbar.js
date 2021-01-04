@@ -32,8 +32,8 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
           <div>
             <LinkButton style={{ textDecoration: 'none'  }} to="/" > <P>Home</P></LinkButton>
             <LinkButton style={{ textDecoration: 'none'  }} to="/posts" > <P>All Posts</P></LinkButton>
+            <LinkButton style={{ textDecoration: 'none'  }} to="/coursefree" > <P>Course</P></LinkButton>
             <P>Internship</P>
-            <P>Course</P>
             <P>Data structure</P>
           </div>
 
@@ -69,7 +69,7 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
 
       <Nav initial={false} animate={isOpen ? "open" : "closed"}>
         <BackgroundNav variants={sidebar} />
-        <Navigation isDark={mode==="dark"} />
+        <Navigation remove={() => toggleOpen(!isOpen)} isDark={mode==="dark"} />
         <MenuToggle toggle={() => toggleOpen(!isOpen)} />
       </Nav>
     </>

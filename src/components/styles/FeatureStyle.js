@@ -15,4 +15,26 @@ margin-right: auto !important;
   }
 `
 
-export {FeatureImage}
+
+const FreatureImageCourse = styled.img`
+
+margin: 0 auto;
+display: block;
+
+width: 690px;
+
+@media (max-width: 1200px) {
+    width: 550px;
+  }
+@media (max-width: 800px) {
+    width: 450px;
+  }
+@media (max-width: 510px) {
+    width: 250px;
+    height: 250px;
+  }
+
+
+`
+
+export {FeatureImage, FreatureImageCourse}

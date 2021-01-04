@@ -4,15 +4,20 @@ import { MenuItem } from "./MenuItem";
 import styled from "styled-components"
 import { CloseIcon, SearchIcon } from "./Search";
 import { FormControl } from "react-bootstrap";
+import {P} from "../styles/NavStyle";
+import {LinkButton} from "../styles/Link"
+
 
 
 
 const variants = {
   open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+    zIndex: 1,
   },
   closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    transitionEnd: { zIndex: 0 },
+    transition: { staggerChildren: 0.05, staggerDirection: -1 },
   }
 };
 
@@ -21,7 +26,6 @@ padding: 25px;
   position: absolute;
   top: 100px;
   width: 230px;
-  z-index: 1;
 
 
 
@@ -44,16 +48,16 @@ const SearchBtton = styled.button`
 `
 
 
-export const Navigation = ({isDark}) => {
+export const Navigation = ({isDark, remove}) => {
   const [close, isClose ] = React.useState(false)
   
   
   return (
   <Ul variants={variants}>
-    <MenuItem key="tiwari" style={{display: "inline-block"}} > 
+    <MenuItem > 
 
 
-{close ?  <FormControl placeholder="Your Search" style={{display: "inline-block"}} ></FormControl> : null } 
+{close ?  <FormControl placeholder="Your Search"></FormControl> : null } 
 <SearchBtton onClick={()=> isClose(!close)} >
 
 { !close
@@ -64,8 +68,9 @@ export const Navigation = ({isDark}) => {
 
 </SearchBtton>
 </MenuItem>
-    {itemIds.map((i) => (
-      <MenuItem key={i} > {i}</MenuItem>
+    {itemIds.map((i) => ( <>
+      <LinkButton onClick={remove} style={{ textDecoration: 'none'  }} to={`${i.slug}`} > <MenuItem >  <P>{i.name}</P>
+      </MenuItem> </LinkButton><br /> </>
     ))}
 
 
@@ -73,4 +78,27 @@ export const Navigation = ({isDark}) => {
   </Ul>
 )};
 
-const itemIds = ["Home", "Internship", "Course" , "Data structure"];
+const itemIds = [
+  {
+    name:"Home",
+    slug:"/",
+  },
+  {
+    name:"All Posts",
+    slug:"/posts",
+  },
+  {
+    name:"Course",
+    slug:"/coursefree",
+  },
+  {
+    name:"Internship",
+    slug:"/",
+  },
+  {
+    name:"Data structure",
+    slug:"/",
+  },
+]
+
+

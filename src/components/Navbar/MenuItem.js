@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -31,13 +31,12 @@ const Li = styled(motion.li)`
 
 
 
-export const MenuItem = ({children, key}) => {
+export const MenuItem = ({children}) => {
   return (
     <Li
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      key={key}
     >
       <div>
       {children}

@@ -1,19 +1,18 @@
 import React from "react";
 import { graphql } from "gatsby";
-import ReactHtmlParser from "react-html-parser";
-import {CardContent } from "../components";
+// import ReactHtmlParser from "react-html-parser";
+// import {CardContent } from "../components";
 import "bootstrap/dist/css/bootstrap.css";
-import {Container , Row , Col } from "react-bootstrap";
+import {Container , Row } from "react-bootstrap";
 
 
 const AllPosts = ({ data }) => {
-  const posts = data.wordpress.posts.nodes;
   return (
     <>
    
     <Container>
         <Row>
-            Hello
+            This is Home - coming soon
     </Row>
     </Container> 
     </>

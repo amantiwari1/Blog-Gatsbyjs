@@ -58,7 +58,6 @@ import { motion } from "framer-motion";
   bottom: 0;
   width: 300px;
   background:  ${props => props.theme.background};
-  z-index: 1;
 `
 
  const sidebar = {
@@ -67,8 +66,9 @@ import { motion } from "framer-motion";
     transition: {
       type: "spring",
       stiffness: 20,
-      restDelta: 2
-    }
+      restDelta: 2,
+    },
+    zIndex: 1,
   }),
   closed: {
     clipPath: "circle(30px at 40px 40px)",
@@ -77,7 +77,8 @@ import { motion } from "framer-motion";
       type: "spring",
       stiffness: 400,
       damping: 40
-    }
+    },
+    transitionEnd: { zIndex: 0 },
   }
 };
 

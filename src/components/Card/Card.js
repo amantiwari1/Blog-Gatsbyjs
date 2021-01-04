@@ -1,9 +1,10 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Button } from "../styles/Button";
+import { CardButton } from "../styles/Button";
 import { CardImgCustom, CardCustom, CardBorder, Category } from "../styles/CardStyle";
 import { motion } from "framer-motion";
-import {Link} from "gatsby"
+import {Link} from "gatsby";
+import Img from "gatsby-image"
 
 const NavAnimation = ({ children }) => {
   return (
@@ -13,14 +14,15 @@ const NavAnimation = ({ children }) => {
   );
 };
 
-export const CardContent = ({title, content, link, cat, catlink}) => {
+export const CardContent = ({title, content, link, cat, catlink,image}) => {
   return (
-    // <CardCustom>
+    <CardCustom className="bg-transparent">
     <CardBorder>
       <NavAnimation>
         <CardImgCustom
           variant="top"
-          src="https://thewowstyle.com/wp-content/uploads/2015/07/Natural-World-Wallpaper-HD-.jpg"
+          as={Img}
+          fluid={image}
         />
         <Card.Body>
         <Link  to={`/${catlink}`} >
@@ -29,13 +31,13 @@ export const CardContent = ({title, content, link, cat, catlink}) => {
           <Card.Title>{title}</Card.Title>
           <Card.Text> {content[0]} </Card.Text>
           <Link  to={link} >
-          <Button>
+          <CardButton>
             Read More
-          </Button>
+          </CardButton>
           </Link>
         </Card.Body>
       </NavAnimation>
-      </CardBorder>
-    // </CardCustom>
+     </CardBorder>
+    </CardCustom>
   );
 };

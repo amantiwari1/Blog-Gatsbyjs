@@ -3,6 +3,12 @@ exports.createPages = async function ({ actions, graphql }) {
 
     const {data} = await graphql(`
     query {
+      allCourseCategoryCsv {
+        nodes {
+          name
+          slug
+        }
+      }
       wordpress {
         categories {
           nodes {
@@ -22,6 +28,13 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
+      allCourseCsv {
+        nodes {
+          id
+          slug
+          featureimage
+        }
+      }
     }
   `)
 
@@ -29,6 +42,10 @@ exports.createPages = async function ({ actions, graphql }) {
     actions.createPage({
           path: `/posts`,
           component: require.resolve("./src/templates/allPosts.js"),
+        })
+    actions.createPage({
+          path: `/coursefree`,
+          component: require.resolve("./src/templates/allCoursePost.js"),
         })
     actions.createPage({
           path: `/`,
@@ -45,14 +62,32 @@ exports.createPages = async function ({ actions, graphql }) {
             context: { Catid },
         })
   })
+    data.allCourseCategoryCsv.nodes.forEach(nodes=> {
+        const slug = nodes.slug
+        const name = nodes.name
+        actions.createPage({
+            path: slug,
+            component: require.resolve("./src/templates/courseCatPost.js"),
+            context: { name },
+        })
+  })
 
   data.wordpress.posts.nodes.forEach(nodes => {
     const slug = nodes.slug
-    const cat = nodes.categories.nodes[0].slug
     const Postid = nodes.id
     actions.createPage({
         path: `${slug}`,
         component: require.resolve("./src/templates/singlePost.js"),
+        context: { Postid },
+    })
+})
+
+  data.allCourseCsv.nodes.forEach(nodes => {
+    const slug = nodes.slug
+    const Postid = nodes.id
+    actions.createPage({
+        path: `${slug}`,
+        component: require.resolve("./src/templates/coursePost.js"),
         context: { Postid },
     })
 })
