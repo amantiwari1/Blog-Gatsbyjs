@@ -1,134 +1,87 @@
+const { createFilePath } = require(`gatsby-source-filesystem`)
+
 
 exports.createPages = async function ({ actions, graphql }) {
-
-    const {data} = await graphql(`
+  const { data } = await graphql(`
     query {
+      allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+        nodes {
+          fields {
+            slug
+          }
+        }
+      }
       allCourseCategoryCsv {
         nodes {
           name
           slug
         }
       }
-      wordpress {
-        categories {
-          nodes {
-            slug
-            databaseId
-          }
-        }
-        posts {
-          nodes {
-            id
-            slug
-            categories {
-              nodes {
-                slug
-              }
-            }
-          }
-        }
-      }
       allCourseCsv {
         nodes {
           id
           slug
+          title
           featureimage
         }
       }
     }
-  `)
+  `);
+
+  // this is home page
+
+  actions.createPage({
+    path: `/`,
+    component: require.resolve("./src/templates/Home.js"),
+  });
 
 
+
+  actions.createPage({
+    path: `/coursefree`,
+    component: require.resolve("./src/templates/allCoursePost.js"),
+  });
+
+  data.allCourseCsv.nodes.forEach((nodes) => {
+    const name = nodes.title;
+    const Postid = nodes.id;
     actions.createPage({
-          path: `/posts`,
-          component: require.resolve("./src/templates/allPosts.js"),
-        })
+      path: name.split(" ").join("-").toLowerCase(),
+      component: require.resolve("./src/templates/coursePost.js"),
+      context: { Postid },
+    });
+  });
+
+  data.allCourseCategoryCsv.nodes.forEach((nodes) => {
+    const name = nodes.name;
     actions.createPage({
-          path: `/coursefree`,
-          component: require.resolve("./src/templates/allCoursePost.js"),
-        })
+      path: name.split(" ").join("-").toLowerCase(),
+      component: require.resolve("./src/templates/courseCatPost.js"),
+      context: { name },
+    });
+  });
+
+  data.allMdx.nodes.forEach((post) => {
     actions.createPage({
-          path: `/`,
-          component: require.resolve("./src/templates/Home.js"),
-        })
-
-
-    data.wordpress.categories.nodes.forEach(nodes=> {
-        const slug = nodes.slug
-        const Catid = nodes.databaseId
-        actions.createPage({
-            path: slug,
-            component: require.resolve("./src/templates/catPosts.js"),
-            context: { Catid },
-        })
-  })
-    data.allCourseCategoryCsv.nodes.forEach(nodes=> {
-        const slug = nodes.slug
-        const name = nodes.name
-        actions.createPage({
-            path: slug,
-            component: require.resolve("./src/templates/courseCatPost.js"),
-            context: { name },
-        })
-  })
-
-  data.wordpress.posts.nodes.forEach(nodes => {
-    const slug = nodes.slug
-    const Postid = nodes.id
-    actions.createPage({
-        path: `${slug}`,
-        component: require.resolve("./src/templates/singlePost.js"),
-        context: { Postid },
-    })
-})
-
-  data.allCourseCsv.nodes.forEach(nodes => {
-    const slug = nodes.slug
-    const Postid = nodes.id
-    actions.createPage({
-        path: `${slug}`,
-        component: require.resolve("./src/templates/coursePost.js"),
-        context: { Postid },
-    })
-})
-    
-}
-
-const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
-
-exports.createResolvers = async (
-  {
-    actions,
-    cache,
-    createNodeId,
-    createResolvers,
-    store,
-    reporter,
-  },
-) => {
-  const { createNode } = actions
-
-  await createResolvers({
-    WPGraphQL_MediaItem: {
-      imageFile: {
-        type: "File",
-        async resolve(source) {
-          let sourceUrl = source.sourceUrl
-
-          if (source.mediaItemUrl !== undefined) {
-            sourceUrl = source.mediaItemUrl
-          }
-
-          return await createRemoteFileNode({
-            url: encodeURI(sourceUrl),
-            store,
-            cache,
-            createNode,
-            createNodeId,
-            reporter,
-          })
-        },
+      path: "/mdx",
+      component: require.resolve("./src/templates/mdxsinglePost.js"),
+      context: {
+        slug: post.fields.slug,
       },
-    },
+    })
   })
+  
+};
+
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+  if (node.internal.type === `Mdx`) {
+    const value = createFilePath({ node, getNode })
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    })
+  }
 }

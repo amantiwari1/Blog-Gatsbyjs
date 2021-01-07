@@ -1,22 +1,34 @@
-const theme = {
-    light: {
-      background: '#d6d8ec',
-      textColor: '#000',
-      textSecondary: '#37364d',
-      buttonPrimary: '#5a4fff',
-      buttonGhost: 'transparent',
-      cardBackground: '#ffffff',
-      
+import { createGlobalStyle } from 'styled-components'
 
-    },
-    dark: {
-      background: '#5d4561',
-      textColor: '#fff',
-      textSecondary: '#37364d',
-      buttonPrimary: '#fff',
-      buttonGhost: 'transparent',
-      cardBackground: '#403C5B',
-    },
+
+const theme = {
+  light: {
+    background: "#d6d8ec",
+    textColor: "#000",
+    textSecondary: "#37364d",
+    buttonPrimary: "#5a4fff",
+    buttonGhost: "transparent",
+    cardBackground: "#ffffff",
+  },
+  dark: {
+    background: "#5d4561",
+    textColor: "#fff",
+    textSecondary: "#37364d",
+    buttonPrimary: "#fff",
+    buttonGhost: "transparent",
+    cardBackground: "#403C5B",
+  },
+};
+
+export const GlobalStyle = createGlobalStyle`
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    text-align: center;
+
   }
-  
-  export default theme
+
+`
+
+export default theme;

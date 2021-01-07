@@ -14,7 +14,7 @@ import {
   Brand,
   SearchBtton,
 } from "../styles/NavStyle";
-import {LinkButton} from "../styles/Link"
+import { LinkButton } from "../styles/Link";
 
 export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
   const [close, isClose] = React.useState(false);
@@ -30,9 +30,18 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
       <NavBackgroudColor>
         <NavShort>
           <div>
-            <LinkButton style={{ textDecoration: 'none'  }} to="/" > <P>Home</P></LinkButton>
-            <LinkButton style={{ textDecoration: 'none'  }} to="/posts" > <P>All Posts</P></LinkButton>
-            <LinkButton style={{ textDecoration: 'none'  }} to="/coursefree" > <P>Course</P></LinkButton>
+            <LinkButton style={{ textDecoration: "none" }} to="/">
+              {" "}
+              <P>Home</P>
+            </LinkButton>
+            <LinkButton style={{ textDecoration: "none" }} to="/">
+              {" "}
+              <P>All Posts</P>
+            </LinkButton>
+            <LinkButton style={{ textDecoration: "none" }} to="/coursefree">
+              {" "}
+              <P>Course</P>
+            </LinkButton>
             <P>Internship</P>
             <P>Data structure</P>
           </div>
@@ -58,9 +67,9 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
             ) : null}
             <SearchBtton onClick={() => isClose(!close)}>
               {!close ? (
-                <SearchIcon color={mode==="dark" ? "#fff" : "#000"} />
+                <SearchIcon color={mode === "dark" ? "#fff" : "#000"} />
               ) : (
-                <CloseIcon color={mode==="dark" ? "#fff" : "#000"} />
+                <CloseIcon color={mode === "dark" ? "#fff" : "#000"} />
               )}
             </SearchBtton>
           </div>
@@ -69,7 +78,10 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
 
       <Nav initial={false} animate={isOpen ? "open" : "closed"}>
         <BackgroundNav variants={sidebar} />
-        <Navigation remove={() => toggleOpen(!isOpen)} isDark={mode==="dark"} />
+        <Navigation
+          remove={() => toggleOpen(!isOpen)}
+          isDark={mode === "dark"}
+        />
         <MenuToggle toggle={() => toggleOpen(!isOpen)} />
       </Nav>
     </>

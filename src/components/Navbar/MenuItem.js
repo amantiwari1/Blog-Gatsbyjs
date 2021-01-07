@@ -7,16 +7,16 @@ const variants = {
     y: 0,
     opacity: 1,
     transition: {
-      y: { stiffness: 1000, velocity: -100 }
-    }
+      y: { stiffness: 1000, velocity: -100 },
+    },
   },
   closed: {
     y: 50,
     opacity: 0,
     transition: {
-      y: { stiffness: 1000 }
-    }
-  }
+      y: { stiffness: 1000 },
+    },
+  },
 };
 
 const Li = styled(motion.li)`
@@ -27,21 +27,16 @@ const Li = styled(motion.li)`
   align-items: center;
   cursor: pointer;
   padding: 0;
-`
+`;
 
-
-
-export const MenuItem = ({children}) => {
+export const MenuItem = ({ children }) => {
   return (
     <Li
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <div>
-      {children}
-      </div>
-      
+      <div>{children}</div>
     </Li>
   );
 };

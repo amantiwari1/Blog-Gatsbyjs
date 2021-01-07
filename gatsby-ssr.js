@@ -1,4 +1,3 @@
+import Provider from "./src/components/provider";
 
-import Provider from './src/components/provider'
-
-export const wrapRootElement = Provider
+export const wrapRootElement = Provider;

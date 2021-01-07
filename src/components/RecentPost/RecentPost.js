@@ -1,18 +1,14 @@
 import React from "react";
-import { Card,Header, Item } from "../styles/RecentPosts";
+import { Card, Header, Item } from "../styles/RecentPosts";
 
 export const RecentPost = ({ data }) => {
-
-  const recentpost = data.wordpress.posts.nodes;
+  const recentpost = data.allWpPost.nodes;
   return (
-      <Card>
-          <Header>Recent Posts</Header>
-            {
-              recentpost.map(node => (
-                <Item to={`/${node.slug}`} >{node.title}</Item>
-              ))
-            }
-      </Card>
+    <Card>
+      <Header>Recent Posts</Header>
+      {recentpost.map((node) => (
+        <Item to={`/${node.slug}`}>{node.title}</Item>
+      ))}
+    </Card>
   );
 };
-

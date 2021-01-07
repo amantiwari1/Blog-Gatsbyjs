@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-
-
-
- const NavShort = styled.div.attrs((props) => ({
+const NavShort = styled.div.attrs((props) => ({
   margintop: props.margintop || "10px",
 }))`
   max-width: 1140px;
@@ -15,12 +12,12 @@ import { motion } from "framer-motion";
   padding-top: ${(props) => props.margintop};
   display: flex;
   justify-content: space-between;
-  
+
   @media (max-width: 940px) {
     padding-top: 28px;
   }
 `;
- const P = styled.p`
+const P = styled.p`
   display: inline;
   margin-right: 20px !important;
   font-size: 1.2rem;
@@ -30,37 +27,36 @@ import { motion } from "framer-motion";
 
   filter: brightness(80%);
 
-
   &:hover {
     cursor: pointer;
     filter: brightness(150%);
-
   }
 `;
 
- const Nav = styled(motion.nav)`
-    position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  @media (min-width: 940px) {
-      display: none;
-  }
-
-`
-
- const BackgroundNav = styled(motion.div)`
-
+const Nav = styled(motion.nav)`
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   width: 300px;
-  background:  ${props => props.theme.background};
-`
+  @media (min-width: 940px) {
+    display: none;
+  }
+  transition: all 0.5s ease-out;
 
- const sidebar = {
+`;
+
+const BackgroundNav = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  background: ${(props) => props.theme.background};
+  transition: all 0.5s ease-out;
+`;
+
+const sidebar = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
@@ -73,43 +69,42 @@ import { motion } from "framer-motion";
   closed: {
     clipPath: "circle(30px at 40px 40px)",
     transition: {
-      delay: 0.5,
+      delay: 0.25,
       type: "spring",
       stiffness: 400,
-      damping: 40
+      damping: 40,
     },
     transitionEnd: { zIndex: 0 },
-  }
+  },
 };
 
-
 const Brand = styled.h1`
+  padding-bottom: 20px;
 
-padding-bottom: 20px;
-
-@media (max-width: 940px) {
-      margin-left: 60px;
-      font-size: 25px;
+  @media (max-width: 940px) {
+    margin-left: 60px;
+    font-size: 25px;
   }
-` 
+`;
 
- const SearchBtton = styled.button`
-    background-color: Transparent;
-    background-repeat:no-repeat;
+const SearchBtton = styled.button`
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+  padding: 0px;
+  &:focus {
     border: none;
-    outline:none;
-    padding: 0px;
-    &:focus {
-      border: none;
-    outline:none;
-    }
-`
+    outline: none;
+  }
+  transition: all 0.5s ease-out;
 
+`;
 
 const NavBackgroudColor = styled.div`
   top: 0;
-  background-color:  ${props => props.theme.background};
-  color: ${props => props.theme.textColor};
+  background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.textColor};
   transition: all 0.5s ease-out;
   position: sticky;
   z-index: 1;
@@ -117,12 +112,18 @@ const NavBackgroudColor = styled.div`
   height: 65px;
   padding-top: 5px;
 
-
   @media (max-width: 940px) {
-      display: none;
+    display: none;
   }
-`
+`;
 
-
-
- export {NavBackgroudColor, NavShort, P, Nav, BackgroundNav, sidebar, Brand, SearchBtton}
+export {
+  NavBackgroudColor,
+  NavShort,
+  P,
+  Nav,
+  BackgroundNav,
+  sidebar,
+  Brand,
+  SearchBtton,
+};
