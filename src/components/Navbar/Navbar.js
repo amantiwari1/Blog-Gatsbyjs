@@ -34,7 +34,7 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
               {" "}
               <P>Home</P>
             </LinkButton>
-            <LinkButton style={{ textDecoration: "none" }} to="/">
+            <LinkButton style={{ textDecoration: "none" }} to="/posts">
               {" "}
               <P>All Posts</P>
             </LinkButton>

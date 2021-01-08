@@ -81,7 +81,7 @@ const itemIds = [
   },
   {
     name: "All Posts",
-    slug: "/",
+    slug: "/posts",
   },
   {
     name: "Course",

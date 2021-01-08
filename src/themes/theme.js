@@ -47,6 +47,7 @@ body {
     border-radius: 14px;
     border: 3px solid #1d3557;
   }
+
 }
 
 `

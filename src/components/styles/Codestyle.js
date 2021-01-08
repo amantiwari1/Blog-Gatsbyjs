@@ -1,9 +1,8 @@
 import { css } from "styled-components";
-import { down } from 'styled-breakpoints'
 
 
 
-export const CustomScroll = `
+export const CustomScroll = css`
   scrollbar-width: thin;
   scrollbar-color: #e76f51 #1d3557;
   &::-webkit-scrollbar {
@@ -18,11 +17,6 @@ export const CustomScroll = `
     border: 3px solid #1d3557;
   }
 `
-export const NegMargin = `
-  margin-left: -3rem;
-  margin-right: -3rem;
-  ${down('sm')} {
-    margin-left: -0;
-    margin-right: -0;
-  }
+export const NegMargin = css`
+  
 `

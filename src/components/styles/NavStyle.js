@@ -12,6 +12,8 @@ const NavShort = styled.div.attrs((props) => ({
   padding-top: ${(props) => props.margintop};
   display: flex;
   justify-content: space-between;
+  transition: all 0.5s ease-out;
+
 
   @media (max-width: 940px) {
     padding-top: 28px;

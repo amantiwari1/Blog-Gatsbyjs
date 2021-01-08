@@ -6,8 +6,8 @@ exports.createPages = async function ({ actions, graphql }) {
     query {
       allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
         nodes {
-          fields {
-            slug
+          frontmatter {
+            title
           }
         }
       }
@@ -42,6 +42,11 @@ exports.createPages = async function ({ actions, graphql }) {
     component: require.resolve("./src/templates/allCoursePost.js"),
   });
 
+  actions.createPage({
+    path: `/posts`,
+    component: require.resolve("./src/templates/allPosts.js"),
+  });
+
   data.allCourseCsv.nodes.forEach((nodes) => {
     const name = nodes.title;
     const Postid = nodes.id;
@@ -63,10 +68,10 @@ exports.createPages = async function ({ actions, graphql }) {
 
   data.allMdx.nodes.forEach((post) => {
     actions.createPage({
-      path: "/mdx",
+      path: post.frontmatter.title.split(" ").join("-").toLowerCase(),
       component: require.resolve("./src/templates/mdxsinglePost.js"),
       context: {
-        slug: post.fields.slug,
+        title: post.frontmatter.title,
       },
     })
   })

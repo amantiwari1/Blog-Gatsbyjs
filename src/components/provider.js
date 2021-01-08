@@ -6,12 +6,17 @@ import theme, {GlobalStyle} from "../themes/theme";
 import { useTheme } from "../hooks/useTheme";
 import { MDXProvider } from '@mdx-js/react';
 import styled from "styled-components";
-import {preToCodeBlock} from "mdx-utils";
 import {Code, CodeWrapper} from "./Code";
+import { down } from 'styled-breakpoints';
+
 
 
 
 const H2 = styled.h2`
+${down('md')} {
+  position: none;
+padding-top: 0;
+  }
  position: relative;
 padding-top: 60px;
 a {
