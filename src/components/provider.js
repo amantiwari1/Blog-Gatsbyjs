@@ -2,11 +2,13 @@ import React from "react";
 import { Navbar } from ".";
 import "bootstrap/dist/css/bootstrap.css";
 import { ThemeProvider } from "styled-components";
-import { Body } from "./styles/GlobalStyle";
 import theme, {GlobalStyle} from "../themes/theme";
 import { useTheme } from "../hooks/useTheme";
 import { MDXProvider } from '@mdx-js/react';
-import styled from "styled-components"
+import styled from "styled-components";
+import {preToCodeBlock} from "mdx-utils";
+import {Code, CodeWrapper} from "./Code";
+
 
 
 const H2 = styled.h2`
@@ -29,9 +31,28 @@ a {
 
 `
 
-const components  = {
-  h2: props=> <H2 {...props} />
+const components = {
+  h2: props => <H2 {...props} />,
+  pre: ({ children: { props } }) => {
+    if (props.mdxType === 'code') {
+      return (
+        <CodeWrapper>
+          <Code
+            codeString={props.children.trim()}
+            language={
+              props.className &&
+              props.className.replace('language-', '')
+            }
+            {...props}
+          />
+        </CodeWrapper>
+      )
+    }
+  },
+  wrapper: ({children}) => <> {children} </>, 
 }
+
+
 
 const Provider = ({ children }) => {
   const [mode, toggleMode] = useTheme();
@@ -42,7 +63,6 @@ const Provider = ({ children }) => {
     <ThemeProvider theme={themeMode}>
       <GlobalStyle />
       <MDXProvider components={components}>
-      <Body>
         <Navbar
           isOpen={show}
           toggleOpen={setShow}
@@ -51,7 +71,6 @@ const Provider = ({ children }) => {
         />
         <br></br>
         {children}
-      </Body>
       </MDXProvider>
     </ThemeProvider>
   );

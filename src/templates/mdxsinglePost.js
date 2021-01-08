@@ -10,14 +10,14 @@ export default ({ data }) => {
     <Container fluid>
       <Row>
         <Col md={2}>
-
+            <ul style={{position: "sticky" , top:"80px"}} >
             {
                 tableOfContents.items.map(i => (
-                    <ul>
-                        <a href={i.url} >{i.title}</a>
-                    </ul>
+                    
+                       <li><a href={i.url} >{i.title}</a></li>  
                 ))
             }
+            </ul>
         </Col>
 
         <Col md={5}>
@@ -26,7 +26,6 @@ export default ({ data }) => {
           <MDXRenderer>{body}</MDXRenderer>
         </Col>
         <Col md={3}>
-        <MDXRenderer>{body}</MDXRenderer>
         </Col>
         <Col md={2}>hello</Col>
       </Row>
