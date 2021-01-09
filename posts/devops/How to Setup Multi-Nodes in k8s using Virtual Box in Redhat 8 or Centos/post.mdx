@@ -1,0 +1,147 @@
+---
+date: 2021-01-09
+title: How to Setup Multi-Nodes in k8s using Virtual Box in Redhat 8 or Centos
+tags: ['k8s']
+private: false
+featureImage: mulnode.png
+category: devops 
+feature: true
+---
+
+## What is Kubernetes?
+**Kubernetes** is an open-source container-orchestration system for automating computer application deployment, scaling, and management. It was originally designed by Google and is now maintained by the Cloud Native Computing Foundation.
+
+## Why Multi-Nodes
+**Why Multi-Nodes?** Because it is much faster and available than Single Node for Production to end-user, that's why we are going to setup multi-nodes.
+
+## Requirements
+** Before that**, you must start to download minikube for k8s and Vmbox and Redhat image, setup add and install RedHat or Centos OS to vmbox named Main. Let's start open vmbox and start the Main OS.
+
+
+## Setup
+Let's install net-tools for IP address and vim for editor CLI
+
+```bash
+yum install net-tools vim iproute-tc -y
+```
+## Docker Required
+**Kubernetes** require in docker package so create file named docker.repo in 3 Nodes and start edit
+
+```bash
+vim /etc/yum.repos.d/docker.repo
+```
+
+Make sure edit it below for download and install docker file to your pc
+
+```bash
+[docker]
+baseurl=https://download.docker.com/linux/centos/7/x86_64/stable/
+gpgcheck=0
+```
+
+To install docker ce for free and enable and start always running in docker
+
+```bash
+yum install docker-ce -y --nobest
+sytemctl start docker
+sytemctl enable docker
+```
+
+## Installation K8s
+lets install k8s
+
+```bash
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+# Set SELinux in permissive mode (effectively disabling it)
+sudo setenforce 0
+sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+```
+
+
+## Setup Multi-Nodes
+Make Sure Clone Main to add more two nodes named node1 and node2 in vmbox and must regenerate different networks in different images. we need to add a name in host instead of IP address
+
+Main in vm
+
+```bash
+hostnamectl set-hostname main
+exec bash
+```
+
+node1 in vm
+
+```bash
+hostnamectl set-hostname node1
+exec bash
+```
+
+node2 in vm
+
+```bash
+hostnamectl set-hostname node2
+exec bash
+```
+
+set up Local DNS Name server
+
+```bash
+vim /etc/hosts
+```
+
+edit in hosts like this
+
+```bash
+192.168.43.35  main
+192.168.43.151 node1
+192.168.43.156 node2
+```
+
+same thing in node1 and node2 VM's
+
+It is easier to transfer to another machine node1 in VM's
+
+```bash
+scp /etc/hosts 192.168.43.151:/etc/hosts
+```
+
+node2 in VM's
+
+```bash
+scp /etc/hosts 192.168.43.156:/etc/hosts
+```
+
+Now, Create kubeadm ( main )
+
+```bash
+kubeadm init --pod-networks=10.10.1.0/16
+```
+
+add config in main os
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+now join node1 and node2 to main
+
+```bash
+kubeadm join 192.168.43.35:6443 --token 1z41ua.pd2l2pl5df286hcb     --discovery-token-ca-cert-hash sha256:4547a1aacde3bd0b1ff37fe27619aa858081634717b212e609dfeba96e0402be
+```
+
+#### This is done 😀😀
+#### You can enjoy to play container image in 3 nodes
+
