@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 // import ReactHtmlParser from "react-html-parser";
 // import {CardContent } from "../components";
-import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col } from "react-bootstrap";
 import imggif from "../images/computer.gif";
 import { HeaderImage, Topicstyle } from "../components/styles/Homestyle";

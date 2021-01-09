@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar } from ".";
-import "bootstrap/dist/css/bootstrap.css";
 import { ThemeProvider } from "styled-components";
 import theme, {GlobalStyle} from "../themes/theme";
 import { useTheme } from "../hooks/useTheme";
@@ -8,6 +7,10 @@ import { MDXProvider } from '@mdx-js/react';
 import styled from "styled-components";
 import {Code, CodeWrapper} from "./Code";
 import { down } from 'styled-breakpoints';
+import "bootstrap/dist/css/bootstrap.css";
+import PropTypes from 'prop-types';
+
+
 
 
 
@@ -59,7 +62,7 @@ const components = {
 
 
 
-const Provider = ({ children }) => {
+const Layout = ({ children }) => {
   const [mode, toggleMode] = useTheme();
   const themeMode = mode === "light" ? theme.light : theme.dark;
   const [show, setShow] = React.useState(false);
@@ -81,4 +84,8 @@ const Provider = ({ children }) => {
   );
 };
 
-export default ({ element }) => <Provider>{element}</Provider>;
+Layout.propTypes = {
+  children: PropTypes.node.isRequired
+}
+
+export default Layout

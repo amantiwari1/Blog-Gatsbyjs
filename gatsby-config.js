@@ -64,6 +64,12 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/provider.js`),
+      },
+    },
     `gatsby-plugin-styled-components`,
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",

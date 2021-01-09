@@ -5,6 +5,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import { FeatureImage } from "../components/styles/FeatureStyle";
 import { CategoryPost } from "../components/CategoryPost/CategoryPost";
 import { Post } from "../components/styles/SingePost";
+import { BreadcrumbLayout } from "../components/styles/BreadcrumbLayout";
+import { LinkButton } from "../components/styles/Link";
+
 import {TOC } from "../components/styles/Tableofcontent";
 
 export default ({ data }) => {
@@ -29,6 +32,16 @@ export default ({ data }) => {
 
         <Col md={6}>
           <Post>
+          <BreadcrumbLayout>
+                    <LinkButton to="/">Home</LinkButton> {" > "}
+                    <LinkButton to="/posts">All Posts</LinkButton> {" > "}
+                    <LinkButton
+                      to={`/${frontmatter.category.split(" ").join("-").toLowerCase()}`}
+                    >
+                      {frontmatter.category}
+                    </LinkButton>{" "}
+                    {" > "}{" "}{frontmatter.date}
+                  </BreadcrumbLayout>
             {frontmatter.featureImage ? (
               <FeatureImage
                 fluid={frontmatter.featureImage.childImageSharp.fluid}
@@ -52,6 +65,7 @@ export const query = graphql`
   query PostBySlug($title: String!) {
     mdx(frontmatter: { title: { eq: $title } }) {
       frontmatter {
+        category
         title
         date(formatString: "YYYY MMMM, DD")
         featureImage {

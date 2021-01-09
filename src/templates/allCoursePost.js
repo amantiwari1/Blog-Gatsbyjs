@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { CardContent } from "../components";
-import "bootstrap/dist/css/bootstrap.css";
 import { Container, CardColumns } from "react-bootstrap";
 
 const AllPosts = ({ data }) => {

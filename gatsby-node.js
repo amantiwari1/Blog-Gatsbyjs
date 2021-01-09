@@ -4,6 +4,11 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createPages = async function ({ actions, graphql }) {
   const { data } = await graphql(`
     query {
+      allPostCatgoriesCsv {
+        nodes {
+          name
+        }
+      }
       allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
         nodes {
           frontmatter {
@@ -45,6 +50,15 @@ exports.createPages = async function ({ actions, graphql }) {
   actions.createPage({
     path: `/posts`,
     component: require.resolve("./src/templates/allPosts.js"),
+  });
+
+  data.allPostCatgoriesCsv.nodes.forEach((nodes) => {
+    const name = nodes.name;
+    actions.createPage({
+      path: name.split(" ").join("-").toLowerCase(),
+      component: require.resolve("./src/templates/catPosts.js"),
+      context: { name },
+    });
   });
 
   data.allCourseCsv.nodes.forEach((nodes) => {

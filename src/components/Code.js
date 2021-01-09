@@ -80,7 +80,6 @@ const CopyCode = styled.button`
   border: 0;
   border-radius: 3px;
   margin-right: 0.25rem;
-  padding: 0.25rem;
   color: #a0aec0;
   &:hover {
     background-color: #f7fafc;

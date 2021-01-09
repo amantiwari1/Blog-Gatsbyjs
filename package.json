@@ -7,10 +7,12 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "babel-plugin-styled-components": "^1.12.0",
     "bootstrap": "^4.5.3",
     "framer-motion": "^3.1.1",
     "gatsby": "^2.29.2",
     "gatsby-image": "^2.8.0",
+    "gatsby-plugin-layout": "^1.8.0",
     "gatsby-plugin-manifest": "^2.10.0",
     "gatsby-plugin-mdx": "^1.8.0",
     "gatsby-plugin-page-progress": "^2.1.1",
@@ -20,11 +22,10 @@
     "gatsby-remark-autolink-headers": "^2.9.0",
     "gatsby-remark-images": "^3.9.0",
     "gatsby-source-filesystem": "^2.8.1",
-    "gatsby-source-graphql": "^2.11.0",
-    "gatsby-source-wordpress-experimental": "^6.0.0",
     "gatsby-transformer-csv": "^2.7.0",
     "gatsby-transformer-sharp": "^2.9.0",
     "html-react-parser": "^1.1.1",
+    "install": "^0.13.0",
     "mdx-utils": "^0.2.0",
     "prism-react-renderer": "^1.1.1",
     "react": "^17.0.1",
@@ -36,6 +37,7 @@
     "react-reading-progress": "^0.3.0",
     "react-syntax-highlighter": "^15.4.3",
     "read-progressbar": "^1.0.0",
+    "sharp": "^0.27.0",
     "styled-breakpoints": "^9.0.8",
     "styled-components": "^5.2.1",
     "victormono": "^1.4.2"
@@ -44,7 +46,8 @@
     "build": "gatsby build",
     "start": "gatsby develop -o",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve -o",
+    "deploy": "gatsby build && firebase deploy --only hosting ",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
