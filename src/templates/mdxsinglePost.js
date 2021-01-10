@@ -30,7 +30,7 @@ export default ({ data }) => {
             </TOC>
         </Col>
 
-        <Col md={9} lg={6} xl={6}>
+        <Col md={9} lg={6} xl={7}>
           <Post>
           <BreadcrumbLayout>
                     <LinkButton to="/">Home</LinkButton> {" > "}
@@ -55,7 +55,6 @@ export default ({ data }) => {
         <Col md={0} lg={3} xl={3}>
           <CategoryPost data={catpost}></CategoryPost>
         </Col>
-        <Col md={0} lg={0} xl={1}></Col>
       </Row>
     </Container>
   );

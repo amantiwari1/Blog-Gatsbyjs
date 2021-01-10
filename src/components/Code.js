@@ -48,8 +48,6 @@ const RE = /{([\d,-]+)}/
 export const CodeWrapper = styled.div`
   position: relative;
   ${NegMargin};
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
   * {
     font-family: 'Victor Mono', 'Courier New', Courier, monospace;
   }
@@ -78,7 +76,7 @@ const CopyCode = styled.button`
   position: absolute;
   right: 0.25rem;
   border: 0;
-  border-radius: 3px;
+  border-radius: 6px;
   margin-right: 0.25rem;
   color: #a0aec0;
   &:hover {

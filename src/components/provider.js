@@ -1,66 +1,52 @@
 import React from "react";
 import { Navbar } from ".";
 import { ThemeProvider } from "styled-components";
-import theme, {GlobalStyle} from "../themes/theme";
+import theme, { GlobalStyle } from "../themes/theme";
 import { useTheme } from "../hooks/useTheme";
-import { MDXProvider } from '@mdx-js/react';
-import styled from "styled-components";
-import {Code, CodeWrapper} from "./Code";
-import { down } from 'styled-breakpoints';
+import { MDXProvider } from "@mdx-js/react";
+import { Code, CodeWrapper } from "./Code";
 import "bootstrap/dist/css/bootstrap.css";
-import PropTypes from 'prop-types';
-
-
-
-
-
-
-const H2 = styled.h2`
-${down('md')} {
-  position: none;
-padding-top: 0;
-  }
- position: relative;
-padding-top: 60px;
-a {
-    float: left;
-    margin-left: -24px;
-  }
-  svg {
-    visibility: hidden;
-  }
-  &:hover {
-    svg {
-      visibility: visible;
-      height: 25px;
-      width: 20px;
-    }
-  }
-
-`
+import PropTypes from "prop-types";
+import Footer from "../components/Footer/footer";
+import {
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  InlineCode,
+  P,
+  Blockquote,
+  A,
+} from "../components/styles/MdxStyle";
 
 const components = {
-  h2: props => <H2 {...props} />,
+  h2: (props) => <H2 {...props} />,
+  h3: (props) => <H3 {...props} />,
+  h4: (props) => <H4 {...props} />,
+  h5: (props) => <H5 {...props} />,
+  h6: (props) => <H6 {...props} />,
+  p: (props) => <P {...props} />,
+  a: (props) => <A {...props} />,
+  blockquote: (props) => <Blockquote {...props} />,
+  "p.inlineCode": (props) => <InlineCode {...props} />,
   pre: ({ children: { props } }) => {
-    if (props.mdxType === 'code') {
+    if (props.mdxType === "code") {
       return (
         <CodeWrapper>
           <Code
             codeString={props.children.trim()}
             language={
-              props.className &&
-              props.className.replace('language-', '')
+              props.className && props.className.replace("language-", "")
             }
             {...props}
           />
         </CodeWrapper>
-      )
+      );
     }
   },
-  wrapper: ({children}) => <> {children} </>, 
-}
-
-
+  wrapper: ({ children }) => <> {children} </>,
+};
 
 const Layout = ({ children }) => {
   const [mode, toggleMode] = useTheme();
@@ -79,13 +65,15 @@ const Layout = ({ children }) => {
         />
         <br></br>
         {children}
+        <br></br>
+        <Footer />
       </MDXProvider>
     </ThemeProvider>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 
-export default Layout
+export default Layout;

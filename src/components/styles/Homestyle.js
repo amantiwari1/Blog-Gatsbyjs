@@ -19,6 +19,7 @@ const Topicstyle = styled.p`
   width: 100%;
   border-radius: 30px;
   text-align: center;
+  margin-top: 20px;
 `;
 
 export { HeaderImage, Topicstyle };
