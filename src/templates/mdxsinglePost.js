@@ -17,6 +17,7 @@ export default ({ data }) => {
   return (
     <Container fluid>
       <Row>
+        <Col md={0} lg={0} xl={1} ></Col>
         <Col md={3} lg={3} xl={2}>
           <TOC>
             <h5>Table of Content</h5>
@@ -30,7 +31,7 @@ export default ({ data }) => {
             </TOC>
         </Col>
 
-        <Col md={9} lg={6} xl={7}>
+        <Col md={9} lg={6} xl={5}>
           <Post>
           <BreadcrumbLayout>
                     <LinkButton to="/">Home</LinkButton> {" > "}
@@ -52,7 +53,7 @@ export default ({ data }) => {
             <MDXRenderer>{body}</MDXRenderer>
           </Post>
         </Col>
-        <Col md={0} lg={3} xl={3}>
+        <Col md={0} lg={3} xl={2}>
           <CategoryPost data={catpost}></CategoryPost>
         </Col>
       </Row>
