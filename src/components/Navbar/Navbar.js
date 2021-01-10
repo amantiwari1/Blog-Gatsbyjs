@@ -30,20 +30,26 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
       <NavBackgroudColor>
         <NavShort>
           <div>
-            <LinkButton style={{ textDecoration: "none" }} to="/">
+          <P><LinkButton  activeStyle={{ borderBottom: "solid 3px blue", paddingBottom: "1px" }} style={{  textDecoration: "none" }} to="/">
               {" "}
-              <P>Home</P>
-            </LinkButton>
-            <LinkButton style={{ textDecoration: "none" }} to="/posts">
+              Home
+            </LinkButton></P>
+            <P> <LinkButton  activeStyle={{ borderBottom: "solid 3px blue", paddingBottom: "1px" }}  style={{   textDecoration: "none" }} to="/posts">
               {" "}
-              <P>All Posts</P>
-            </LinkButton>
-            <LinkButton style={{ textDecoration: "none" }} to="/coursefree">
+              All Posts
+            </LinkButton></P>
+            <P> <LinkButton  activeStyle={{ borderBottom: "solid 3px blue", paddingBottom: "1px" }}  style={{   textDecoration: "none" }} to="/coursefree">
               {" "}
-              <P>Course</P>
-            </LinkButton>
-            <P>Internship</P>
-            <P>Data structure</P>
+              Course
+            </LinkButton></P>
+            <P> <LinkButton  activeStyle={{ borderBottom: "solid 3px blue", paddingBottom: "1px" }}  style={{   textDecoration: "none" }} to="/internship">
+              {" "}
+              Internship
+            </LinkButton></P>
+            <P> <LinkButton  activeStyle={{ borderBottom: "solid 3px blue", paddingBottom: "1px" }}  style={{   textDecoration: "none" }} to="/datastructure">
+              {" "}
+              Data structure
+            </LinkButton></P>
           </div>
 
           <div style={{ display: "flex" }}>

@@ -20,19 +20,35 @@ const NavShort = styled.div.attrs((props) => ({
   }
 `;
 const P = styled.p`
-  display: inline;
+
+  display: inline-block;
+  position: relative;
+  padding: 2px;
   margin-right: 20px !important;
+  margin-bottom: 5px;
   font-size: 1.2rem;
-  padding: 10px;
-  border: 2px solid ${(props) => props.theme.textColors};
-  border-radius: 30px;
 
-  filter: brightness(80%);
+&:last-child {
+  margin-right: 0;
+}
 
-  &:hover {
-    cursor: pointer;
-    filter: brightness(150%);
-  }
+&:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 3px;
+  width: 0px;
+  background: transparent;
+  transition: width .5s ease, background-color .5s ease;
+}
+&:hover:after {
+  width: 100%;
+  background: blue;
+}
+ 
+
+
+
 `;
 
 const Nav = styled(motion.nav)`
@@ -94,7 +110,7 @@ const SearchBtton = styled.button`
   background-repeat: no-repeat;
   border: none;
   outline: none;
-  padding: 0px;
+  padding: 0 !important;
   &:focus {
     border: none;
     outline: none;
@@ -110,9 +126,9 @@ const NavBackgroudColor = styled.div`
   transition: all 0.5s ease-out;
   position: sticky;
   z-index: 1;
-  padding-bottom: 15px;
-  height: 65px;
-  padding-top: 5px;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
 
   @media (max-width: 940px) {
     display: none;

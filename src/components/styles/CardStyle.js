@@ -13,8 +13,10 @@ export const CardImgCustom = styled(Card.Img)`
     0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 `;
 
-export const CardCustom = styled(Card)`
-  max-width: 21rem;
+export const CardCustom = styled(Card).attrs(props =>({
+  maxwidth: props.maxwidth || "21rem",
+}))`
+  max-width: ${props => props.maxwidth};
   background-color: ${(props) => props.theme.cardBackground};
   color: ${(props) => props.theme.textColor};
   transition: all 0.5s ease-out;

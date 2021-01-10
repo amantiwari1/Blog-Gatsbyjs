@@ -30,7 +30,7 @@ const AllPosts = ({ data }) => {
             <Row>
               {post.map((post) => (
                 <>
-                  <Col>
+                  <Col md={4}>
                     <CardContent
                       image={
                         post.frontmatter.featureImage.childImageSharp.fluid
