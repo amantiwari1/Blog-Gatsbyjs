@@ -21,15 +21,13 @@ const variants = {
 
 const Li = styled(motion.li)`
   list-style: none;
-  margin: 0;
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
   padding: 0;
 `;
 
-export const MenuItem = ({ children }) => {
+export const MenuItemMobile = ({ children }) => {
   return (
     <Li
       variants={variants}

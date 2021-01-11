@@ -7,6 +7,8 @@ import { CoupounText } from "../components/styles/Couponstyle";
 import { Post } from "../components/styles/SingePost";
 import { BreadcrumbLayout } from "../components/styles/BreadcrumbLayout";
 import { CategoryPost } from "../components/CategoryPost/CategoryPost";
+import { RecentPost, CourseRecentPost } from "../components/RecentPost/RecentPost";
+import { CourseRelatedPost } from "../components/RelatedPost/RelatedPost";
 import { FeatureImage } from "../components/styles/FeatureStyle";
 import parse from 'html-react-parser';
 
@@ -59,13 +61,16 @@ const singlePost = ({ data }) => {
                     <ErollButton>Enroll</ErollButton>
                   </Link>
                 </Post>
-
+                  <CourseRelatedPost data={data.CourseRecentPost} />
                 <br></br>
               </Col>
             </Row>
           </Col>
           <Col>
+            <CourseRecentPost data={data.allCourseCsv} />
             <CategoryPost data={catpost}></CategoryPost>
+          <RecentPost data={data.RecentPost} />
+
           </Col>
         </Row>
       </Container>
@@ -76,7 +81,7 @@ const singlePost = ({ data }) => {
 export default singlePost;
 
 export const pageQuery = graphql`
-  query CoursePostQuery($Postid: String!) {
+  query CoursePostQuery($Postid: String!, $CategoryName: String!) {
     courseCsv(id: { eq: $Postid }) {
       category
       coupon
@@ -99,6 +104,35 @@ export const pageQuery = graphql`
       nodes {
         name
         slug
+      }
+    }
+    allCourseCsv(limit: 5)  {
+    nodes {
+      title
+    }
+  }
+  RecentPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit:5) {
+    nodes {
+      frontmatter {
+        title
+      }
+    }
+  }
+  CourseRecentPost: allCourseCsv(filter: { category: { eq: $CategoryName } }) {
+      nodes {
+        category
+        categoryslug
+        date
+        featureimage
+        slug
+        title
+        localImage {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

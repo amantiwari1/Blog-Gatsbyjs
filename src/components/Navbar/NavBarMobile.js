@@ -1,11 +1,12 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { MenuItem } from "./MenuItem";
+import { MenuItemMobile } from "./MenuItemMobile";
 import styled from "styled-components";
-import { CloseIcon, SearchIcon } from "./Search";
+import { CloseIcon, SearchIcon } from "./SearchIcons";
 import { FormControl } from "react-bootstrap";
 import { P } from "../styles/NavStyle";
 import { LinkButton } from "../styles/Link";
+import { itemIds } from "./DataMenuItem";
 
 const variants = {
   open: {
@@ -32,6 +33,7 @@ const SearchBtton = styled.button`
   cursor: pointer;
   overflow: hidden;
   outline: none;
+  margin-bottom: 10px;
 
   &:focus {
     border: none;
@@ -39,12 +41,12 @@ const SearchBtton = styled.button`
   }
 `;
 
-export const Navigation = ({ isDark, remove }) => {
+export const NavBarMobile = ({ isDark, remove }) => {
   const [close, isClose] = React.useState(false);
 
   return (
     <Ul variants={variants}>
-      <MenuItem>
+      <MenuItemMobile>
         {close ? <FormControl placeholder="Your Search"></FormControl> : null}
         <SearchBtton onClick={() => isClose(!close)}>
           {!close ? (
@@ -53,7 +55,7 @@ export const Navigation = ({ isDark, remove }) => {
             <CloseIcon color={isDark ? "#fff" : "#000"} />
           )}
         </SearchBtton>
-      </MenuItem>
+      </MenuItemMobile>
       {itemIds.map((i) => (
         <>
           <LinkButton
@@ -62,10 +64,10 @@ export const Navigation = ({ isDark, remove }) => {
             to={`${i.slug}`}
           >
             {" "}
-            <MenuItem>
+            <MenuItemMobile>
               {" "}
               <P>{i.name}</P>
-            </MenuItem>{" "}
+            </MenuItemMobile>{" "}
           </LinkButton>
           <br />{" "}
         </>
@@ -74,25 +76,3 @@ export const Navigation = ({ isDark, remove }) => {
   );
 };
 
-const itemIds = [
-  {
-    name: "Home",
-    slug: "/",
-  },
-  {
-    name: "All Posts",
-    slug: "/posts",
-  },
-  {
-    name: "Course",
-    slug: "/coursefree",
-  },
-  {
-    name: "Internship",
-    slug: "/",
-  },
-  {
-    name: "Data structure",
-    slug: "/",
-  },
-];

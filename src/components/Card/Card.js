@@ -15,9 +15,9 @@ const NavAnimation = ({ children }) => {
   return <motion.div whileHover={{ scale: 1.05 }}>{children}</motion.div>;
 };
 
-export const CardContent = ({ maxwidth, title, content, link, cat, catlink, image }) => {
+export const CardContent = ({ height, maxwidth, title, content, link, cat, catlink, image }) => {
   return (
-    <CardCustom maxwidth={maxwidth} className="bg-transparent">
+    <CardCustom height={height} maxwidth={maxwidth} className="bg-transparent">
       <CardBorder>
         <NavAnimation>
           <CardImgCustom variant="top" as={Img} fluid={image} />

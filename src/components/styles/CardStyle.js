@@ -15,8 +15,10 @@ export const CardImgCustom = styled(Card.Img)`
 
 export const CardCustom = styled(Card).attrs(props =>({
   maxwidth: props.maxwidth || "21rem",
+  height: props.height || "auto",
 }))`
   max-width: ${props => props.maxwidth};
+  height: ${props => props.height};
   background-color: ${(props) => props.theme.cardBackground};
   color: ${(props) => props.theme.textColor};
   transition: all 0.5s ease-out;

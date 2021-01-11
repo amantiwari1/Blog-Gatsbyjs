@@ -4,11 +4,13 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Container, Row, Col } from "react-bootstrap";
 import { FeatureImage } from "../components/styles/FeatureStyle";
 import { CategoryPost } from "../components/CategoryPost/CategoryPost";
+import { RecentPost, CourseRecentPost, RelatedPostCard } from "../components/RecentPost/RecentPost";
+import { RelatedPost } from "../components/RelatedPost/RelatedPost";
 import { Post } from "../components/styles/SingePost";
 import { BreadcrumbLayout } from "../components/styles/BreadcrumbLayout";
 import { LinkButton } from "../components/styles/Link";
 
-import {TOC } from "../components/styles/Tableofcontent";
+import { TOC } from "../components/styles/Tableofcontent";
 
 export default ({ data }) => {
   const { body, frontmatter, tableOfContents } = data.mdx;
@@ -17,32 +19,35 @@ export default ({ data }) => {
   return (
     <Container fluid>
       <Row>
-        <Col md={0} lg={0} xl={1} ></Col>
+        <Col md={0} lg={0} xl={1}></Col>
         <Col md={3} lg={3} xl={2}>
           <TOC>
             <h5>Table of Content</h5>
-          <ul>
-            {tableOfContents.items.map((i) => (
-              <li>
-                <a href={i.url}>{i.title}</a>
-              </li>
-            ))}
-          </ul>
-            </TOC>
+            <ul>
+              {tableOfContents.items.map((i) => (
+                <li>
+                  <a href={i.url}>{i.title}</a>
+                </li>
+              ))}
+            </ul>
+          </TOC>
         </Col>
 
         <Col md={9} lg={6} xl={5}>
           <Post>
-          <BreadcrumbLayout>
-                    <LinkButton to="/">Home</LinkButton> {" > "}
-                    <LinkButton to="/posts">All Posts</LinkButton> {" > "}
-                    <LinkButton
-                      to={`/${frontmatter.category.split(" ").join("-").toLowerCase()}`}
-                    >
-                      {frontmatter.category}
-                    </LinkButton>{" "}
-                    {" > "}{" "}{frontmatter.date}
-                  </BreadcrumbLayout>
+            <BreadcrumbLayout>
+              <LinkButton to="/">Home</LinkButton> {" > "}
+              <LinkButton to="/posts">All Posts</LinkButton> {" > "}
+              <LinkButton
+                to={`/${frontmatter.category
+                  .split(" ")
+                  .join("-")
+                  .toLowerCase()}`}
+              >
+                {frontmatter.category}
+              </LinkButton>{" "}
+              {" > "} {frontmatter.date}
+            </BreadcrumbLayout>
             {frontmatter.featureImage ? (
               <FeatureImage
                 fluid={frontmatter.featureImage.childImageSharp.fluid}
@@ -52,9 +57,16 @@ export default ({ data }) => {
             <p>{frontmatter.date}</p>
             <MDXRenderer>{body}</MDXRenderer>
           </Post>
+          <RelatedPost data={data.RelatedPost} />
         </Col>
         <Col md={0} lg={3} xl={2}>
+          <CourseRecentPost data={data.allCourseCsv} />
+          <RecentPost data={data.RecentPost} />
           <CategoryPost data={catpost}></CategoryPost>
+          <RelatedPostCard data={data.RelatedPost} />    
+
+
+
         </Col>
       </Row>
     </Container>
@@ -62,7 +74,7 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query PostBySlug($title: String!) {
+  query PostBySlug($title: String!, $category: String!) {
     mdx(frontmatter: { title: { eq: $title } }) {
       frontmatter {
         category
@@ -90,5 +102,34 @@ export const query = graphql`
         slug
       }
     }
+    
+    RecentPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit:5) {
+    nodes {
+      frontmatter {
+        title
+      }
+    }
+  }
+  RelatedPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit: 3, filter: {frontmatter: {category: {eq: $category}}}) {
+    nodes {
+      frontmatter {
+        date(formatString: "MMM DD, YYYY")
+        featureImage {
+          childImageSharp {
+            fluid {
+                ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        title
+        category
+      }
+    }
+  }
+  allCourseCsv(limit: 5)  {
+    nodes {
+      title
+    }
+  }
   }
 `;

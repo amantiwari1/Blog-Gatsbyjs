@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const NavShort = styled.div.attrs((props) => ({
+const NavDesktop = styled.div.attrs((props) => ({
   margintop: props.margintop || "10px",
 }))`
   max-width: 1140px;
@@ -51,7 +51,7 @@ const P = styled.p`
 
 `;
 
-const Nav = styled(motion.nav)`
+const NavMobile = styled(motion.nav)`
   position: absolute;
   top: 0;
   left: 0;
@@ -105,12 +105,13 @@ const Brand = styled.h1`
   }
 `;
 
-const SearchBtton = styled.button`
+const SearchButtonStyle = styled.button`
   background-color: Transparent;
   background-repeat: no-repeat;
   border: none;
   outline: none;
   padding: 0 !important;
+  margin: 0;
   &:focus {
     border: none;
     outline: none;
@@ -135,13 +136,16 @@ const NavBackgroudColor = styled.div`
   }
 `;
 
+
+
+
 export {
   NavBackgroudColor,
-  NavShort,
+  NavDesktop,
   P,
-  Nav,
+  NavMobile,
   BackgroundNav,
   sidebar,
   Brand,
-  SearchBtton,
+  SearchButtonStyle,
 };

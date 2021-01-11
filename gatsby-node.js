@@ -13,6 +13,7 @@ exports.createPages = async function ({ actions, graphql }) {
         nodes {
           frontmatter {
             title
+            category
           }
         }
       }
@@ -28,6 +29,7 @@ exports.createPages = async function ({ actions, graphql }) {
           slug
           title
           featureimage
+          category
         }
       }
     }
@@ -64,10 +66,11 @@ exports.createPages = async function ({ actions, graphql }) {
   data.allCourseCsv.nodes.forEach((nodes) => {
     const name = nodes.title;
     const Postid = nodes.id;
+    const CategoryName = nodes.category
     actions.createPage({
       path: name.split(" ").join("-").toLowerCase(),
       component: require.resolve("./src/templates/coursePost.js"),
-      context: { Postid },
+      context: { Postid, CategoryName },
     });
   });
 
@@ -86,6 +89,7 @@ exports.createPages = async function ({ actions, graphql }) {
       component: require.resolve("./src/templates/mdxsinglePost.js"),
       context: {
         title: post.frontmatter.title,
+        category: post.frontmatter.category,
       },
     })
   })

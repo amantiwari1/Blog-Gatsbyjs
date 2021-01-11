@@ -10,7 +10,6 @@ const allPosts = ({ data }) => {
     <Container>
       <CardColumns>
         {posts.map((post) => (
-          <>
             <>
               <CardContent
                 image={post.localImage.childImageSharp.fluid}
@@ -21,7 +20,6 @@ const allPosts = ({ data }) => {
                 link={`/${post.slug}`}
               />
             </>
-          </>
         ))}
       </CardColumns>
     </Container>
