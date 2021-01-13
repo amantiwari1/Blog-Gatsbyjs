@@ -33,6 +33,8 @@ export const RelatedPost = ({ data }) => {
             ))}
             </Row>
             </div>
+            <br></br>
+
         </>
   );
 };
@@ -61,6 +63,7 @@ export const CourseRelatedPost = ({ data }) => {
             ))}
             </Row>
             </div>
+            <br></br>
         </>
   );
 };
