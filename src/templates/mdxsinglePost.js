@@ -60,7 +60,7 @@ export default ({ data }) => {
           <RelatedPost data={data.RelatedPost} />
         </Col>
         <Col md={0} lg={3} xl={2}>
-          <CourseRecentPost data={data.allCourseCsv} />
+          <CourseRecentPost  data={data.allCourseCsv} />
           <RecentPost data={data.RecentPost} />
           <CategoryPost data={catpost}></CategoryPost>
           <RelatedPostCard data={data.RelatedPost} />    
@@ -126,9 +126,16 @@ export const query = graphql`
       }
     }
   }
-  allCourseCsv(limit: 5)  {
+  allCourseCsv(limit: 6)  {
     nodes {
       title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   }
   }

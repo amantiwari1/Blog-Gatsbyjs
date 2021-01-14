@@ -1,7 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { CardContent } from "../components";
-import { Container, CardColumns } from "react-bootstrap";
+import { Container} from "react-bootstrap";
+import {AllPostCard} from "../components/Card/AllCard"
+
+
 // import ReactPaginate from 'react-paginate';
 // import styled from "styled-components";
 
@@ -20,22 +22,8 @@ const AllPosts = ({ data }) => {
   return (
     <>
       <Container>
-        <CardColumns>
-          {post.map((post) => (
-            <>
-              <CardContent
-                image={
-                  post.frontmatter.featureImage.childImageSharp.fluid
-                }
-                catlink={post.frontmatter.category.split(" ").join("-").toLowerCase()}
-                cat={post.frontmatter.category}
-                title={post.frontmatter.title}
-                content=" "
-                link={`/${post.frontmatter.title.split(" ").join("-").toLowerCase()}`}
-              />
-            </>
-          ))}
-        </CardColumns>
+
+          <AllPostCard post={post} />    
         {/* <pagination>
         
       <ReactPaginate
@@ -60,6 +48,7 @@ export const pageQuery = graphql`
   {
     allMdx(sort: {fields: frontmatter___date, order: DESC}) {
     nodes {
+      timeToRead
       frontmatter {
         date(formatString: "MMM DD, YYYY")
         featureImage {

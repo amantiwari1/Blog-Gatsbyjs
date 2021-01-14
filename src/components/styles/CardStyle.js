@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { Card } from "react-bootstrap";
+import { LinkButton } from "../styles/Link";
+import Img from "gatsby-image";
 
-export const CardImgCustom = styled(Card.Img)`
+
+
+
+export const CardImgCustom = styled(Img)`
   height: 60%;
   position: relative;
   overflow: hidden;
@@ -13,19 +17,14 @@ export const CardImgCustom = styled(Card.Img)`
     0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 `;
 
-export const CardCustom = styled(Card).attrs(props =>({
-  maxwidth: props.maxwidth || "21rem",
-  height: props.height || "auto",
-}))`
-  max-width: ${props => props.maxwidth};
-  height: ${props => props.height};
-  background-color: ${(props) => props.theme.cardBackground};
-  color: ${(props) => props.theme.textColor};
-  transition: all 0.5s ease-out;
-  margin-top: 20px;
-  border: none;
-  margin-left: auto;
-  margin-right: auto;
+const BodyCardText = styled(LinkButton)`
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  display: block;
+  font-size: 20px;
+  text-transform: capitalize; 
 `;
 
 export const Category = styled.button`
@@ -34,9 +33,8 @@ export const Category = styled.button`
   height: auto;
   outline: none;
   border: none;
-  border-radius: 6px;
   color: ${(props) => props.theme.background};
-  margin-bottom: 10px;
+  margin: 10px;
 
   &:hover {
     outline: none;
@@ -49,13 +47,26 @@ export const Category = styled.button`
   }
 `;
 
-export const CardBorder = styled.div`
-  border: 2px solid ${(props) => props.theme.textColors};
-  border-radius: 30px;
-  padding: 20px;
-  padding-bottom: 5px !important;
+const TimeToRead = styled.p`
+  font-size: 15px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+  margin-left: 4px; 
+  display: inline;
+  &:hover {
+    outline: none;
+    color: none;
+  }
 
-  /* @media (max-width: 575px) {
-    margin-left: 98px;
-  } */
-`;
+  &:focus {
+    outline: none;
+    border: none;
+    color: none;
+  }
+`
+
+
+
+
+
+export {BodyCardText,TimeToRead}

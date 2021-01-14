@@ -106,9 +106,16 @@ export const pageQuery = graphql`
         slug
       }
     }
-    allCourseCsv(limit: 5)  {
+    allCourseCsv(limit: 6)  {
     nodes {
       title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   }
   RecentPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit:5) {

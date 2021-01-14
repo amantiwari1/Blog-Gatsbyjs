@@ -1,27 +1,15 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Container, CardColumns } from "react-bootstrap";
-import { CardContent } from "../components";
+import { Container } from "react-bootstrap";
+import {AllCourseCard} from "../components/Card/AllCard";
+
 
 const allPosts = ({ data }) => {
-  const posts = data.allCourseCsv.nodes;
+  const post = data.allCourseCsv.nodes;
 
   return (
     <Container>
-      <CardColumns>
-        {posts.map((post) => (
-            <>
-              <CardContent
-                image={post.localImage.childImageSharp.fluid}
-                catlink={post.category.split(" ").join("-").toLowerCase()}
-                cat={post.category}
-                content=" "
-                title={post.title}
-                link={`/${post.slug}`}
-              />
-            </>
-        ))}
-      </CardColumns>
+      <AllCourseCard post={post} />
     </Container>
   );
 };
