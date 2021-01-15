@@ -15,6 +15,7 @@
     "gatsby-plugin-layout": "^1.8.0",
     "gatsby-plugin-manifest": "^2.10.0",
     "gatsby-plugin-mdx": "^1.8.0",
+    "gatsby-plugin-nprogress": "^2.8.0",
     "gatsby-plugin-page-progress": "^2.1.1",
     "gatsby-plugin-remote-images": "^2.2.0",
     "gatsby-plugin-sharp": "^2.12.0",

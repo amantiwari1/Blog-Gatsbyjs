@@ -67,9 +67,9 @@ const singlePost = ({ data }) => {
             </Row>
           </Col>
           <Col>
-            <CourseRecentPost data={data.allCourseCsv} />
+            <CourseRecentPost post={data.allCourseCsv.nodes} />
             <CategoryPost data={catpost}></CategoryPost>
-          <RecentPost data={data.RecentPost} />
+          <RecentPost xs={6} sm={4} md={2} lg={6} xl={6} post={data.RecentPost.nodes} />
 
           </Col>
         </Row>
@@ -122,6 +122,13 @@ export const pageQuery = graphql`
     nodes {
       frontmatter {
         title
+        featureImage {
+          childImageSharp {
+            fluid {
+                ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

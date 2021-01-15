@@ -9,7 +9,7 @@ const allPosts = ({ data }) => {
 
   return (
     <Container>
-      <AllCourseCard post={post} />
+      <AllCourseCard xs={6} sm={4} md={3} post={post} />
     </Container>
   );
 };

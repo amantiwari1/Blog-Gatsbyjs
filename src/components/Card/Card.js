@@ -1,5 +1,4 @@
 import React from "react";
-import { Card } from "react-bootstrap";
 import {
   CardImgCustom,
   TimeToRead,
@@ -32,7 +31,6 @@ export const NewCardContent = ({
               {cat}
             </Category>
           </Link>
-          <BodyCardText>{title}</BodyCardText>
           {time ? (
             <>
             <TimetoReadIcon/> 
@@ -40,6 +38,7 @@ export const NewCardContent = ({
               {time} min read
             </TimeToRead>
          </> ) : null}
+          <BodyCardText>{title}</BodyCardText>
 
         </NavAnimation>
     </TitleCardLink>

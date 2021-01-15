@@ -23,7 +23,7 @@ const AllPosts = ({ data }) => {
     <>
       <Container>
 
-          <AllPostCard post={post} />    
+          <AllPostCard xs={6} sm={6} md={4} lg={3} post={post} />    
         {/* <pagination>
         
       <ReactPaginate

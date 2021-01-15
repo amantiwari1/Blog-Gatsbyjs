@@ -4,16 +4,18 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { Container, Row, Col } from "react-bootstrap";
 import { FeatureImage } from "../components/styles/FeatureStyle";
 import { CategoryPost } from "../components/CategoryPost/CategoryPost";
-import { RecentPost, CourseRecentPost, RelatedPostCard } from "../components/RecentPost/RecentPost";
+import { RecentPost, CourseRecentPost } from "../components/RecentPost/RecentPost";
 import { RelatedPost } from "../components/RelatedPost/RelatedPost";
 import { Post } from "../components/styles/SingePost";
 import { BreadcrumbLayout } from "../components/styles/BreadcrumbLayout";
 import { LinkButton } from "../components/styles/Link";
+import { TimetoReadIcon } from "../images/icons";
+import {  TimeToRead} from "../components/styles/CardStyle"
 
 import { TOC } from "../components/styles/Tableofcontent";
 
 export default ({ data }) => {
-  const { body, frontmatter, tableOfContents } = data.mdx;
+  const { body, frontmatter, tableOfContents, timeToRead } = data.mdx;
   const catpost = data.allCourseCategoryCsv.nodes;
 
   return (
@@ -47,6 +49,11 @@ export default ({ data }) => {
                 {frontmatter.category}
               </LinkButton>{" "}
               {" > "} {frontmatter.date}
+              { " > "}
+            <TimetoReadIcon/> 
+            <TimeToRead  >
+              {timeToRead} min read
+            </TimeToRead>
             </BreadcrumbLayout>
             {frontmatter.featureImage ? (
               <FeatureImage
@@ -54,16 +61,15 @@ export default ({ data }) => {
               />
             ) : null}
             <h1>{frontmatter.title}</h1>
-            <p>{frontmatter.date}</p>
             <MDXRenderer>{body}</MDXRenderer>
           </Post>
           <RelatedPost data={data.RelatedPost} />
         </Col>
         <Col md={0} lg={3} xl={2}>
-          <CourseRecentPost  data={data.allCourseCsv} />
-          <RecentPost data={data.RecentPost} />
+          <CourseRecentPost  post={data.allCourseCsv.nodes} />
+          <RecentPost xs={6} sm={4} md={2} lg={6} xl={6} post={data.RecentPost.nodes} />
           <CategoryPost data={catpost}></CategoryPost>
-          <RelatedPostCard data={data.RelatedPost} />    
+      
 
 
 
@@ -103,15 +109,23 @@ export const query = graphql`
       }
     }
     
-    RecentPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit:5) {
+    RecentPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit:6) {
     nodes {
       frontmatter {
         title
+        featureImage {
+          childImageSharp {
+            fluid {
+                ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
   RelatedPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit: 3, filter: {frontmatter: {category: {eq: $category}}}) {
     nodes {
+      timeToRead
       frontmatter {
         date(formatString: "MMM DD, YYYY")
         featureImage {

@@ -12,6 +12,7 @@ const HeaderImage = styled.img`
   }
 `;
 const Topicstyle = styled.p`
+  text-transform: capitalize; 
   margin-right: 20px !important;
   font-size: 1.2rem;
   padding: 10px;

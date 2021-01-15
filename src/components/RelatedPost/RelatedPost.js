@@ -8,7 +8,7 @@ export const RelatedPost = ({ data }) => {
   return (
     <>
       <Topicstyle>Related Posts</Topicstyle>
-      <AllPostCard post={relatedpost} />
+      <AllPostCard xs={6} sm={4} md={4} post={relatedpost} />
       <br></br>
     </>
   );

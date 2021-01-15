@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import imggif from "../images/computer.gif";
 import { HeaderImage, Topicstyle } from "../components/styles/Homestyle";
 import { CategoryPost } from "../components/CategoryPost/CategoryPost";
-import {HomeFeatureCard} from "../components/Card/AllCard"
+import {HomeFeatureCard, AllHomeCourseCard, HomeAllPostCard} from "../components/Card/AllCard"
 
 const AllPosts = ({ data }) => {
   const catpost = data.allCourseCategoryCsv.nodes;
@@ -26,7 +26,7 @@ const AllPosts = ({ data }) => {
         <Row>
           <Col lg={8}>
             <Topicstyle>Featured Posts</Topicstyle>
-            <HomeFeatureCard  post={post} />
+            <HomeFeatureCard xs={6} sm={4}  post={post} />
           </Col>
           <Col lg={4}>
             <Topicstyle>Categories Course</Topicstyle>
@@ -34,7 +34,14 @@ const AllPosts = ({ data }) => {
           </Col>
         </Row>
         <Row>
-          <Topicstyle>Featured Posts</Topicstyle>
+          <Col>
+          <HomeAllPostCard xs={6} sm={4} md={4} lg={3} post={data.Internship.nodes} /> 
+          <AllHomeCourseCard xs={6} sm={4} md={4} lg={3} post={data.WebDevelopment.nodes} /> 
+          <AllHomeCourseCard xs={6} sm={4} md={4} lg={3} post={data.ArtificialIntelligence.nodes} /> 
+          <AllHomeCourseCard xs={6} sm={4} md={4} lg={3} post={data.CyberSecurity.nodes} /> 
+          <AllHomeCourseCard xs={6} sm={4} md={4} lg={3} post={data.ProgrammingLanguages.nodes} /> 
+          <AllHomeCourseCard xs={6} sm={4} md={4} lg={3} post={data.Editing.nodes} /> 
+          </Col>
         </Row>
       </Container>
     </>
@@ -68,5 +75,99 @@ export const pageQuery = graphql`
         slug
       }
     }
+
+    Internship: allMdx(filter: { frontmatter: { category: { eq: "internship" } } }) {
+      nodes {
+        timeToRead
+        frontmatter {
+          date(formatString: "MMM DD, YYYY")
+          featureImage {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          title
+          category
+        }
+      }
+    }
+    WebDevelopment: allCourseCsv(limit: 6, filter: {category: {eq: "Web Development"}}) {
+    nodes {
+      category
+      date
+      title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  }
+  ArtificialIntelligence: allCourseCsv(limit: 6, filter: {category: {eq: "Artificial Intelligence"}}) {
+    nodes {
+      category
+      date
+      title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  }
+  ProgrammingLanguages: allCourseCsv(limit: 6, filter: {category: {eq: "Programming Languages"}}) {
+    nodes {
+      category
+      date
+      title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  }
+  Editing: allCourseCsv(limit: 6, filter: {category: {eq: "Editing"}}) {
+    nodes {
+      category
+      date
+      title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  }
+  CyberSecurity: allCourseCsv(limit: 6, filter: {category: {eq: "Cyber Security"}}) {
+    nodes {
+      category
+      date
+      title
+      localImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  }
   }
 `;
+
+// Programming Languages,programming-languages
+// Artificial Intelligence,artificial-intelligence
+// Cyber Security,cyber-security
+// Web Development,web-development
+// Editing

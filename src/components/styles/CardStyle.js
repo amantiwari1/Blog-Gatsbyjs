@@ -8,6 +8,7 @@ import Img from "gatsby-image";
 export const CardImgCustom = styled(Img)`
   height: 60%;
   position: relative;
+  margin-bottom: 12px;
   overflow: hidden;
   margin-left: 0px;
   margin-right: 0px;
@@ -28,6 +29,7 @@ const BodyCardText = styled(LinkButton)`
 `;
 
 export const Category = styled.button`
+  text-transform: capitalize; 
   background-color: ${(props) => props.theme.textColor};
   width: auto;
   height: auto;
@@ -35,6 +37,7 @@ export const Category = styled.button`
   border: none;
   color: ${(props) => props.theme.background};
   margin: 10px;
+  margin-left: 0;
 
   &:hover {
     outline: none;
@@ -49,7 +52,6 @@ export const Category = styled.button`
 
 const TimeToRead = styled.p`
   font-size: 15px;
-  margin-bottom: 20px;
   opacity: 0.6;
   margin-left: 4px; 
   display: inline;

@@ -2,13 +2,17 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Card } from "../styles/RecentPosts";
 import { NewCardContent } from "../../components";
+import {  Topicstyle } from "../styles/Homestyle";
 
-const HomeFeatureCard = ({ post }) => {
+
+const HomeFeatureCard = (props) => {
+  const {post} = props;
+
   return (
     <Card>
       <Row>
         {post.map((post) => (
-          <Col xs={6} sm={4}   >
+          <Col style={{marginBottom: "20px"}} {...props}  >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
               catlink={post.frontmatter.category
@@ -30,12 +34,13 @@ const HomeFeatureCard = ({ post }) => {
   );
 };
 
-const AllPostCard = ({ post }) => {
+const AllPostCard = (props) => {
+  const {post} = props;
   return (
     <Card>
       <Row>
         {post.map((post) => (
-          <Col  style={{marginBottom: "20px"}} xs={6} sm={4} md={3}>
+          <Col  style={{marginBottom: "20px"}} {...props} >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
               catlink={post.frontmatter.category
@@ -57,12 +62,14 @@ const AllPostCard = ({ post }) => {
   );
 };
 
-const AllCourseCard = ({ post }) => {
+const AllCourseCard = (props) => {
+  const {post} = props;
+
   return (
     <Card>
       <Row>
         {post.map((post) => (
-          <Col xs={6} sm={4} md={3}>
+          <Col style={{marginBottom: "20px"}} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
               catlink={post.category.split(" ").join("-").toLowerCase()}
@@ -76,5 +83,60 @@ const AllCourseCard = ({ post }) => {
     </Card>
   );
 };
+const AllHomeCourseCard = (props) => {
+  const {post} = props;
 
-export { HomeFeatureCard, AllPostCard, AllCourseCard };
+  return ( 
+    <Card>
+      <Topicstyle>{post[0].category}</Topicstyle>
+      <Row>
+        {post.map((post) => (
+          <Col style={{marginBottom: "20px"}} {...props}>
+            <NewCardContent
+              image={post.localImage.childImageSharp.fluid}
+              catlink={post.category.split(" ").join("-").toLowerCase()}
+              cat={post.category}
+              title={post.title}
+              link={`/${post.title.split(" ").join("-").toLowerCase()}`}
+            />
+          </Col>
+        ))}
+      </Row>
+    </Card>
+  );
+};
+
+const HomeAllPostCard = (props) => {
+  const {post} = props;
+
+
+  return (
+    <Card>
+      <Topicstyle>{post[0].frontmatter.category}</Topicstyle>
+
+      <Row>
+        {post.map((post) => (
+          <Col style={{marginBottom: "20px"}} {...props}  >
+            <NewCardContent
+              image={post.frontmatter.featureImage.childImageSharp.fluid}
+              catlink={post.frontmatter.category
+                .split(" ")
+                .join("-")
+                .toLowerCase()}
+              cat={post.frontmatter.category}
+              title={post.frontmatter.title}
+              link={`/${post.frontmatter.title
+                .split(" ")
+                .join("-")
+                .toLowerCase()}`}
+                time={post.timeToRead}
+            />
+          </Col>
+        ))}
+      </Row>
+    </Card>
+  );
+};
+
+
+export { HomeFeatureCard, AllPostCard, AllCourseCard, AllHomeCourseCard, HomeAllPostCard };
