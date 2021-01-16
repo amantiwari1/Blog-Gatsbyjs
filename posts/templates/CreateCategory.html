@@ -13,6 +13,15 @@
   </head>
   <body>
     <div class="container">
+      {% if success %}
+      <br />
+      <div class="alert alert-success" role="alert">
+        <p>Successful Created Category</p>
+      </div>
+      {% endif %}
+      <br />
+      <a type="button" href="/"  class="btn btn-primary">Back to Home</a>
+
       <center>
         <br />
         <br />
@@ -34,11 +43,8 @@
               Create New Category
             </button>
           </div>
+          
         </form>
-
-        <div class="alert alert-success" role="alert">
-          <h1>{{success}}</h1>
-        </div>
       </center>
     </div>
   </body>

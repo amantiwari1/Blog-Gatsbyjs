@@ -5,11 +5,12 @@ import os
 import json
 from csv import writer
 from datetime import  datetime
-from typing import Optional
+from typing import Optional, List
+import shutil
+
 
 app = FastAPI()
 
-    
 
 templates = Jinja2Templates(directory="templates")
 
@@ -29,7 +30,7 @@ def createcategorypost(request: Request, Category: str = Form(...)):
         csv_writer = writer(write_obj)
         csv_writer.writerow([Category])
     os.mkdir(f"./data/{Category}")
-    return templates.TemplateResponse("CreateCategory.html", {"request": request, "success" : "successful!!!"})
+    return templates.TemplateResponse("CreateCategory.html", {"request": request, "success" : True})
 
 @app.get("/createpost")
 def Post(request: Request):
@@ -58,25 +59,36 @@ feature: false
     with open(f"{path}/{file.filename}",'wb+') as f:
         f.write(file.file.read())
         f.close()
-    return templates.TemplateResponse("Createpost.html", {"request": request, "success" : "successful!!!"})
-
-
-@app.get("/category")
-def category():
-    dirs = os.listdir("./data")
-    return dirs
+    return templates.TemplateResponse("Createpost.html", {"request": request, "success" : True})
 
 
 
-
-@app.get("/listofpost")
+@app.get("/detelepost")
 def Listofpost(request: Request):
     dirs = os.listdir("./data")
     maps = {}
     for i in dirs:
         maps[i] = os.listdir(f"./data/{i}")
-
-
     return templates.TemplateResponse("Listofpost.html", {"request": request,  "allpost": maps})
 
 
+@app.post("/detelepost")
+def DeletePost(request: Request, detelepost: str = Form(...)):
+
+    print(detelepost)
+    filearr = detelepost.replace("('", '').replace("'", "").replace(")","").split(",")
+    print(filearr)
+    path = f"./data/{filearr[1]}/{filearr[0]}".replace("/ ", "/")
+
+    try: 
+        shutil.rmtree(path)
+        print("Directory '% s' has been removed successfully" % path) 
+    except OSError as error: 
+        print(error) 
+        print("Directory '% s' can not be removed" % path) 
+
+    dirs = os.listdir("./data")
+    maps = {}
+    for i in dirs:
+        maps[i] = os.listdir(f"./data/{i}")
+    return templates.TemplateResponse("Listofpost.html", {"request": request, "success" : True, "result" :detelepost, "allpost": maps})
