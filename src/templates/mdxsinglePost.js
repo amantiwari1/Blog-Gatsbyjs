@@ -11,15 +11,21 @@ import { BreadcrumbLayout } from "../components/styles/BreadcrumbLayout";
 import { LinkButton } from "../components/styles/Link";
 import { TimetoReadIcon } from "../images/icons";
 import {  TimeToRead} from "../components/styles/CardStyle"
+import  SEO from "../components/seo";
 
 import { TOC } from "../components/styles/Tableofcontent";
 
 export default ({ data }) => {
   const { body, frontmatter, tableOfContents, timeToRead } = data.mdx;
   const catpost = data.allCourseCategoryCsv.nodes;
-
+  const metaImage = frontmatter.featureImage.publicURL
+ 
   return (
     <Container fluid>
+      <SEO 
+      title={frontmatter.title}
+      image={metaImage}
+      />
       <Row>
         <Col md={0} lg={0} xl={1}></Col>
         <Col md={3} lg={3} xl={2}>
@@ -87,6 +93,7 @@ export const query = graphql`
         title
         date(formatString: "YYYY MMMM, DD")
         featureImage {
+          publicURL
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid

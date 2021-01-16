@@ -11,6 +11,8 @@ import { RecentPost, CourseRecentPost } from "../components/RecentPost/RecentPos
 import { CourseRelatedPost } from "../components/RelatedPost/RelatedPost";
 import { FeatureImage } from "../components/styles/FeatureStyle";
 import parse from 'html-react-parser';
+import  SEO from "../components/seo";
+
 
 
 const singlePost = ({ data }) => {
@@ -22,6 +24,10 @@ const singlePost = ({ data }) => {
   return (
     <>
       <Container>
+      <SEO 
+        title={post.title}
+        image={FeatureImageUrl.publicURL}
+      />
         <Row>
           <Col lg="8">
             <Row>
@@ -93,6 +99,7 @@ export const pageQuery = graphql`
       title
       categoryslug
       localImage {
+        publicURL
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid

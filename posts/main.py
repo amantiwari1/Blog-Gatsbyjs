@@ -69,7 +69,7 @@ def Listofpost(request: Request):
     maps = {}
     for i in dirs:
         maps[i] = os.listdir(f"./data/{i}")
-    return templates.TemplateResponse("Listofpost.html", {"request": request,  "allpost": maps})
+    return templates.TemplateResponse("DeletePost.html", {"request": request,  "allpost": maps})
 
 
 @app.post("/detelepost")
@@ -91,4 +91,4 @@ def DeletePost(request: Request, detelepost: str = Form(...)):
     maps = {}
     for i in dirs:
         maps[i] = os.listdir(f"./data/{i}")
-    return templates.TemplateResponse("Listofpost.html", {"request": request, "success" : True, "result" :detelepost, "allpost": maps})
+    return templates.TemplateResponse("DeletePost.html", {"request": request, "success" : True, "result" :detelepost, "allpost": maps})

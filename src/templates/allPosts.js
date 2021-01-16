@@ -2,6 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 import { Container} from "react-bootstrap";
 import {AllPostCard} from "../components/Card/AllCard"
+import  SEO from "../components/seo";
+
 
 
 // import ReactPaginate from 'react-paginate';
@@ -22,7 +24,10 @@ const AllPosts = ({ data }) => {
   return (
     <>
       <Container>
-
+      <SEO 
+          title="Blog"
+        />
+      
           <AllPostCard xs={6} sm={6} md={4} lg={3} post={post} />    
         {/* <pagination>
         

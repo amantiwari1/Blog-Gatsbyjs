@@ -1,6 +1,15 @@
 module.exports = {
+
+  siteMetadata: {
+    title: `Most Updated Internship and 100% All Coupons Courses`,
+    description: `Be More Learn Everything is Free!!`,
+    image: "/moon.png",
+    author: `unknown`,
+    url: `https://react-mini-16338.web.app/`,
+
+  },
   plugins: [
-    
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,15 +36,15 @@ module.exports = {
       options: {
         includePaths: [],
         excludePaths: ["/", { regex: "^/coursefree" }, { regex: "^/posts" }],
-        height: 3,
+        height: 6,
         color: `#f37121`,
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `GatsbyJS`,
-        short_name: `GatsbyJS`,
+        name: `ClockCourse`,
+        short_name: `ClockCourse`,
         start_url: `/`,
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,

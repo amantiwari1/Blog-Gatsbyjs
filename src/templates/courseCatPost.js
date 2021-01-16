@@ -2,6 +2,8 @@ import React from "react";
 import { graphql } from "gatsby";
 import { Container } from "react-bootstrap";
 import {AllCourseCard} from "../components/Card/AllCard";
+import  SEO from "../components/seo";
+
 
 
 const allPosts = ({ data }) => {
@@ -9,6 +11,10 @@ const allPosts = ({ data }) => {
 
   return (
     <Container>
+        <SEO 
+          title={post[0].category}
+        />
+
       <AllCourseCard xs={6} sm={4} md={3} post={post} />
     </Container>
   );

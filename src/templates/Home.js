@@ -5,6 +5,8 @@ import imggif from "../images/computer.gif";
 import { HeaderImage, Topicstyle } from "../components/styles/Homestyle";
 import { CategoryPost } from "../components/CategoryPost/CategoryPost";
 import {HomeFeatureCard, AllHomeCourseCard, HomeAllPostCard} from "../components/Card/AllCard"
+import  SEO from "../components/seo";
+
 
 const AllPosts = ({ data }) => {
   const catpost = data.allCourseCategoryCsv.nodes;
@@ -13,6 +15,7 @@ const AllPosts = ({ data }) => {
   return (
     <>
       <Container>
+        <SEO />
         <Row>
           <Col>
             <center style={{ margin: "100px 0" }}>
