@@ -12,27 +12,15 @@
     />
 </head>
 <body>
-    <div class="container">
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+    <div class="container"> 
+        {% for i,j in allpost.items() %}
+        <br />
+        <h1>{{i}}</h1>
+        {% for a in j %}
+       <h3> {{a}}</h3> 
+        {% endfor %}
+            {% endfor %}
 
-       <center>
-
-         <a type="button" href="/createpost"  class="btn btn-dark">Create Post</a>
-      <br />
-      <br />
-
-         <a type="button" href="/createcategory"  class="btn btn-danger">Create Category </a>
-      <br />
-      <br />
-
-         <a type="button" href="/listofpost"  class="btn btn-danger">List of Post </a>
-       </center>    
-        
     </div>
        
 </body>

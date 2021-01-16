@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Category</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <center>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <form method="post" class="row g-3">
+          <div class="col-auto">
+            <label class="visually-hidden"></label>
+            <input
+              name="Category"
+              type="text"
+              class="form-control"
+              placeholder="New CATEGORY"
+            />
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">
+              Create New Category
+            </button>
+          </div>
+        </form>
+
+        <div class="alert alert-success" role="alert">
+          <h1>{{success}}</h1>
+        </div>
+      </center>
+    </div>
+  </body>
+</html>

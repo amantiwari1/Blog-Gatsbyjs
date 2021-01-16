@@ -3,27 +3,40 @@ from fastapi.templating import Jinja2Templates
 import shutil
 import os
 import json
-from pydantic import BaseModel
 from csv import writer
 from datetime import  datetime
 from typing import Optional
 
 app = FastAPI()
 
-class Item(BaseModel):
-    title: str
-    cateogry: str
-    content: str
     
 
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 def home(request: Request):
-    dirs = os.listdir("./data")
-    return templates.TemplateResponse("index.html", {"request": request, "dirs":dirs})
+    return templates.TemplateResponse("index.html", {"request": request})
 
-@app.post("/")
+
+@app.get("/createcategory")
+def createcategory(request: Request):
+    return templates.TemplateResponse("CreateCategory.html", {"request": request})
+
+
+@app.post("/createcategory")
+def createcategorypost(request: Request, Category: str = Form(...)):
+    with open("postCatgories.csv", 'a+', newline='') as write_obj:
+        csv_writer = writer(write_obj)
+        csv_writer.writerow([Category])
+    os.mkdir(f"./data/{Category}")
+    return templates.TemplateResponse("CreateCategory.html", {"request": request, "success" : "successful!!!"})
+
+@app.get("/createpost")
+def Post(request: Request):
+    dirs = os.listdir("./data")
+    return templates.TemplateResponse("Createpost.html", {"request": request, "dirs":dirs})
+
+@app.post("/createpost")
 async def createHome(request: Request, title: str = Form(...), content: str = Form(...),category: str = Form(...),file: UploadFile = File(...) ):
     path = f"./data/{category}/{title}"
 
@@ -45,7 +58,7 @@ feature: false
     with open(f"{path}/{file.filename}",'wb+') as f:
         f.write(file.file.read())
         f.close()
-    return templates.TemplateResponse("index.html", {"request": request, "success" : "successful!!!"})
+    return templates.TemplateResponse("Createpost.html", {"request": request, "success" : "successful!!!"})
 
 
 @app.get("/category")
@@ -54,21 +67,16 @@ def category():
     return dirs
 
 
-@app.get("/createcategory")
-def CreateCategory(category: str):
-    with open("postCatgories.csv", 'a+', newline='') as write_obj:
-        csv_writer = writer(write_obj)
-        csv_writer.writerow([category])
-    os.mkdir(f"./data/{category}")
-    return "success"
 
-
-@app.get("/scripts.js")
-def script(request: Request):
-    return templates.TemplateResponse("scripts.js", {"request": request})
 
 @app.get("/listofpost")
-def Listofpost():
-    dirs = os.listdir("./data/devops")
-    return dirs
+def Listofpost(request: Request):
+    dirs = os.listdir("./data")
+    maps = {}
+    for i in dirs:
+        maps[i] = os.listdir(f"./data/{i}")
+
+
+    return templates.TemplateResponse("Listofpost.html", {"request": request,  "allpost": maps})
+
 
