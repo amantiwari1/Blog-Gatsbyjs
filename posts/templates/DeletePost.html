@@ -43,7 +43,8 @@
         </div>
         {% endfor %} {% endfor %}
         
-
+        <button type="submit" class="btn btn-primary" formaction="/updatepost" required>Update post</button>
+    
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" required>
@@ -62,7 +63,7 @@
         WARNING - You are Deleting Post, Are you Sure? 
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-danger" required>Yes!!</button>
+        <button type="submit" class="btn btn-danger" formaction="/detelepost" required>Yes!!</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancel it!</button>
       </div>
     </div>

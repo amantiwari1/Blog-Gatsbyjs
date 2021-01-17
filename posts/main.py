@@ -19,6 +19,20 @@ def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
+@app.get("/to-markdown.js")
+def markdown(request: Request):
+    return templates.TemplateResponse("to-markdown.js", {"request": request})
+
+@app.get("/copytomarkdown")
+def originalmarkdown(request: Request):
+    return templates.TemplateResponse("copytomarkdown.html", {"request": request})
+
+
+@app.get("/Copy2Markdown.js")
+def copytomarkdown(request: Request):
+    return templates.TemplateResponse("Copy2Markdown.js", {"request": request})
+
+
 @app.get("/createcategory")
 def createcategory(request: Request):
     return templates.TemplateResponse("CreateCategory.html", {"request": request})
@@ -92,3 +106,21 @@ def DeletePost(request: Request, detelepost: str = Form(...)):
     for i in dirs:
         maps[i] = os.listdir(f"./data/{i}")
     return templates.TemplateResponse("DeletePost.html", {"request": request, "success" : True, "result" :detelepost, "allpost": maps})
+
+@app.post("/updatepost")
+def udatepost(request: Request,  detelepost: str = Form(...)):
+    dirs = os.listdir("./data")
+    filearr = detelepost.replace("(", '').replace("'", "").replace(")","").split(",")
+    path = f"./data/{filearr[1]}/{filearr[0]}/post.mdx".replace("/ ", "/")
+    with open(path,encoding="utf-8") as f:
+        content = "".join(f.readlines())
+
+    categorySelect = filearr[1]
+    title = filearr[0]
+    return templates.TemplateResponse("UpdatePost.html", {"request": request, "content" :content,"categorySelect" :categorySelect,"title" :title, "dirs":dirs})
+
+    
+
+
+
+

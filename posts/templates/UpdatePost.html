@@ -10,7 +10,6 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/uikit.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js"></script>
@@ -28,8 +27,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/css/components/htmleditor.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/components/htmleditor.js"></script>
     
-
-
 </head>
 <body>
     <div class="container">
@@ -42,9 +39,6 @@
       {% endif %}
       <br />
       <a type="button" href="/"  class="btn btn-primary">Back to Home</a>
-      <br />
-      <br />
-      <a type="button" href="/copytomarkdown"  class="btn btn-danger">Paste to markdown</a>
         <form  action="/createpost  " enctype="multipart/form-data" method="post">
             <h1> Create Post</h1>
         <div class="mb-3">
@@ -53,20 +47,35 @@
             <label class="form-label">Category</label>
             <select name="category" class="form-select" aria-label="Default select example">
             {% for i in dirs%}
+
+                {% if i==categorySelect %}
+                <option selected>{{i}}</option>
+                {% else %}
                 <option>{{i}}</option>
+                {% endif %}
+
                 {% endfor %}
         
             </select>
             <label class="form-label">Title</label>
-            <input type="text" name="title" class="form-control"  placeholder="Title" required>
+            <input type="text" name="title" class="form-control" value={{title}}  placeholder="Title" required>
           </div>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Content</label>
-            <textarea  type="text" placeholder="Content" name="content" rows="20" required data-uk-htmleditor="{markdown:true,mode:'tab'}"></textarea>
+            <label for="exampleFormControlTextarea1" class="form-label" value=>Content</label>
+            <textarea  type="text" placeholder="Content" name="content" rows="20"  required data-uk-htmleditor="{markdown:true,mode:'tab'}">{{content}}</textarea>
+            
           </div>
           <button type="submit" class="btn btn-primary" required>Submit</button>
         </form>
 
+        
+        
+       
+   
+    
+
+        
+    
        
 </body>
 </html>
