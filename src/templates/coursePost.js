@@ -101,7 +101,7 @@ export const pageQuery = graphql`
       localImage {
         publicURL
         childImageSharp {
-          fluid {
+          fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -118,7 +118,7 @@ export const pageQuery = graphql`
       title
       localImage {
         childImageSharp {
-          fluid {
+          fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -131,7 +131,7 @@ export const pageQuery = graphql`
         title
         featureImage {
           childImageSharp {
-            fluid {
+            fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
                 ...GatsbyImageSharpFluid
             }
           }
@@ -149,7 +149,7 @@ export const pageQuery = graphql`
         title
         localImage {
           childImageSharp {
-            fluid {
+            fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
               ...GatsbyImageSharpFluid
             }
           }

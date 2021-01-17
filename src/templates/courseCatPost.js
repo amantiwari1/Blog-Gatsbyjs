@@ -34,7 +34,7 @@ export const CatQuery = graphql`
         title
         localImage {
           childImageSharp {
-            fluid {
+            fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
               ...GatsbyImageSharpFluid
             }
           }

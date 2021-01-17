@@ -13,14 +13,14 @@ const HeaderImage = styled.img`
 `;
 const Topicstyle = styled.p`
   text-transform: capitalize; 
-  margin-right: 20px !important;
+  /* margin-right: 20px !important; */
   font-size: 1.2rem;
   padding: 10px;
   border: 2px solid ${(props) => props.theme.textColors};
   width: 100%;
-  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+
   text-align: center;
-  margin-top: 20px;
 `;
 
 export { HeaderImage, Topicstyle };

@@ -4,18 +4,18 @@ import styled from "styled-components";
 
 const variants = {
   open: {
-    y: 0,
     opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
+    display: "inherit",
+    y: 0,
   },
   closed: {
     y: 50,
+    
     opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
+    transitionEnd: { display: "none" },
+
+
+
   },
 };
 

@@ -1,10 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Container} from "react-bootstrap";
-import {AllPostCard} from "../components/Card/AllCard"
-import  SEO from "../components/seo";
-
-
+import { Container } from "react-bootstrap";
+import { AllPostCard } from "../components/Card/AllCard";
+import SEO from "../components/seo";
 
 // import ReactPaginate from 'react-paginate';
 // import styled from "styled-components";
@@ -24,11 +22,9 @@ const AllPosts = ({ data }) => {
   return (
     <>
       <Container>
-      <SEO 
-          title="Blog"
-        />
-      
-          <AllPostCard xs={6} sm={6} md={4} lg={3} post={post} />    
+        <SEO title="Blog" />
+
+        <AllPostCard xs={6} sm={6} md={4} lg={3} post={post} />
         {/* <pagination>
         
       <ReactPaginate
@@ -51,23 +47,22 @@ export default AllPosts;
 
 export const pageQuery = graphql`
   {
-    allMdx(sort: {fields: frontmatter___date, order: DESC}) {
-    nodes {
-      timeToRead
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        featureImage {
-          childImageSharp {
-            fluid {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+      nodes {
+        timeToRead
+        frontmatter {
+          date(formatString: "MMM DD, YYYY")
+          featureImage {
+            childImageSharp {
+              fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
                 ...GatsbyImageSharpFluid
+              }
             }
           }
+          title
+          category
         }
-        title
-        category
       }
     }
-  }
-   
   }
 `;

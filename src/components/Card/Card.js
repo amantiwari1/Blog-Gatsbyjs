@@ -3,7 +3,9 @@ import {
   CardImgCustom,
   TimeToRead,
   Category,
-  BodyCardText
+  BodyCardText,
+  Card,
+  CardBody
 } from "../styles/CardStyle";
 import { motion } from "framer-motion";
 import { Link } from "gatsby";
@@ -23,9 +25,12 @@ export const NewCardContent = ({
   image,
 }) => {
   return (
+    <Card>
+      
     <TitleCardLink style={{ textDecoration: "none" }} to={link}>
-        <NavAnimation>
-          <CardImgCustom fluid={image} />
+          <CardImgCustom  fluid={image} />
+          <CardBody>
+
           <Link style={{ transition: "all 0.5s ease-out" }} to={`/${catlink}`}>
             <Category style={{ transition: "all 0.5s ease-out" }}>
               {cat}
@@ -40,7 +45,8 @@ export const NewCardContent = ({
          </> ) : null}
           <BodyCardText>{title}</BodyCardText>
 
-        </NavAnimation>
+            </CardBody>
     </TitleCardLink>
+    </Card>
   );
 };

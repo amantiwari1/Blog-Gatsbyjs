@@ -4,16 +4,24 @@ import { LinkButton } from "../styles/Link";
 const Card = styled.div`
   width: auto;
   height: auto;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  
+`;
+const Card2 = styled.div`
+  height: auto;
+  margin-bottom: 20px;
+
+  
 `;
 
 const Header = styled.h4`
   margin-bottom: 20px;
-  margin-top: 20px;
   border: 2px solid ${(props) => props.theme.textColors};
   padding: 10px;
   text-transform: capitalize; 
   text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+
 `;
 
 const Item = styled(LinkButton)`
@@ -38,4 +46,4 @@ const ItemCat = styled(LinkButton)`
 
 `;
 
-export { Card, Header, Item, ItemCat };
+export { Card, Card2,  Header, Item, ItemCat };

@@ -32,7 +32,6 @@ const AllPosts = ({ data }) => {
             <HomeFeatureCard xs={6} sm={4}  post={post} />
           </Col>
           <Col lg={4}>
-            <Topicstyle>Categories Course</Topicstyle>
             <CategoryPost data={catpost}></CategoryPost>
           </Col>
         </Row>
@@ -62,7 +61,7 @@ export const pageQuery = graphql`
           date(formatString: "MMM DD, YYYY")
           featureImage {
             childImageSharp {
-              fluid {
+              fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -86,7 +85,7 @@ export const pageQuery = graphql`
           date(formatString: "MMM DD, YYYY")
           featureImage {
             childImageSharp {
-              fluid {
+              fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
                 ...GatsbyImageSharpFluid
               }
             }

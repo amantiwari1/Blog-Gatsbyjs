@@ -75,7 +75,7 @@ const BackgroundNav = styled(motion.div)`
 `;
 
 const sidebar = {
-  open: (height = 1000) => ({
+  open: (height = 2000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
       type: "spring",
@@ -87,7 +87,7 @@ const sidebar = {
   closed: {
     clipPath: "circle(30px at 40px 40px)",
     transition: {
-      delay: 0.25,
+      delay: 0.1,
       type: "spring",
       stiffness: 400,
       damping: 40,

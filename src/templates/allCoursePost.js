@@ -30,7 +30,7 @@ export const pageQuery = graphql`
         slug
         localImage {
           childImageSharp {
-            fluid {
+            fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
               ...GatsbyImageSharpFluid
             }
           }

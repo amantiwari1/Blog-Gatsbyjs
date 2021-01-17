@@ -11,7 +11,7 @@ const theme = {
     cardBackground: "#ffffff",
   },
   dark: {
-    background: "#5d4561",
+    background: "#2C3A47",
     textColor: "#fff",
     textSecondary: "#37364d",
     buttonPrimary: "#fff",

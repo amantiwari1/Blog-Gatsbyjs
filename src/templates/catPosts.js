@@ -31,7 +31,7 @@ export const CatQuery = graphql`
         date(formatString: "MMM DD, YYYY")
         featureImage {
           childImageSharp {
-            fluid {
+            fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
                 ...GatsbyImageSharpFluid
             }
           }
