@@ -21,10 +21,16 @@
         <p>Successful Deleted Post</p>
       </div>
       {% endif %}
+      {% if successPost %}
+      <br />
+      <div class="alert alert-success" role="alert">
+        <p>Successful Updated Post</p>
+      </div>
+      {% endif %}
       <br />
       <a type="button" href="/"  class="btn btn-primary">Back to Home</a>
 
-      <h1> Delete Post </h1>
+      <h1> List of Post </h1>
       <form method="post" class="row g-3">
         {% for i,j in allpost.items() %}
         <br />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card2, Header , ItemCat} from "../styles/RecentPosts";
+import { Header , ItemCat} from "../styles/RecentPosts";
 import {Card} from "../styles/CardStyle";
 
 

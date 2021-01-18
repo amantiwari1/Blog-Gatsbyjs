@@ -18,9 +18,11 @@ import {
   P,
   Blockquote,
   A,
+  Table,
 } from "../components/styles/MdxStyle";
 
 const components = {
+  table: props => <Table {...props} />,
   h2: (props) => <H2 {...props} />,
   h3: (props) => <H3 {...props} />,
   h4: (props) => <H4 {...props} />,

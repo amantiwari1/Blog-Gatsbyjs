@@ -7,14 +7,10 @@ import {
   Card,
   CardBody
 } from "../styles/CardStyle";
-import { motion } from "framer-motion";
 import { Link } from "gatsby";
 import { TitleCardLink } from "../styles/Link";
 import { TimetoReadIcon } from "../../images/icons";
 
-const NavAnimation = ({ children }) => {
-  return <motion.div whileHover={{ scale: 1.05 }}>{children}</motion.div>;
-};
 
 export const NewCardContent = ({
   time,

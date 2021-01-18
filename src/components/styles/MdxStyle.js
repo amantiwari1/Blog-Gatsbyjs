@@ -91,6 +91,35 @@ const A = styled.a`
     ${inlineCode}
   }
 `
+
+const Table = styled.table`
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  font-size: 0.875rem;
+  width: 100%;
+  thead {
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #e2e8f0;
+    border: 1px solid #a0aec0;
+  }
+  th {
+    display: none;
+  }
+  th,
+  td {
+    border: 1px solid #cbd5e0;
+  }
+  th,
+  td {
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+    text-align: left;
+  }
+  
+`
   
 
-export { H2, H3, H4, H5, H6, P, Blockquote , A};
+export { H2, H3, H4, H5, H6, P, Blockquote , A, Table};

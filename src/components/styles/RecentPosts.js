@@ -7,12 +7,6 @@ const Card = styled.div`
   margin-bottom: 20px;
   
 `;
-const Card2 = styled.div`
-  height: auto;
-  margin-bottom: 20px;
-
-  
-`;
 
 const Header = styled.h4`
   margin-bottom: 20px;
@@ -46,4 +40,4 @@ const ItemCat = styled(LinkButton)`
 
 `;
 
-export { Card, Card2,  Header, Item, ItemCat };
+export { Card,  Header, Item, ItemCat };

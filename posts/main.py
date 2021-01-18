@@ -67,8 +67,8 @@ category: {category}
 feature: false
 ---
 """ + content
-    with open(f"{path}/post.mdx", "a" ,encoding="utf-8") as mardown:
-        mardown.write(Content)
+        with open(f"{path}/post.mdx", "a", newline="" ,encoding="utf-8") as mardown:
+            mardown.write(Content)
     
     with open(f"{path}/{file.filename}",'wb+') as f:
         f.write(file.file.read())
@@ -113,13 +113,55 @@ def udatepost(request: Request,  detelepost: str = Form(...)):
     filearr = detelepost.replace("(", '').replace("'", "").replace(")","").split(",")
     path = f"./data/{filearr[1]}/{filearr[0]}/post.mdx".replace("/ ", "/")
     with open(path,encoding="utf-8") as f:
-        content = "".join(f.readlines())
-
+        featureImage = "".join(f.readlines()[5])[14:].replace("./", "")
+    with open(path,encoding="utf-8") as f:
+        content = "".join(f.readlines()[9:])
+    print(featureImage)
     categorySelect = filearr[1]
     title = filearr[0]
-    return templates.TemplateResponse("UpdatePost.html", {"request": request, "content" :content,"categorySelect" :categorySelect,"title" :title, "dirs":dirs})
+    return templates.TemplateResponse("UpdatePost.html", {"request": request, "content" :content,"categorySelect" :categorySelect,"title" :title, "dirs":dirs, "featureImage":featureImage})
 
-    
+@app.post("/Updatedpost")
+async def UpdatedPost(request: Request, title: str = Form(...), content: str = Form(...),category: str = Form(...),file: UploadFile = File(...), featureimage: str = Form(...)):
+    path = f"./data/{category}/{title}"
+
+    fileimage = file.file.read()
+    print("here", fileimage!= b'')
+    dirs = os.listdir("./data")
+    maps = {}
+    for i in dirs:
+        maps[i] = os.listdir(f"./data/{i}")
+
+    filename = ""
+
+    print(fileimage != b'')
+
+
+    if fileimage != b'':
+        filename= file.filename
+    else: 
+        filename = featureimage
+
+
+    Content = f"""---
+date: {datetime.now().strftime("%Y-%m-%d")}
+title: {title}
+tags: ['css', 'resource']
+private: false
+featureImage: ./{filename}
+category: {category}
+feature: false
+---
+""" + content
+
+    with open(f"{path}/post.mdx", "w" ,  newline='' ,encoding="utf-8") as mardown:
+        mardown.write(Content)
+
+    if fileimage!= b'':
+        with open(f"{path}/{file.filename}",'wb+') as f:
+            f.write(fileimage)
+            f.close()
+    return templates.TemplateResponse("DeletePost.html", {"request": request, "successPost" : True,"allpost": maps})
 
 
 
