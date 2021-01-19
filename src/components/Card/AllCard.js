@@ -16,15 +16,13 @@ const HomeFeatureCard = (props) => {
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
               catlink={post.frontmatter.category
-                .split(" ")
-                .join("-")
-                .toLowerCase()}
+                .toLowerCase().replace(/ /g, '-') 
+                .replace(/[^\w-]+/g, '')}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
               link={`/${post.frontmatter.title
-                .split(" ")
-                .join("-")
-                .toLowerCase()}`}
+                .toLowerCase().replace(/ /g, '-') 
+                .replace(/[^\w-]+/g, '')}`}
                 time={post.timeToRead}
             />
           </Col>
@@ -44,15 +42,13 @@ const AllPostCard = (props) => {
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
               catlink={post.frontmatter.category
-                .split(" ")
-                .join("-")
-                .toLowerCase()}
+                .toLowerCase().replace(/ /g, '-') 
+                .replace(/[^\w-]+/g, '')}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
               link={`/${post.frontmatter.title
-                .split(" ")
-                .join("-")
-                .toLowerCase()}`}
+                .toLowerCase().replace(/ /g, '-') 
+                .replace(/[^\w-]+/g, '')}`}
                 time={post.timeToRead}
             />
           </Col>
@@ -72,10 +68,10 @@ const AllCourseCard = (props) => {
           <Col style={{marginBottom: "20px"}} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
-              catlink={post.category.split(" ").join("-").toLowerCase()}
+              catlink={post.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}
               cat={post.category}
               title={post.title}
-              link={`/${post.slug}`}
+              link={`/${post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
             />
           </Col>
         ))}
@@ -94,10 +90,10 @@ const AllHomeCourseCard = (props) => {
           <Col style={{marginBottom: "20px"}} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
-              catlink={post.category.split(" ").join("-").toLowerCase()}
+              catlink={post.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}
               cat={post.category}
               title={post.title}
-              link={`/${post.title.split(" ").join("-").toLowerCase()}`}
+              link={`/${post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
             />
           </Col>
         ))}
@@ -119,16 +115,10 @@ const HomeAllPostCard = (props) => {
           <Col style={{marginBottom: "20px"}} {...props}  >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category
-                .split(" ")
-                .join("-")
-                .toLowerCase()}
+              catlink={post.frontmatter.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={`/${post.frontmatter.title
-                .split(" ")
-                .join("-")
-                .toLowerCase()}`}
+              link={`/${post.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
                 time={post.timeToRead}
             />
           </Col>

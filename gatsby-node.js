@@ -17,16 +17,10 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
-      allCourseCategoryCsv {
-        nodes {
-          name
-          slug
-        }
-      }
       allCourseCsv {
+        distinct(field: category)
         nodes {
           id
-          slug
           title
           featureimage
           category
@@ -57,7 +51,7 @@ exports.createPages = async function ({ actions, graphql }) {
   data.allPostCatgoriesCsv.nodes.forEach((nodes) => {
     const name = nodes.name;
     actions.createPage({
-      path: name.split(" ").join("-").toLowerCase(),
+      path: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
       component: require.resolve("./src/templates/catPosts.js"),
       context: { name },
     });
@@ -68,16 +62,15 @@ exports.createPages = async function ({ actions, graphql }) {
     const Postid = nodes.id;
     const CategoryName = nodes.category
     actions.createPage({
-      path: name.split(" ").join("-").toLowerCase(),
+      path: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
       component: require.resolve("./src/templates/coursePost.js"),
       context: { Postid, CategoryName },
     });
   });
 
-  data.allCourseCategoryCsv.nodes.forEach((nodes) => {
-    const name = nodes.name;
-    actions.createPage({
-      path: name.split(" ").join("-").toLowerCase(),
+  data.allCourseCsv.distinct.forEach((name) => {
+      actions.createPage({
+      path: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
       component: require.resolve("./src/templates/courseCatPost.js"),
       context: { name },
     });
@@ -85,7 +78,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   data.allMdx.nodes.forEach((post) => {
     actions.createPage({
-      path: post.frontmatter.title.split(" ").join("-").toLowerCase(),
+      path: post.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
       component: require.resolve("./src/templates/mdxsinglePost.js"),
       context: {
         title: post.frontmatter.title,

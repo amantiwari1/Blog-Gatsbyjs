@@ -27,7 +27,6 @@ export const pageQuery = graphql`
       nodes {
         category
         title
-        slug
         localImage {
           childImageSharp {
             fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {

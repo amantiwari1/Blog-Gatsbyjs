@@ -7,6 +7,37 @@ from csv import writer
 from datetime import  datetime
 from typing import Optional, List
 import shutil
+import pandas as pd
+import requests
+from scrapy import Selector
+import re
+
+
+
+def getdata(url, coupon=""):
+  if url[:21] in "https://www.udemy.com":
+    data = requests.get(url).content
+    sel = Selector(text = data)
+    description = sel.css("div.ud-component--course-landing-page-udlite--description").extract()
+    TAG_RE = re.compile(r'<button .+>.+button>')
+    title = sel.css("h1 ::text").extract()[0]
+    descriptionclean = TAG_RE.sub('', description[0]).replace('style="max-height:221px"',"")
+    category = sel.css("a.udlite-heading-sm:nth-of-type(2) ::text").extract()[0]
+    imagefile = sel.xpath("//meta[@property='og:image']/@content").extract()[0]
+    date = datetime.now().strftime("%Y-%m-%d")
+    data = {
+        "title": title.replace("\n",""),
+        "category": category,
+        "date": date,
+        "course_url":url,
+        "coupon":coupon,
+        "featureimage": imagefile,
+        "description": descriptionclean,
+    }
+    return data
+  return "None"
+
+
 
 
 app = FastAPI()
@@ -162,6 +193,42 @@ feature: false
             f.write(fileimage)
             f.close()
     return templates.TemplateResponse("DeletePost.html", {"request": request, "successPost" : True,"allpost": maps})
+
+
+
+
+@app.get("/listofcourse")
+def listofcourse(request: Request):
+    data = pd.read_csv("./courses/Course.csv")
+    return templates.TemplateResponse("listofcourse.html", {"request": request,"alltitle": data["title"]})
+
+@app.post("/listofcourse")
+def delete(request: Request, title : str = Form(...)):
+    path = "./courses/Course.csv"
+    data = pd.read_csv(path)
+    index = data[data['title'] == title].index
+    data.drop(index, inplace=True)
+    data.to_csv(path, header = True, index = False)
+    return templates.TemplateResponse("listofcourse.html", {"request": request,"alltitle": data["title"]})
+
+
+@app.post("/createcourese")
+async def createcourse(request:Request, url: str = Form(...)):
+    path = "./courses/Course.csv"
+    df = pd.read_csv(path)
+    data =  getdata(url)
+    df2 = pd.DataFrame([[data["title"], data['category'], data['date'], data['coupon'], data['course_url'], data['featureimage'], data['description']] ], columns = df.columns)
+    df2.to_csv(path, mode = 'a', header = False, index = False)
+    df = pd.read_csv(path)
+
+
+    return templates.TemplateResponse("listofcourse.html", {"request": request,"alltitle": df["title"]})
+
+
+    
+
+
+
 
 
 

@@ -27,10 +27,8 @@ export const CatQuery = graphql`
     allCourseCsv(filter: { category: { eq: $name } }) {
       nodes {
         category
-        categoryslug
         date
         featureimage
-        slug
         title
         localImage {
           childImageSharp {

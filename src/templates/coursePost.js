@@ -19,8 +19,7 @@ const singlePost = ({ data }) => {
   const post = data.courseCsv;
   const FeatureImageUrl = post.localImage;
   const date = new Date(post.date);
-  const catpost = data.allCourseCategoryCsv.nodes;
-
+  const catpost = data.category.distinct;
   return (
     <>
       <Container>
@@ -37,10 +36,7 @@ const singlePost = ({ data }) => {
                     <LinkButton to="/">Home</LinkButton> {" > "}
                     <LinkButton to="/coursefree">Course</LinkButton> {" > "}
                     <LinkButton
-                      to={`/${post.category
-                        .split(" ")
-                        .join("-")
-                        .toLowerCase()}`}
+                      to={`/${post.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
                     >
                       {post.category}
                     </LinkButton>{" "}
@@ -61,8 +57,8 @@ const singlePost = ({ data }) => {
                   ) : null}
                   <h1>{post.title}</h1>
                   <p>{parse(post.description)}</p>
-                  <h3 style={{ textAlign: "center" }}> Coupon : </h3>
-                  <CoupounText> {post.coupon} </CoupounText>
+                  
+                  {post.coupon ? <> <h3 style={{ textAlign: "center" }}> Coupon : </h3> <CoupounText> {post.coupon} </CoupounText> </> : null}
                   <Link style={{ textDecoration: "none" }} to={post.course_url}>
                     <ErollButton>Enroll</ErollButton>
                   </Link>
@@ -95,9 +91,7 @@ export const pageQuery = graphql`
       date
       description
       featureimage
-      slug
       title
-      categoryslug
       localImage {
         publicURL
         childImageSharp {
@@ -107,12 +101,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    allCourseCategoryCsv {
-      nodes {
-        name
-        slug
-      }
-    }
+    
+    category: allCourseCsv {
+    distinct(field: category)
+  }
+  
     allCourseCsv(limit: 6)  {
     nodes {
       title
@@ -142,10 +135,8 @@ export const pageQuery = graphql`
   CourseRecentPost: allCourseCsv(filter: { category: { eq: $CategoryName } }) {
       nodes {
         category
-        categoryslug
         date
         featureimage
-        slug
         title
         localImage {
           childImageSharp {

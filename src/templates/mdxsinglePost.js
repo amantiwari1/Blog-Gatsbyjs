@@ -17,7 +17,7 @@ import { TOC } from "../components/styles/Tableofcontent";
 
 export default ({ data }) => {
   const { body, frontmatter, tableOfContents, timeToRead } = data.mdx;
-  const catpost = data.allCourseCategoryCsv.nodes;
+  const catpost = data.category.distinct;
   const metaImage = frontmatter.featureImage.publicURL
  
   return (
@@ -47,10 +47,7 @@ export default ({ data }) => {
               <LinkButton to="/">Home</LinkButton> {" > "}
               <LinkButton to="/posts">All Posts</LinkButton> {" > "}
               <LinkButton
-                to={`/${frontmatter.category
-                  .split(" ")
-                  .join("-")
-                  .toLowerCase()}`}
+                to={`/${frontmatter.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
               >
                 {frontmatter.category}
               </LinkButton>{" "}
@@ -105,15 +102,6 @@ export const query = graphql`
       excerpt
       tableOfContents
       timeToRead
-      fields {
-        slug
-      }
-    }
-    allCourseCategoryCsv {
-      nodes {
-        name
-        slug
-      }
     }
     
     RecentPost: allMdx(sort: {fields: frontmatter___date, order: DESC}, limit:6) {
@@ -147,7 +135,11 @@ export const query = graphql`
       }
     }
   }
+  category: allCourseCsv {
+    distinct(field: category)
+  }
   allCourseCsv(limit: 6)  {
+    distinct(field: category)
     nodes {
       title
       localImage {
