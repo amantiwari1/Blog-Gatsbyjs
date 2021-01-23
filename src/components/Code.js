@@ -1,24 +1,14 @@
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import theme from 'prism-react-renderer/themes/nightOwl'
 import React from 'react'
-import {
-  LiveEditor,
-  LiveError,
-  LivePreview,
-  LiveProvider,
-} from 'react-live'
 import styled from 'styled-components'
 import 'victormono'
 import {CustomScroll, NegMargin} from "../components/styles/Codestyle"
-// https://github.com/gatsbyjs/gatsby/blob/561d33e2e491d3971cb2a404eec9705a5a493602/www/src/utils/copy-to-clipboard.js
 
 
 const copyToClipboard = str => {
     const clipboard = window.navigator.clipboard
-    /*
-     * fallback to older browsers (including Safari)
-     * if clipboard API not supported
-     */
+    
     if (!clipboard || typeof clipboard.writeText !== `function`) {
       const textarea = document.createElement(`textarea`)
       textarea.value = str
@@ -117,15 +107,7 @@ export const Code = ({ codeString, language, ...props }) => {
   const shouldHighlightLine = calculateLinesToHighlight(
     props.metastring
   )
-  if (props['react-live']) {
-    return (
-      <LiveProvider code={codeString} noInline={true} theme={theme}>
-        <LiveEditor />
-        <LiveError />
-        <LivePreview />
-      </LiveProvider>
-    )
-  }
+  
   const handleClick = () => {
     copyToClipboard(codeString)
   }

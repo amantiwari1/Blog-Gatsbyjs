@@ -47,17 +47,19 @@ export const NavBarMobile = ({ isDark, remove }) => {
   return (
     <Ul variants={variants}>
       <MenuItemMobile>
-        {close ? <FormControl placeholder="Your Search"></FormControl> : null}
-        <SearchBtton onClick={() => isClose(!close)}>
+        {close ? (
+          <FormControl  placeholder="Your Search"></FormControl>
+        ) : null}
+        <SearchBtton  onClick={() => isClose(!close)}>
           {!close ? (
-            <SearchIcon color={isDark ? "#fff" : "#000"} />
+            <SearchIcon  color={isDark ? "#fff" : "#000"} />
           ) : (
-            <CloseIcon color={isDark ? "#fff" : "#000"} />
+            <CloseIcon  color={isDark ? "#fff" : "#000"} />
           )}
         </SearchBtton>
       </MenuItemMobile>
       {itemIds.map((i) => (
-        <>
+        <div key={i.name}>
           <LinkButton
             onClick={remove}
             style={{ textDecoration: "none" }}
@@ -70,9 +72,8 @@ export const NavBarMobile = ({ isDark, remove }) => {
             </MenuItemMobile>{" "}
           </LinkButton>
           <br />{" "}
-        </>
+        </div>
       ))}
     </Ul>
   );
 };
-

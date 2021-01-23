@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const BreadcrumbLayout = styled.p`
-  filter: brightness(90%);
+  opacity: 0.6;
   font-size: 13px;
 `;

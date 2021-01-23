@@ -12,7 +12,7 @@ const variants = {
     y: 50,
     
     opacity: 0,
-    transitionEnd: { display: "none" },
+    display: "none" ,
 
 
 

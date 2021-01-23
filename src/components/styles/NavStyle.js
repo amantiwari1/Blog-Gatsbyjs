@@ -14,13 +14,14 @@ const NavDesktop = styled.div.attrs((props) => ({
   justify-content: space-between;
   transition: all 0.5s ease-out;
 
-
   @media (max-width: 940px) {
     padding-top: 28px;
+    -webkit-box-shadow: 0 4px 6px -4px #222;
+    -moz-box-shadow: 0 4px 6px -4px #222;
+    box-shadow: 0 4px 6px -4px #222;
   }
 `;
 const P = styled.p`
-
   display: inline-block;
   position: relative;
   padding: 2px;
@@ -28,40 +29,35 @@ const P = styled.p`
   margin-bottom: 5px;
   font-size: 1.2rem;
 
-&:last-child {
-  margin-right: 0;
-}
+  &:last-child {
+    margin-right: 0;
+  }
 
-&:after {
-  content: '';
-  display: block;
-  margin: auto;
-  height: 3px;
-  width: 0px;
-  background: transparent;
-  transition: width .5s ease, background-color .5s ease;
-}
-&:hover:after {
-  width: 100%;
-  background: blue;
-}
- 
-
-
-
+  &:after {
+    content: "";
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width 0.5s ease, background-color 0.5s ease;
+  }
+  &:hover:after {
+    width: 100%;
+    background: blue;
+  }
 `;
 
 const NavMobile = styled(motion.nav)`
-  position: absolute;
+
   top: 0;
   left: 0;
   bottom: 0;
-  width: 300px;
   @media (min-width: 940px) {
     display: none;
   }
   transition: all 0.5s ease-out;
-
+  z-index: 1;
 `;
 
 const BackgroundNav = styled(motion.div)`
@@ -71,7 +67,11 @@ const BackgroundNav = styled(motion.div)`
   bottom: 0;
   width: 200px;
   background: ${(props) => props.theme.background};
-  transition: all 0.5s ease-out;
+  transition: background 0.5s ease-out !important;
+
+  box-shadow: 20px 0px 48px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 20px 0px 48px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 20px 0px 48px 0px rgba(0, 0, 0, 0.75);
 `;
 
 const sidebar = {
@@ -87,12 +87,21 @@ const sidebar = {
   closed: {
     clipPath: "circle(30px at 40px 40px)",
     transition: {
-      delay: 0.1,
       type: "spring",
       stiffness: 400,
       damping: 40,
     },
     transitionEnd: { zIndex: 0 },
+  },
+};
+
+const fixednavbar = {
+  open:  {
+    position: "fixed"
+    
+  },
+  closed: {
+    position: "absolute"
   },
 };
 
@@ -102,6 +111,9 @@ const Brand = styled.h1`
   @media (max-width: 940px) {
     margin-left: 60px;
     font-size: 25px;
+  padding-bottom: 10px;
+
+
   }
 `;
 
@@ -117,7 +129,6 @@ const SearchButtonStyle = styled.button`
     outline: none;
   }
   transition: all 0.5s ease-out;
-
 `;
 
 const NavBackgroudColor = styled.div`
@@ -127,17 +138,14 @@ const NavBackgroudColor = styled.div`
   transition: all 0.5s ease-out;
   position: sticky;
   z-index: 1;
-  -webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;
+  -webkit-box-shadow: 0 4px 6px -4px #222;
+  -moz-box-shadow: 0 4px 6px -4px #222;
+  box-shadow: 0 4px 6px -4px #222;
 
   @media (max-width: 940px) {
     display: none;
   }
 `;
-
-
-
 
 export {
   NavBackgroudColor,
@@ -148,4 +156,5 @@ export {
   sidebar,
   Brand,
   SearchButtonStyle,
+  fixednavbar,
 };

@@ -95,6 +95,7 @@ export const pageQuery = graphql`
   {
     allMdx(filter: { frontmatter: { feature: { eq: true } } }) {
       nodes {
+        id
         timeToRead
         frontmatter {
           date(formatString: "MMM DD, YYYY")

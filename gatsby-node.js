@@ -26,6 +26,12 @@ exports.createPages = async function ({ actions, graphql }) {
           category
         }
       }
+      pagination: allCourseCsv(limit: 12) {
+        pageInfo {
+          pageCount
+          perPage
+        }
+      }
     }
   `);
 
@@ -38,10 +44,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
 
 
-  actions.createPage({
-    path: `/coursefree`,
-    component: require.resolve("./src/templates/allCoursePost.js"),
-  });
+ 
 
   actions.createPage({
     path: `/posts`,
@@ -83,6 +86,19 @@ exports.createPages = async function ({ actions, graphql }) {
       context: {
         title: post.frontmatter.title,
         category: post.frontmatter.category,
+      },
+    })
+  })
+
+  Array.from({ length: data.pagination.pageInfo.pageCount }).forEach((_, i) => {
+    actions.createPage({
+      path: i === 0 ? `/course` : `/course/${i + 1}`,
+      component: require.resolve("./src/templates/allCoursePost.js"),
+      context: {
+        limit:  data.pagination.pageInfo.perPage,
+        skip: i * data.pagination.pageInfo.perPage,
+        numPages: data.pagination.pageInfo.pageCount,
+        currentPage: i + 1,
       },
     })
   })

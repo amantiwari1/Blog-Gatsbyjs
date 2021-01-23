@@ -11,6 +11,7 @@ import {
   BackgroundNav,
   sidebar,
   Brand,
+  fixednavbar,
 } from "../styles/NavStyle";
 import { MenuItemDesktop } from "./MenuItemDeskop";
 
@@ -29,7 +30,7 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
         <NavDesktop>
           <div>
             {itemIds.map((item) => (
-              <MenuItemDesktop to={item.slug}>{item.name}</MenuItemDesktop>
+              <MenuItemDesktop key={item.name} to={item.slug}>{item.name}</MenuItemDesktop>
             ))}
           </div>
 
@@ -39,7 +40,7 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
 
       {/*  Navbar Mobile */}
 
-      <NavMobile initial={false} animate={isOpen ? "open" : "closed"}>
+      <NavMobile variants={fixednavbar} initial={false} animate={isOpen ? "open" : "closed"}>
         <BackgroundNav variants={sidebar} />
         <NavBarMobile
           remove={() => toggleOpen(!isOpen)}

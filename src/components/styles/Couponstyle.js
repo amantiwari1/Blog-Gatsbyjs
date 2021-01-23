@@ -9,7 +9,6 @@ export const CoupounText = styled.div`
   text-align: center;
   color: #000;
   background: #fff;
-  /* text-shadow: 4px 4px 2px rgba(150, 150, 150, 1); */
   display: block;
   font-size: 25px;
   border-radius: 20px;

@@ -1,19 +1,10 @@
 import styled from "styled-components";
-import { LinkButton } from "../styles/Link";
 import Img from "gatsby-image";
 
 export const CardImgCustom = styled(Img)`
-  /* max-height: 100px; */
-
-  /* box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
-    0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); */
 `;
 
-const BodyCardText = styled(LinkButton)`
-  &:hover {
-    cursor: pointer;
-    text-decoration: none;
-  }
+const BodyCardText = styled.div`
   display: block;
   font-size: 20px;
   text-transform: capitalize;

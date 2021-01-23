@@ -2,28 +2,27 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Card } from "../styles/RecentPosts";
 import { NewCardContent } from "../../components";
-import {  Topicstyle } from "../styles/Homestyle";
-
+import { Topicstyle } from "../styles/Homestyle";
 
 const HomeFeatureCard = (props) => {
-  const {post} = props;
+  const { post } = props;
 
   return (
     <Card>
       <Row>
         {post.map((post) => (
-          <Col style={{marginBottom: "20px"}} {...props}  >
+          <Col
+            key={post.frontmatter.title}
+            style={{ marginBottom: "20px" }}
+            {...props}
+          >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category
-                .toLowerCase().replace(/ /g, '-') 
-                .replace(/[^\w-]+/g, '')}
+              catlink={post.frontmatter.category}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={`/${post.frontmatter.title
-                .toLowerCase().replace(/ /g, '-') 
-                .replace(/[^\w-]+/g, '')}`}
-                time={post.timeToRead}
+              link={post.frontmatter.title}
+              time={post.timeToRead}
             />
           </Col>
         ))}
@@ -33,23 +32,23 @@ const HomeFeatureCard = (props) => {
 };
 
 const AllPostCard = (props) => {
-  const {post} = props;
+  const { post } = props;
   return (
     <Card>
       <Row>
         {post.map((post) => (
-          <Col  style={{marginBottom: "20px"}} {...props} >
+          <Col
+            key={post.frontmatter.title}
+            style={{ marginBottom: "20px" }}
+            {...props}
+          >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category
-                .toLowerCase().replace(/ /g, '-') 
-                .replace(/[^\w-]+/g, '')}
+              catlink={post.frontmatter.category}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={`/${post.frontmatter.title
-                .toLowerCase().replace(/ /g, '-') 
-                .replace(/[^\w-]+/g, '')}`}
-                time={post.timeToRead}
+              link={post.frontmatter.title}
+              time={post.timeToRead}
             />
           </Col>
         ))}
@@ -59,19 +58,19 @@ const AllPostCard = (props) => {
 };
 
 const AllCourseCard = (props) => {
-  const {post} = props;
+  const { post } = props;
 
   return (
     <Card>
       <Row>
         {post.map((post) => (
-          <Col style={{marginBottom: "20px"}} {...props}>
+          <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
-              catlink={post.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}
+              catlink={post.category}
               cat={post.category}
               title={post.title}
-              link={`/${post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
+              link={post.title}
             />
           </Col>
         ))}
@@ -80,20 +79,20 @@ const AllCourseCard = (props) => {
   );
 };
 const AllHomeCourseCard = (props) => {
-  const {post} = props;
+  const { post } = props;
 
-  return ( 
+  return (
     <Card>
       <Topicstyle>{post[0].category}</Topicstyle>
       <Row>
         {post.map((post) => (
-          <Col style={{marginBottom: "20px"}} {...props}>
+          <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
-              catlink={post.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}
+              catlink={post.category}
               cat={post.category}
               title={post.title}
-              link={`/${post.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
+              link={post.title}
             />
           </Col>
         ))}
@@ -103,8 +102,7 @@ const AllHomeCourseCard = (props) => {
 };
 
 const HomeAllPostCard = (props) => {
-  const {post} = props;
-
+  const { post } = props;
 
   return (
     <Card>
@@ -112,14 +110,18 @@ const HomeAllPostCard = (props) => {
 
       <Row>
         {post.map((post) => (
-          <Col style={{marginBottom: "20px"}} {...props}  >
+          <Col
+            key={post.frontmatter.title}
+            style={{ marginBottom: "20px" }}
+            {...props}
+          >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}
+              catlink={post.frontmatter.category}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={`/${post.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
-                time={post.timeToRead}
+              link={post.frontmatter.title}
+              time={post.timeToRead}
             />
           </Col>
         ))}
@@ -128,5 +130,10 @@ const HomeAllPostCard = (props) => {
   );
 };
 
-
-export { HomeFeatureCard, AllPostCard, AllCourseCard, AllHomeCourseCard, HomeAllPostCard };
+export {
+  HomeFeatureCard,
+  AllPostCard,
+  AllCourseCard,
+  AllHomeCourseCard,
+  HomeAllPostCard,
+};

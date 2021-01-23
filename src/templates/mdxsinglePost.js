@@ -33,7 +33,7 @@ export default ({ data }) => {
             <h5>Table of Content</h5>
             <ul>
               {tableOfContents.items.map((i) => (
-                <li>
+                <li key={i.title} >
                   <a href={i.url}>{i.title}</a>
                 </li>
               ))}
@@ -44,8 +44,8 @@ export default ({ data }) => {
         <Col md={9} lg={6} xl={5}>
           <Post>
             <BreadcrumbLayout>
-              <LinkButton to="/">Home</LinkButton> {" > "}
-              <LinkButton to="/posts">All Posts</LinkButton> {" > "}
+              <LinkButton to="/" >Home</LinkButton> {" > "}
+              <LinkButton to="/posts" >All Posts</LinkButton> {" > "}
               <LinkButton
                 to={`/${frontmatter.category.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
               >
@@ -72,10 +72,6 @@ export default ({ data }) => {
           <CourseRecentPost  post={data.allCourseCsv.nodes} />
           <RecentPost xs={6} sm={4} md={2} lg={6} xl={6} post={data.RecentPost.nodes} />
           <CategoryPost data={catpost}></CategoryPost>
-      
-
-
-
         </Col>
       </Row>
     </Container>

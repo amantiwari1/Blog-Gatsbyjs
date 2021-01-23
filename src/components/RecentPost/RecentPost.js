@@ -11,7 +11,7 @@ export const RecentPost = (props) => {
 
       <Row>
         {post.map((node) => (
-          <Col {...props} >
+          <Col {...props} key={node.frontmatter.title}  >
             <Img fluid={node.frontmatter.featureImage.childImageSharp.fluid} />
             <Item
               to={`/${node.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
@@ -31,7 +31,7 @@ export const CourseRecentPost = ({ post }) => {
       <Header>Latest Free Courses</Header>
       <Row>
         {post.map((node) => (
-          <Col  >
+          <Col key={node.title} >
             <Item  to={`/${node.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}>
             <Img  fluid={node.localImage.childImageSharp.fluid} />
               {node.title}
@@ -49,7 +49,7 @@ export const RelatedPostCard = ({ data }) => {
       <Header>Related Posts</Header>
       {recentpost.map((node) => (
         <Item
-          to={`/${node.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
+          key={node.frontmatter.title} to={`/${node.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')}`}
         >
           {node.frontmatter.title}
         </Item>

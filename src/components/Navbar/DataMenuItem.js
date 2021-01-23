@@ -9,7 +9,7 @@ export const itemIds = [
     },
     {
       name: "Courses",
-      slug: "/coursefree",
+      slug: "/course",
     },
     {
       name: "Internship",
