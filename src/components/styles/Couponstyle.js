@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const CoupounText = styled.div`
   margin: 10px auto;
@@ -12,4 +12,4 @@ export const CoupounText = styled.div`
   display: block;
   font-size: 25px;
   border-radius: 20px;
-`;
+`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 const HeaderImage = styled.img`
   height: 300px;
@@ -10,16 +10,16 @@ const HeaderImage = styled.img`
     width: 300px;
     height: 200px;
   }
-`;
+`
 const Topicstyle = styled.p`
-  text-transform: capitalize; 
+  text-transform: capitalize;
   font-size: 1.2rem;
   padding: 10px;
-  border: 2px solid ${(props) => props.theme.textColors};
+  border: 2px solid ${props => props.theme.textColors};
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 
   text-align: center;
-`;
+`
 
-export { HeaderImage, Topicstyle };
+export { HeaderImage, Topicstyle }

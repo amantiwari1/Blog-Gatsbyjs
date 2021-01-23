@@ -1,6 +1,4 @@
-import { css } from "styled-components";
-
-
+import { css } from "styled-components"
 
 export const CustomScroll = css`
   scrollbar-width: thin;
@@ -17,6 +15,4 @@ export const CustomScroll = css`
     border: 3px solid #1d3557;
   }
 `
-export const NegMargin = css`
-  
-`
+export const NegMargin = css``

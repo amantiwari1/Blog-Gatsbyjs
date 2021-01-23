@@ -1,19 +1,18 @@
-import React from "react";
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import React from "react"
+import { motion } from "framer-motion"
+import styled from "styled-components"
 
-const Pathstyle = (props) => (
+const Pathstyle = props => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
     strokeLinecap="round"
     {...props}
   />
-);
+)
 
-
-const Path  = styled(Pathstyle)`
-    stroke: ${(props) => props.theme.textColor};
+const Path = styled(Pathstyle)`
+  stroke: ${props => props.theme.textColor};
 `
 
 const Buttom = styled.button`
@@ -31,18 +30,16 @@ const Buttom = styled.button`
   z-index: 1;
   transition: all 0.5s ease-out !important;
   background-color: transparent;
-  
-
 
   &:focus {
     border: none;
     outline: none;
   }
-`;
+`
 
 export const MenuToggle = ({ toggle }) => (
   <Buttom onClick={toggle}>
-    <svg  width="23" height="23" viewBox="0 0 23 23">
+    <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
         variants={{
           closed: { d: "M 2 2.5 L 20 2.5" },
@@ -65,4 +62,4 @@ export const MenuToggle = ({ toggle }) => (
       />
     </svg>
   </Buttom>
-);
+)

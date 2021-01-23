@@ -1,6 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import styled from "styled-components";
+import React from "react"
+import { motion } from "framer-motion"
+import styled from "styled-components"
 
 const variants = {
   open: {
@@ -10,14 +10,11 @@ const variants = {
   },
   closed: {
     y: 50,
-    
+
     opacity: 0,
-    display: "none" ,
-
-
-
+    display: "none",
   },
-};
+}
 
 const Li = styled(motion.li)`
   list-style: none;
@@ -25,7 +22,7 @@ const Li = styled(motion.li)`
   align-items: center;
   cursor: pointer;
   padding: 0;
-`;
+`
 
 export const MenuItemMobile = ({ children }) => {
   return (
@@ -36,5 +33,5 @@ export const MenuItemMobile = ({ children }) => {
     >
       <div>{children}</div>
     </Li>
-  );
-};
+  )
+}

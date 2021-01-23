@@ -1,16 +1,13 @@
-import React from "react";
-import { CloseIcon, SearchIcon } from "./SearchIcons";
-import { Form } from "react-bootstrap";
-import { SearchButtonStyle } from "../styles/NavStyle";
+import React from "react"
+import { CloseIcon, SearchIcon } from "./SearchIcons"
+import { Form } from "react-bootstrap"
+import { SearchButtonStyle } from "./NavStyle"
 
+export const SearchButton = ({ mode }) => {
+  const [close, isClose] = React.useState(false)
 
-
-export const SearchButton = ({mode}) => {
-
-    const [close, isClose] = React.useState(false);
-  
-    return (
-      <div style={{ display: "flex" }}>
+  return (
+    <div style={{ display: "flex" }}>
       {close ? (
         <Form>
           <Form.Group
@@ -37,7 +34,5 @@ export const SearchButton = ({mode}) => {
         )}
       </SearchButtonStyle>
     </div>
-    )
-  
-  
-  }
+  )
+}

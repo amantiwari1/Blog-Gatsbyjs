@@ -1,19 +1,14 @@
-import styled from "styled-components";
-import { Link } from "gatsby";
+import styled from "styled-components"
+import { Link } from "gatsby"
 
 export const LinkButton = styled(Link)`
-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
   text-decoration: none;
-  color: ${(props) => props.theme.textColor};
+  color: ${props => props.theme.textColor};
   &:focus,
   &:hover {
-    color: ${(props) => props.theme.textColor};
+    color: ${props => props.theme.textColor};
   }
-`;
-export const TitleCardLink = styled(Link)`
-  color: ${(props) => props.theme.textColor};
-  &:hover {
-    color: ${(props) => props.theme.textColor};
-  }
-
 `
+
+

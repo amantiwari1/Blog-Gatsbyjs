@@ -2,28 +2,35 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-
-const SEO = ({description,lang, meta, keywords,  title, image, url, author}) =>{
-    const { site } = useStaticQuery(
-        graphql`
-          query {
-            site {
-              siteMetadata {
-                title
-              description
-              author
-              image
-              }
-            }
+const SEO = ({
+  description,
+  lang,
+  meta,
+  keywords,
+  title,
+  image,
+  url,
+  author,
+}) => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            description
+            author
+            image
           }
-        `
-      )
+        }
+      }
+    `
+  )
 
-      const metaDescription = description || site.siteMetadata.description
-      const metaImage = image || site.siteMetadata.image
-      const metaTitle = title || site.siteMetadata.title
-        
-          
+  const metaDescription = description || site.siteMetadata.description
+  const metaImage = image || site.siteMetadata.image
+  const metaTitle = title || site.siteMetadata.title
+
   return (
     <Helmet
       htmlAttributes={{
@@ -67,14 +74,12 @@ const SEO = ({description,lang, meta, keywords,  title, image, url, author}) =>{
       ].concat(meta)}
     />
   )
-    
-    }
+}
 
-    SEO.defaultProps = {
-        lang: `en`,
-        meta: [],
-        description: ``,
-      }
-
+SEO.defaultProps = {
+  lang: `en`,
+  meta: [],
+  description: ``,
+}
 
 export default SEO

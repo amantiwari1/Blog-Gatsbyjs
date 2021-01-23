@@ -1,5 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
-
+import { createGlobalStyle } from "styled-components"
 
 const theme = {
   light: {
@@ -18,7 +17,7 @@ const theme = {
     buttonGhost: "transparent",
     cardBackground: "#403C5B",
   },
-};
+}
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -31,8 +30,8 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.textColor};
+  background-color: ${props => props.theme.background};
+  color: ${props => props.theme.textColor};
   transition: all 0.5s ease-out;
   scrollbar-width: thin;
   scrollbar-color: #e76f51 #1d3557;
@@ -52,4 +51,4 @@ body {
 
 `
 
-export default theme;
+export default theme

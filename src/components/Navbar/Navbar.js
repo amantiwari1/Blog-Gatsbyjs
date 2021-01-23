@@ -1,9 +1,9 @@
-import React from "react";
-import { MenuToggle } from "./MenuToggle";
-import { NavBarMobile } from "./NavBarMobile";
-import Icon from "../icon";
-import { SearchButton } from "./SearchButton";
-import { itemIds } from "./DataMenuItem";
+import React from "react"
+import { MenuToggle } from "./MenuToggle"
+import { NavBarMobile } from "./NavBarMobile"
+import Icon from "../icon"
+import { SearchButton } from "./SearchButton"
+import { itemIds } from "./DataMenuItem"
 import {
   NavBackgroudColor,
   NavDesktop,
@@ -12,8 +12,8 @@ import {
   sidebar,
   Brand,
   fixednavbar,
-} from "../styles/NavStyle";
-import { MenuItemDesktop } from "./MenuItemDeskop";
+} from "./NavStyle"
+import { MenuItemDesktop } from "./MenuItemDeskop"
 
 export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
   return (
@@ -29,8 +29,10 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
       <NavBackgroudColor>
         <NavDesktop>
           <div>
-            {itemIds.map((item) => (
-              <MenuItemDesktop key={item.name} to={item.slug}>{item.name}</MenuItemDesktop>
+            {itemIds.map(item => (
+              <MenuItemDesktop key={item.name} to={item.slug}>
+                {item.name}
+              </MenuItemDesktop>
             ))}
           </div>
 
@@ -40,7 +42,11 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
 
       {/*  Navbar Mobile */}
 
-      <NavMobile variants={fixednavbar} initial={false} animate={isOpen ? "open" : "closed"}>
+      <NavMobile
+        variants={fixednavbar}
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+      >
         <BackgroundNav variants={sidebar} />
         <NavBarMobile
           remove={() => toggleOpen(!isOpen)}
@@ -49,5 +55,5 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
         <MenuToggle toggle={() => toggleOpen(!isOpen)} />
       </NavMobile>
     </>
-  );
-};
+  )
+}

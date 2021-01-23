@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
 const G = styled.g`
-    fill: ${(props) => props.theme.textColor};
+  fill: ${props => props.theme.textColor};
 `
 
 const TimetoReadIcon = ({ color }) => {
@@ -36,7 +36,7 @@ const TimetoReadIcon = ({ color }) => {
         </G>
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export {TimetoReadIcon}
+export { TimetoReadIcon }

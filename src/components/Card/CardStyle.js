@@ -1,23 +1,24 @@
-import styled from "styled-components";
-import Img from "gatsby-image";
+import styled from "styled-components"
+import Img from "gatsby-image"
+import { Link } from "gatsby"
 
-export const CardImgCustom = styled(Img)`
-`;
+
+export const CardImgCustom = styled(Img)``
 
 const BodyCardText = styled.div`
   display: block;
   font-size: 20px;
   text-transform: capitalize;
-`;
+`
 
 export const Category = styled.button`
   text-transform: capitalize;
-  background-color: ${(props) => props.theme.textColor};
+  background-color: ${props => props.theme.textColor};
   width: auto;
   height: auto;
   outline: none;
   border: none;
-  color: ${(props) => props.theme.background};
+  color: ${props => props.theme.background};
   margin: 10px;
   margin-left: 0;
 
@@ -30,7 +31,7 @@ export const Category = styled.button`
     outline: none;
     border: none;
   }
-`;
+`
 
 const TimeToRead = styled.p`
   font-size: 15px;
@@ -47,7 +48,7 @@ const TimeToRead = styled.p`
     border: none;
     color: none;
   }
-`;
+`
 const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
   transition: 0.3s;
@@ -57,10 +58,17 @@ const Card = styled.div`
   }
   height: 100%;
   margin: 0 -8px;
-`;
+`
 
 const CardBody = styled.div`
   padding: 10px;
-`;
+`
 
-export { BodyCardText, TimeToRead, Card, CardBody };
+const TitleCardLink = styled(Link)`
+  color: ${props => props.theme.textColor};
+  &:hover {
+    color: ${props => props.theme.textColor};
+  }
+`
+
+export { BodyCardText, TimeToRead, Card, CardBody, TitleCardLink }

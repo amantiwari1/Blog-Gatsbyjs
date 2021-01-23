@@ -1,11 +1,11 @@
 module.exports = {
-
   siteMetadata: {
     title: `Most Updated Internship and 100% All Coupons Courses`,
     description: `Be More Learn Everything is Free!!`,
     image: "/moon.png",
     author: `unknown`,
     url: `https://react-mini-16338.web.app/`,
+    siteUrl: `https://react-mini-16338.web.app/`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -14,13 +14,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/data/`,
       },
     },
     {
@@ -64,7 +57,7 @@ module.exports = {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           {
-          resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 700,
             },
@@ -150,5 +143,8 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     `gatsby-transformer-csv`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-preload-fonts`
   ],
-};
+}

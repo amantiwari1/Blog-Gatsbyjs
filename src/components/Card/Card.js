@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   CardImgCustom,
   TimeToRead,
@@ -6,17 +6,17 @@ import {
   BodyCardText,
   Card,
   CardBody,
-} from "../styles/CardStyle";
-import { Link } from "gatsby";
-import { TitleCardLink } from "../styles/Link";
-import { TimetoReadIcon } from "../../images/icons";
+  TitleCardLink
+} from "./CardStyle"
+import { Link } from "gatsby"
+import { TimetoReadIcon } from "../../images/icons"
 
-const slug = (name) => {
+const slug = name => {
   return name
     .toLowerCase()
     .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "");
-};
+    .replace(/[^\w-]+/g, "")
+}
 
 export const NewCardContent = ({ time, title, link, cat, catlink, image }) => {
   return (
@@ -39,5 +39,5 @@ export const NewCardContent = ({ time, title, link, cat, catlink, image }) => {
         </CardBody>
       </TitleCardLink>
     </Card>
-  );
-};
+  )
+}

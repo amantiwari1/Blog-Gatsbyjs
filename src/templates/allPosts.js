@@ -1,8 +1,8 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { Container } from "react-bootstrap";
-import { AllPostCard } from "../components/Card/AllCard";
-import SEO from "../components/seo";
+import React from "react"
+import { graphql } from "gatsby"
+import { Container } from "react-bootstrap"
+import { AllPostCard } from "../components/Card/AllCard"
+import SEO from "../components/seo"
 
 // import ReactPaginate from 'react-paginate';
 // import styled from "styled-components";
@@ -18,7 +18,7 @@ import SEO from "../components/seo";
 // `
 
 const AllPosts = ({ data }) => {
-  const post = data.allMdx.nodes;
+  const post = data.allMdx.nodes
   return (
     <>
       <Container>
@@ -40,10 +40,10 @@ const AllPosts = ({ data }) => {
       </pagination> */}
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default AllPosts;
+export default AllPosts
 
 export const pageQuery = graphql`
   {
@@ -54,7 +54,12 @@ export const pageQuery = graphql`
           date(formatString: "MMM DD, YYYY")
           featureImage {
             childImageSharp {
-              fluid(cropFocus: CENTER, fit: COVER, maxHeight: 300, maxWidth: 600) {
+              fluid(
+                cropFocus: CENTER
+                fit: COVER
+                maxHeight: 300
+                maxWidth: 600
+              ) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -65,4 +70,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

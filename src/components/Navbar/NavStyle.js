@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import styled from "styled-components"
+import { motion } from "framer-motion"
 
-const NavDesktop = styled.div.attrs((props) => ({
+const NavDesktop = styled.div.attrs(props => ({
   margintop: props.margintop || "10px",
 }))`
   max-width: 1140px;
@@ -9,7 +9,7 @@ const NavDesktop = styled.div.attrs((props) => ({
   padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
-  padding-top: ${(props) => props.margintop};
+  padding-top: ${props => props.margintop};
   display: flex;
   justify-content: space-between;
   transition: all 0.5s ease-out;
@@ -20,7 +20,7 @@ const NavDesktop = styled.div.attrs((props) => ({
     -moz-box-shadow: 0 4px 6px -4px #222;
     box-shadow: 0 4px 6px -4px #222;
   }
-`;
+`
 const P = styled.p`
   display: inline-block;
   position: relative;
@@ -46,10 +46,9 @@ const P = styled.p`
     width: 100%;
     background: blue;
   }
-`;
+`
 
 const NavMobile = styled(motion.nav)`
-
   top: 0;
   left: 0;
   bottom: 0;
@@ -58,7 +57,7 @@ const NavMobile = styled(motion.nav)`
   }
   transition: all 0.5s ease-out;
   z-index: 1;
-`;
+`
 
 const BackgroundNav = styled(motion.div)`
   position: absolute;
@@ -66,13 +65,13 @@ const BackgroundNav = styled(motion.div)`
   left: 0;
   bottom: 0;
   width: 200px;
-  background: ${(props) => props.theme.background};
+  background: ${props => props.theme.background};
   transition: background 0.5s ease-out !important;
 
   box-shadow: 20px 0px 48px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 20px 0px 48px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 20px 0px 48px 0px rgba(0, 0, 0, 0.75);
-`;
+`
 
 const sidebar = {
   open: (height = 2000) => ({
@@ -93,17 +92,16 @@ const sidebar = {
     },
     transitionEnd: { zIndex: 0 },
   },
-};
+}
 
 const fixednavbar = {
-  open:  {
-    position: "fixed"
-    
+  open: {
+    position: "fixed",
   },
   closed: {
-    position: "absolute"
+    position: "absolute",
   },
-};
+}
 
 const Brand = styled.h1`
   padding-bottom: 20px;
@@ -111,11 +109,9 @@ const Brand = styled.h1`
   @media (max-width: 940px) {
     margin-left: 60px;
     font-size: 25px;
-  padding-bottom: 10px;
-
-
+    padding-bottom: 10px;
   }
-`;
+`
 
 const SearchButtonStyle = styled.button`
   background-color: Transparent;
@@ -129,12 +125,12 @@ const SearchButtonStyle = styled.button`
     outline: none;
   }
   transition: all 0.5s ease-out;
-`;
+`
 
 const NavBackgroudColor = styled.div`
   top: 0;
-  background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.textColor};
+  background-color: ${props => props.theme.background};
+  color: ${props => props.theme.textColor};
   transition: all 0.5s ease-out;
   position: sticky;
   z-index: 1;
@@ -145,7 +141,7 @@ const NavBackgroudColor = styled.div`
   @media (max-width: 940px) {
     display: none;
   }
-`;
+`
 
 export {
   NavBackgroudColor,
@@ -157,4 +153,4 @@ export {
   Brand,
   SearchButtonStyle,
   fixednavbar,
-};
+}

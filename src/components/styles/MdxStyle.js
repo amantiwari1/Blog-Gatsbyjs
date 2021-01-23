@@ -1,13 +1,13 @@
-import { down } from "styled-breakpoints";
+import { down } from "styled-breakpoints"
 
-import React from 'react'
-import styled, { css } from 'styled-components'
-import 'victormono'
+import React from "react"
+import styled, { css } from "styled-components"
+import "victormono"
 
 export const inlineCode = css`
   padding: 0 3px;
   background-color: #e2e8f0;
-  font-family: 'Victor Mono', monospace;
+  font-family: "Victor Mono", monospace;
   border-radius: 0.125rem;
 `
 
@@ -29,27 +29,27 @@ const H2 = styled.h2`
   svg {
     display: none;
   }
-`;
+`
 const H6 = styled.h6`
   svg {
     display: none;
   }
-`;
+`
 const H3 = styled.h3`
   svg {
     display: none;
   }
-`;
+`
 const H4 = styled.h4`
   svg {
     display: none;
   }
-`;
+`
 const H5 = styled.h5`
   svg {
     display: none;
   }
-`;
+`
 
 const P = styled.p`
   strong {
@@ -81,11 +81,10 @@ const Blockquote = styled.blockquote`
 
 const A = styled.a`
   text-decoration: underline;
-  color: ${(props) => props.theme.textColor};
+  color: ${props => props.theme.textColor};
   &:hover {
     opacity: 0.5;
-  color: ${(props) => props.theme.textColor};
-
+    color: ${props => props.theme.textColor};
   }
   code {
     ${inlineCode}
@@ -118,8 +117,6 @@ const Table = styled.table`
     padding-bottom: 0.25rem;
     text-align: left;
   }
-  
 `
-  
 
-export { H2, H3, H4, H5, H6, P, Blockquote , A, Table};
+export { H2, H3, H4, H5, H6, P, Blockquote, A, Table }

@@ -1,6 +1,6 @@
-import React from "react";
-import { LinkButton } from "../styles/Link";
-import { P } from "../styles/NavStyle";
+import React from "react"
+import { LinkButton } from "../styles/Link"
+import { P } from "./NavStyle"
 
 export const MenuItemDesktop = ({ to, children }) => {
   return (
@@ -13,5 +13,5 @@ export const MenuItemDesktop = ({ to, children }) => {
         {children}
       </LinkButton>
     </P>
-  );
-};
+  )
+}

@@ -1,6 +1,5 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-
 exports.createPages = async function ({ actions, graphql }) {
   const { data } = await graphql(`
     query {
@@ -33,55 +32,59 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
     }
-  `);
+  `)
 
   // this is home page
 
-  actions.createPage({
-    path: `/`,
-    component: require.resolve("./src/templates/Home.js"),
-  });
-
-
-
- 
 
   actions.createPage({
     path: `/posts`,
     component: require.resolve("./src/templates/allPosts.js"),
-  });
+  })
 
-  data.allPostCatgoriesCsv.nodes.forEach((nodes) => {
-    const name = nodes.name;
+  data.allPostCatgoriesCsv.nodes.forEach(nodes => {
+    const name = nodes.name
     actions.createPage({
-      path: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+      path: name
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, ""),
       component: require.resolve("./src/templates/catPosts.js"),
       context: { name },
-    });
-  });
+    })
+  })
 
-  data.allCourseCsv.nodes.forEach((nodes) => {
-    const name = nodes.title;
-    const Postid = nodes.id;
+  data.allCourseCsv.nodes.forEach(nodes => {
+    const name = nodes.title
+    const Postid = nodes.id
     const CategoryName = nodes.category
     actions.createPage({
-      path: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+      path: name
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, ""),
       component: require.resolve("./src/templates/coursePost.js"),
       context: { Postid, CategoryName },
-    });
-  });
+    })
+  })
 
-  data.allCourseCsv.distinct.forEach((name) => {
-      actions.createPage({
-      path: name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+  data.allCourseCsv.distinct.forEach(name => {
+    actions.createPage({
+      path: name
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, ""),
       component: require.resolve("./src/templates/courseCatPost.js"),
       context: { name },
-    });
-  });
+    })
+  })
 
-  data.allMdx.nodes.forEach((post) => {
+  data.allMdx.nodes.forEach(post => {
     actions.createPage({
-      path: post.frontmatter.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+      path: post.frontmatter.title
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, ""),
       component: require.resolve("./src/templates/mdxsinglePost.js"),
       context: {
         title: post.frontmatter.title,
@@ -95,16 +98,14 @@ exports.createPages = async function ({ actions, graphql }) {
       path: i === 0 ? `/course` : `/course/${i + 1}`,
       component: require.resolve("./src/templates/allCoursePost.js"),
       context: {
-        limit:  data.pagination.pageInfo.perPage,
+        limit: data.pagination.pageInfo.perPage,
         skip: i * data.pagination.pageInfo.perPage,
         numPages: data.pagination.pageInfo.pageCount,
         currentPage: i + 1,
       },
     })
   })
-  
-};
-
+}
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const TOC = styled.div`
   position: sticky;
@@ -11,7 +11,7 @@ export const TOC = styled.div`
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-  
+
   h5 {
     margin-bottom: 10px;
     margin-top: 20px;
@@ -33,9 +33,8 @@ export const TOC = styled.div`
 
   a {
     text-decoration: "none";
-    color: ${(props) => props.theme.textColor};
+    color: ${props => props.theme.textColor};
     text-align: center;
     display: block;
   }
-`;
-
+`

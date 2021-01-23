@@ -1,16 +1,16 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
-import { Card } from "../styles/RecentPosts";
-import { NewCardContent } from "../../components";
-import { Topicstyle } from "../styles/Homestyle";
+import React from "react"
+import { Row, Col } from "react-bootstrap"
+import { Card } from "../RecentPost/RecentPosts"
+import { NewCardContent } from "./Card"
+import { Topicstyle } from "../styles/Homestyle"
 
-const HomeFeatureCard = (props) => {
-  const { post } = props;
+const HomeFeatureCard = props => {
+  const { post } = props
 
   return (
     <Card>
       <Row>
-        {post.map((post) => (
+        {post.map(post => (
           <Col
             key={post.frontmatter.title}
             style={{ marginBottom: "20px" }}
@@ -28,15 +28,15 @@ const HomeFeatureCard = (props) => {
         ))}
       </Row>
     </Card>
-  );
-};
+  )
+}
 
-const AllPostCard = (props) => {
-  const { post } = props;
+const AllPostCard = props => {
+  const { post } = props
   return (
     <Card>
       <Row>
-        {post.map((post) => (
+        {post.map(post => (
           <Col
             key={post.frontmatter.title}
             style={{ marginBottom: "20px" }}
@@ -54,16 +54,16 @@ const AllPostCard = (props) => {
         ))}
       </Row>
     </Card>
-  );
-};
+  )
+}
 
-const AllCourseCard = (props) => {
-  const { post } = props;
+const AllCourseCard = props => {
+  const { post } = props
 
   return (
     <Card>
       <Row>
-        {post.map((post) => (
+        {post.map(post => (
           <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
@@ -76,16 +76,16 @@ const AllCourseCard = (props) => {
         ))}
       </Row>
     </Card>
-  );
-};
-const AllHomeCourseCard = (props) => {
-  const { post } = props;
+  )
+}
+const AllHomeCourseCard = props => {
+  const { post } = props
 
   return (
     <Card>
       <Topicstyle>{post[0].category}</Topicstyle>
       <Row>
-        {post.map((post) => (
+        {post.map(post => (
           <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
@@ -98,18 +98,18 @@ const AllHomeCourseCard = (props) => {
         ))}
       </Row>
     </Card>
-  );
-};
+  )
+}
 
-const HomeAllPostCard = (props) => {
-  const { post } = props;
+const HomeAllPostCard = props => {
+  const { post } = props
 
   return (
     <Card>
       <Topicstyle>{post[0].frontmatter.category}</Topicstyle>
 
       <Row>
-        {post.map((post) => (
+        {post.map(post => (
           <Col
             key={post.frontmatter.title}
             style={{ marginBottom: "20px" }}
@@ -127,8 +127,8 @@ const HomeAllPostCard = (props) => {
         ))}
       </Row>
     </Card>
-  );
-};
+  )
+}
 
 export {
   HomeFeatureCard,
@@ -136,4 +136,4 @@ export {
   AllCourseCard,
   AllHomeCourseCard,
   HomeAllPostCard,
-};
+}

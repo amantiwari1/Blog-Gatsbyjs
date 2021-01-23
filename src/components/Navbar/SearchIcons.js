@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export const SearchIcon = ({ color }) => {
   return (
@@ -36,8 +36,8 @@ export const SearchIcon = ({ color }) => {
         </g>
       </g>
     </svg>
-  );
-};
+  )
+}
 export const CloseIcon = ({ color }) => {
   return (
     <svg
@@ -74,5 +74,5 @@ export const CloseIcon = ({ color }) => {
         </g>
       </g>
     </svg>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { useStaticQuery, graphql } from "gatsby";
+import React from "react"
+import styled from "styled-components"
+import { useStaticQuery, graphql } from "gatsby"
 
 const HeavenlyBody = styled.img`
   height: 30px;
@@ -13,7 +13,7 @@ const HeavenlyBody = styled.img`
     transform: scale(1.2);
   }
   margin-left: 10px;
-`;
+`
 
 const Icon = ({ mode, toggleMode }) => {
   const data = useStaticQuery(graphql`
@@ -25,14 +25,14 @@ const Icon = ({ mode, toggleMode }) => {
         publicURL
       }
     }
-  `);
+  `)
 
   return (
     <HeavenlyBody
       src={mode === "light" ? data.sun.publicURL : data.moon.publicURL}
       onClick={toggleMode}
     />
-  );
-};
+  )
+}
 
-export default Icon;
+export default Icon

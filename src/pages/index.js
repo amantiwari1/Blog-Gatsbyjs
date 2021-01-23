@@ -1,19 +1,19 @@
-import React from "react";
-import { graphql } from "gatsby";
-import { Container, Row, Col } from "react-bootstrap";
-import imggif from "../images/computer.gif";
-import { HeaderImage, Topicstyle } from "../components/styles/Homestyle";
-import { CategoryPost } from "../components/CategoryPost/CategoryPost";
+import React from "react"
+import { graphql } from "gatsby"
+import { Container, Row, Col } from "react-bootstrap"
+import imggif from "../images/computer.gif"
+import { HeaderImage, Topicstyle } from "../components/styles/Homestyle"
+import { CategoryPost } from "../components/CategoryPost/CategoryPost"
 import {
   HomeFeatureCard,
   AllHomeCourseCard,
   HomeAllPostCard,
-} from "../components/Card/AllCard";
-import SEO from "../components/seo";
+} from "../components/Card/AllCard"
+import SEO from "../components/seo"
 
 const AllPosts = ({ data }) => {
-  const catpost = data.allCourseCsv.distinct;
-  const post = data.allMdx.nodes;
+  const catpost = data.allCourseCsv.distinct
+  const post = data.allMdx.nodes
 
   return (
     <>
@@ -86,10 +86,10 @@ const AllPosts = ({ data }) => {
         </Row>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default AllPosts;
+export default AllPosts
 
 export const pageQuery = graphql`
   {
@@ -195,7 +195,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    ITCertification: allCourseCsv(limit: 6, filter: { category: { eq: "IT Certification" } }) {
+    ITCertification: allCourseCsv(
+      limit: 6
+      filter: { category: { eq: "IT Certification" } }
+    ) {
       nodes {
         category
         date
@@ -227,4 +230,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
