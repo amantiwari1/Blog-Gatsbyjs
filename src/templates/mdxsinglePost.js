@@ -62,6 +62,7 @@ export default ({ data }) => {
             {frontmatter.featureImage ? (
               <FeatureImage
                 fluid={frontmatter.featureImage.childImageSharp.fluid}
+                alt={frontmatter.title}
               />
             ) : null}
             <h1>{frontmatter.title}</h1>

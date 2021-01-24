@@ -1,4 +1,6 @@
-// import "bootstrap/dist/css/bootstrap.css";
-// import Provider from "./src/components/provider";
-
-// export const wrapRootElement = Provider;
+export const onInitialClientRender = () => {
+    setTimeout(function() {
+        document.getElementById("___loader").style.display = "none"
+    }, 500)
+  }
+  

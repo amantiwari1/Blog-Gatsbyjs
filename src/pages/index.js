@@ -26,7 +26,7 @@ const AllPosts = ({ data }) => {
             </center>
           </Col>
           <Col>
-            <HeaderImage src={imggif} />
+            <HeaderImage alt="coding" src={imggif} />
           </Col>
         </Row>
         <Row>

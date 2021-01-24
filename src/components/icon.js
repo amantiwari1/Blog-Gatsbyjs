@@ -3,8 +3,6 @@ import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 
 const HeavenlyBody = styled.img`
-  height: 30px;
-  width: 30px;
   cursor: pointer;
   border-radius: 50%;
   user-select: none;
@@ -29,6 +27,9 @@ const Icon = ({ mode, toggleMode }) => {
 
   return (
     <HeavenlyBody
+      height="30px"
+      width="30px"
+      alt="icons"
       src={mode === "light" ? data.sun.publicURL : data.moon.publicURL}
       onClick={toggleMode}
     />

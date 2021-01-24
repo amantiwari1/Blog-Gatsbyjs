@@ -53,6 +53,7 @@ const singlePost = ({ data }) => {
 
                   {FeatureImageUrl ? (
                     <FeatureImage
+                      alt={post.title}
                       fluid={FeatureImageUrl.childImageSharp.fluid}
                     />
                   ) : null}

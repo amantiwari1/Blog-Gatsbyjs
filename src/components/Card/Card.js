@@ -22,7 +22,7 @@ export const NewCardContent = ({ time, title, link, cat, catlink, image }) => {
   return (
     <Card>
       <TitleCardLink style={{ textDecoration: "none" }} to={`/${slug(link)}`}>
-        <CardImgCustom fluid={image} />
+        <CardImgCustom alt={title} fluid={image} />
         <CardBody>
           <Link to={`/${slug(catlink)}`}>
             <Category style={{ transition: "all 0.5s ease-out" }}>
