@@ -20,7 +20,6 @@ import {
   Table,
 } from "../components/styles/MdxStyle"
 
-
 const components = {
   table: props => <Table {...props} />,
   h2: props => <H2 {...props} />,
@@ -59,24 +58,6 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={themeMode}>
       <GlobalStyle />
       <MDXProvider components={components}>
-      <div
-    key={`loader`}
-              id="___loader"
-              style={{
-                alignItems: "center",
-                backgroundColor: "#ffffff",
-                display: "flex",
-                justifyContent: "center",
-                position: "absolute",
-                left: 0,
-                top: 0,
-                right: 0,
-                bottom: 0,
-                zIndex: 100,
-              }}
-           >
-              
-        </div>
         <Navbar
           isOpen={show}
           toggleOpen={setShow}

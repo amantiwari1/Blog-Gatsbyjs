@@ -31,6 +31,7 @@ export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
           <div>
             {itemIds.map(item => (
               <MenuItemDesktop key={item.name} to={item.slug}>
+               
                 {item.name}
               </MenuItemDesktop>
             ))}

@@ -20,8 +20,12 @@ export default allPosts
 
 export const CatQuery = graphql`
   query CourseCatQuery($name: String!) {
-    allCourseCsv(filter: { category: { eq: $name } }) {
+    allCourseCsv(filter: {fields: {categorySlug: {eq: $name}}}) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         featureimage

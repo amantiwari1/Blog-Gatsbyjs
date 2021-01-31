@@ -95,6 +95,10 @@ export const pageQuery = graphql`
   {
     allMdx(filter: { frontmatter: { feature: { eq: true } } }) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         id
         timeToRead
         frontmatter {
@@ -124,8 +128,13 @@ export const pageQuery = graphql`
       filter: { frontmatter: { category: { eq: "internship" } } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         timeToRead
         frontmatter {
+          
           date(formatString: "MMM DD, YYYY")
           featureImage {
             childImageSharp {
@@ -149,6 +158,10 @@ export const pageQuery = graphql`
       filter: { category: { eq: "Web Development" } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         title
@@ -166,6 +179,10 @@ export const pageQuery = graphql`
       filter: { category: { eq: "Software Engineering" } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         title
@@ -183,6 +200,10 @@ export const pageQuery = graphql`
       filter: { category: { eq: "Programming Languages" } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         title
@@ -200,6 +221,10 @@ export const pageQuery = graphql`
       filter: { category: { eq: "IT Certification" } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         title
@@ -217,6 +242,10 @@ export const pageQuery = graphql`
       filter: { category: { eq: "Data Science" } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         title

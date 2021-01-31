@@ -35,6 +35,10 @@ export const pageQuery = graphql`
       skip: $skip
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         title
         localImage {

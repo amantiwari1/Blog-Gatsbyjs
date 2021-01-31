@@ -1,4 +1,7 @@
-const { createFilePath } = require(`gatsby-source-filesystem`)
+
+
+
+
 
 exports.createPages = async function ({ actions, graphql }) {
   const { data } = await graphql(`
@@ -9,7 +12,11 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
       allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+        distinct(field: fields___categorySlug)
         nodes {
+          fields {
+            slug
+          }
           frontmatter {
             title
             category
@@ -17,9 +24,11 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
       allCourseCsv {
-        distinct(field: category)
+        distinct(field: fields___categorySlug)
         nodes {
-          id
+          fields {
+            slug
+          }
           title
           featureimage
           category
@@ -42,38 +51,27 @@ exports.createPages = async function ({ actions, graphql }) {
     component: require.resolve("./src/templates/allPosts.js"),
   })
 
-  data.allPostCatgoriesCsv.nodes.forEach(nodes => {
-    const name = nodes.name
+  data.allMdx.distinct.forEach(name => {
     actions.createPage({
-      path: name
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, ""),
+      path: name,
       component: require.resolve("./src/templates/catPosts.js"),
       context: { name },
     })
   })
 
   data.allCourseCsv.nodes.forEach(nodes => {
-    const name = nodes.title
-    const Postid = nodes.id
+    const name = nodes.fields.slug
     const CategoryName = nodes.category
     actions.createPage({
-      path: name
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, ""),
+      path: name,
       component: require.resolve("./src/templates/coursePost.js"),
-      context: { Postid, CategoryName },
+      context: { name, CategoryName },
     })
   })
 
   data.allCourseCsv.distinct.forEach(name => {
     actions.createPage({
-      path: name
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, ""),
+      path: name,
       component: require.resolve("./src/templates/courseCatPost.js"),
       context: { name },
     })
@@ -81,10 +79,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   data.allMdx.nodes.forEach(post => {
     actions.createPage({
-      path: post.frontmatter.title
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, ""),
+      path: post.fields.slug,
       component: require.resolve("./src/templates/mdxsinglePost.js"),
       context: {
         title: post.frontmatter.title,
@@ -107,14 +102,47 @@ exports.createPages = async function ({ actions, graphql }) {
   })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+
+
+
+
+
+exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
+  
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
+    const slug = node.frontmatter.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+    const categorySlug = node.frontmatter.category.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: slug,
+    })
+    
+    createNodeField({
+      name: `categorySlug`,
+      node,
+      value: categorySlug,
+    })
+  }
+
+  if (node.internal.type === `CourseCsv`) {
+    const slug = node.title.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+    const categorySlug = node.category.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")
+
+    createNodeField({
+      name: `slug`,
+      node,
+      value: slug,
+    })
+    
+    createNodeField({
+      name: `categorySlug`,
+      node,
+      value: categorySlug,
     })
   }
 }
+
+

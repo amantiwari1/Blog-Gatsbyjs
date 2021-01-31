@@ -32,13 +32,8 @@ const singlePost = ({ data }) => {
                 <Post>
                   <BreadcrumbLayout>
                     <LinkButton to="/">Home</LinkButton> {" > "}
-                    <LinkButton to="/coursefree">Course</LinkButton> {" > "}
-                    <LinkButton
-                      to={`/${post.category
-                        .toLowerCase()
-                        .replace(/ /g, "-")
-                        .replace(/[^\w-]+/g, "")}`}
-                    >
+                    <LinkButton to="/course">Course</LinkButton> {" > "}
+                    <LinkButton to={`/${post.fields.categorySlug}`}>
                       {post.category}
                     </LinkButton>{" "}
                     {" > "}{" "}
@@ -97,8 +92,11 @@ const singlePost = ({ data }) => {
 export default singlePost
 
 export const pageQuery = graphql`
-  query CoursePostQuery($Postid: String!, $CategoryName: String!) {
-    courseCsv(id: { eq: $Postid }) {
+  query CoursePostQuery($name: String!, $CategoryName: String!) {
+    courseCsv(fields: { slug: { eq: $name } }) {
+      fields {
+        categorySlug
+      }
       category
       coupon
       course_url
@@ -122,6 +120,10 @@ export const pageQuery = graphql`
 
     allCourseCsv(limit: 6) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         title
         localImage {
           childImageSharp {
@@ -163,6 +165,10 @@ export const pageQuery = graphql`
       filter: { category: { eq: $CategoryName } }
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         category
         date
         featureimage

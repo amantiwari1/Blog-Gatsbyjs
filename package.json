@@ -52,7 +52,7 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "start": "gatsby develop -o",
+    "start": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "gatsby serve -o",
     "deploy": "gatsby build && firebase deploy --only hosting ",

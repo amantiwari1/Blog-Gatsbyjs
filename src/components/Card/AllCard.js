@@ -18,10 +18,10 @@ const HomeFeatureCard = props => {
           >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category}
+              catlink={post.fields.categorySlug}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={post.frontmatter.title}
+              link={post.fields.slug}
               time={post.timeToRead}
             />
           </Col>
@@ -44,10 +44,10 @@ const AllPostCard = props => {
           >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category}
+              catlink={post.fields.categorySlug}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={post.frontmatter.title}
+              link={post.fields.slug}
               time={post.timeToRead}
             />
           </Col>
@@ -67,10 +67,10 @@ const AllCourseCard = props => {
           <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
-              catlink={post.category}
+              catlink={post.fields.categorySlug}
               cat={post.category}
               title={post.title}
-              link={post.title}
+              link={post.fields.slug}
             />
           </Col>
         ))}
@@ -89,10 +89,10 @@ const AllHomeCourseCard = props => {
           <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
-              catlink={post.category}
+              catlink={post.fields.categorySlug}
               cat={post.category}
               title={post.title}
-              link={post.title}
+              link={post.fields.slug}
             />
           </Col>
         ))}
@@ -117,10 +117,10 @@ const HomeAllPostCard = props => {
           >
             <NewCardContent
               image={post.frontmatter.featureImage.childImageSharp.fluid}
-              catlink={post.frontmatter.category}
+              catlink={post.fields.categorySlug}
               cat={post.frontmatter.category}
               title={post.frontmatter.title}
-              link={post.frontmatter.title}
+              link={post.fields.slug}
               time={post.timeToRead}
             />
           </Col>

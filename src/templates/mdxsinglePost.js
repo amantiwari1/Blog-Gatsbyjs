@@ -19,7 +19,7 @@ import SEO from "../components/seo"
 import { TOC } from "../components/styles/Tableofcontent"
 
 export default ({ data }) => {
-  const { body, frontmatter, tableOfContents, timeToRead } = data.mdx
+  const { body, frontmatter, tableOfContents, fields, timeToRead } = data.mdx
   const catpost = data.category.distinct
   const metaImage = frontmatter.featureImage.publicURL
 
@@ -46,12 +46,7 @@ export default ({ data }) => {
             <BreadcrumbLayout>
               <LinkButton to="/">Home</LinkButton> {" > "}
               <LinkButton to="/posts">All Posts</LinkButton> {" > "}
-              <LinkButton
-                to={`/${frontmatter.category
-                  .toLowerCase()
-                  .replace(/ /g, "-")
-                  .replace(/[^\w-]+/g, "")}`}
-              >
+              <LinkButton to={`/${fields.categorySlug}`}>
                 {frontmatter.category}
               </LinkButton>{" "}
               {" > "} {frontmatter.date}
@@ -90,6 +85,9 @@ export default ({ data }) => {
 export const query = graphql`
   query PostBySlug($title: String!, $category: String!) {
     mdx(frontmatter: { title: { eq: $title } }) {
+      fields {
+        categorySlug
+      }
       frontmatter {
         category
         title
@@ -142,6 +140,10 @@ export const query = graphql`
       filter: { frontmatter: { category: { eq: $category } } }
     ) {
       nodes {
+        fields {
+          categorySlug
+          slug
+        }
         timeToRead
         frontmatter {
           date(formatString: "MMM DD, YYYY")

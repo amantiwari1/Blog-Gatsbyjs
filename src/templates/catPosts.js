@@ -26,9 +26,13 @@ export const CatQuery = graphql`
   query CatQuery($name: String!) {
     allMdx(
       sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { category: { eq: $name } } }
+      filter: {fields: {categorySlug: {eq: $name}}}
     ) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         frontmatter {
           date(formatString: "MMM DD, YYYY")
           featureImage {

@@ -49,6 +49,10 @@ export const pageQuery = graphql`
   {
     allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       nodes {
+        fields {
+        categorySlug
+        slug
+      }
         timeToRead
         frontmatter {
           date(formatString: "MMM DD, YYYY")
