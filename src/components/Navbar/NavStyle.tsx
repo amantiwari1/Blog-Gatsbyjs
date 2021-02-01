@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { motion } from "framer-motion"
 
-const NavDesktop = styled.div.attrs(props => ({
+const NavDesktop = styled.div.attrs((props: any) => ({
   margintop: props.margintop || "10px",
 }))`
   max-width: 1140px;

@@ -48,13 +48,13 @@ exports.createPages = async function ({ actions, graphql }) {
 
   actions.createPage({
     path: `/posts`,
-    component: require.resolve("./src/templates/allPosts.js"),
+    component: require.resolve("../src/templates/allPosts.tsx"),
   })
 
   data.allMdx.distinct.forEach(name => {
     actions.createPage({
       path: name,
-      component: require.resolve("./src/templates/catPosts.js"),
+      component: require.resolve("../src/templates/catPosts.tsx"),
       context: { name },
     })
   })
@@ -64,7 +64,7 @@ exports.createPages = async function ({ actions, graphql }) {
     const CategoryName = nodes.category
     actions.createPage({
       path: name,
-      component: require.resolve("./src/templates/coursePost.js"),
+      component: require.resolve("../src/templates/coursePost.tsx"),
       context: { name, CategoryName },
     })
   })
@@ -72,7 +72,7 @@ exports.createPages = async function ({ actions, graphql }) {
   data.allCourseCsv.distinct.forEach(name => {
     actions.createPage({
       path: name,
-      component: require.resolve("./src/templates/courseCatPost.js"),
+      component: require.resolve("../src/templates/courseCatPost.tsx"),
       context: { name },
     })
   })
@@ -80,7 +80,7 @@ exports.createPages = async function ({ actions, graphql }) {
   data.allMdx.nodes.forEach(post => {
     actions.createPage({
       path: post.fields.slug,
-      component: require.resolve("./src/templates/mdxsinglePost.js"),
+      component: require.resolve("../src/templates/mdxsinglePost.tsx"),
       context: {
         title: post.frontmatter.title,
         category: post.frontmatter.category,
@@ -91,7 +91,7 @@ exports.createPages = async function ({ actions, graphql }) {
   Array.from({ length: data.pagination.pageInfo.pageCount }).forEach((_, i) => {
     actions.createPage({
       path: i === 0 ? `/course` : `/course/${i + 1}`,
-      component: require.resolve("./src/templates/allCoursePost.js"),
+      component: require.resolve("../src/templates/allCoursePost.tsx"),
       context: {
         limit: data.pagination.pageInfo.perPage,
         skip: i * data.pagination.pageInfo.perPage,

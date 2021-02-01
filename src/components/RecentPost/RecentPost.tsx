@@ -3,14 +3,14 @@ import { Card, Header, Item } from "./RecentPosts"
 import Img from "gatsby-image"
 import { Row, Col } from "react-bootstrap"
 
-export const RecentPost = props => {
-  const { post } = props
+export const RecentPost = (props: any) => {
+  const { post }: {post: any} = props
   return (
     <Card>
       <Header>Recent Posts</Header>
 
       <Row>
-        {post.map(node => (
+        {post.map((node: any) => (
           <Col {...props} key={node.frontmatter.title}>
             <Img alt={node.frontmatter.title} fluid={node.frontmatter.featureImage.childImageSharp.fluid} />
             <Item
@@ -28,12 +28,12 @@ export const RecentPost = props => {
   )
 }
 
-export const CourseRecentPost = ({ post }) => {
+export const CourseRecentPost = ({ post }: {post: any}) => {
   return (
     <Card>
       <Header>Latest Free Courses</Header>
       <Row>
-        {post.map(node => (
+        {post.map((node: any) => (
           <Col key={node.title}>
             <Item
               to={`/${node.title

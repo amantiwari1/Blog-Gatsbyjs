@@ -11,7 +11,11 @@ import {
 } from "../components/Card/AllCard"
 import SEO from "../components/seo"
 
-const AllPosts = ({ data }) => {
+interface PostProps {
+  data: any
+}
+
+const AllPosts = ({ data }: PostProps) => {
   const catpost = data.allCourseCsv.distinct
   const post = data.allMdx.nodes
 
@@ -21,9 +25,9 @@ const AllPosts = ({ data }) => {
         <SEO />
         <Row>
           <Col>
-            <center style={{ margin: "100px 0" }}>
+            <div style={{ margin: "100px 0" }}>
               <h1>Be More Learn Everything is Free!!</h1>
-            </center>
+            </div>
           </Col>
           <Col>
             <HeaderImage alt="coding" src={imggif} />

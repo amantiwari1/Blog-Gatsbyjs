@@ -1,6 +1,6 @@
 import React from "react"
 
-export const SearchIcon = ({ color }) => {
+export const SearchIcon = ({ color }:  {color: string}) => {
   return (
     <svg
       width="19px"
@@ -38,7 +38,7 @@ export const SearchIcon = ({ color }) => {
     </svg>
   )
 }
-export const CloseIcon = ({ color }) => {
+export const CloseIcon = ({ color }: {color: string}) => {
   return (
     <svg
       width="18px"

@@ -25,7 +25,7 @@ export default ({ data }) => {
 
   return (
     <Container fluid>
-      <SEO title={frontmatter.title} image={metaImage} />
+      <SEO title={frontmatter.title} ogImage={metaImage} />
       <Row>
         <Col md={0} lg={0} xl={1}></Col>
         <Col md={3} lg={3} xl={2}>

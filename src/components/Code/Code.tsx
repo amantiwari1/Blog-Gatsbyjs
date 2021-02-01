@@ -5,22 +5,22 @@ import styled from "styled-components"
 import "victormono"
 import { CustomScroll, NegMargin } from "./Codestyle"
 
-const copyToClipboard = str => {
+const copyToClipboard = (str: any) => {
   const clipboard = window.navigator.clipboard
 
   if (!clipboard || typeof clipboard.writeText !== `function`) {
     const textarea = document.createElement(`textarea`)
     textarea.value = str
-    textarea.setAttribute(`readonly`, true)
-    textarea.setAttribute(`contenteditable`, true)
+    textarea.setAttribute(`readonly`, "true")
+    textarea.setAttribute(`contenteditable`, "true")
     textarea.style.position = `absolute`
     textarea.style.left = `-9999px`
     document.body.appendChild(textarea)
     textarea.select()
     const range = document.createRange()
     const sel = window.getSelection()
-    sel.removeAllRanges()
-    sel.addRange(range)
+    sel!.removeAllRanges()
+    sel!.addRange(range)
     textarea.setSelectionRange(0, textarea.value.length)
     document.execCommand(`copy`)
     document.body.removeChild(textarea)
@@ -46,7 +46,7 @@ export const CodeWrapper = styled.div`
 const Pre = styled.pre`
   text-align: left;
   padding: 0.5em;
-  ${({ ligatures }) => ligatures && `font-variant-ligatures: none;`};
+  ${({ ligatures }: any) => ligatures && `font-variant-ligatures: none;`};
   overflow: hidden;
   overflow-x: auto;
   float: left;
@@ -74,12 +74,10 @@ const CopyCode = styled.button`
   background-color: #663399;
 `
 
-function calculateLinesToHighlight(meta) {
+function calculateLinesToHighlight(meta: any) {
   if (RE.test(meta)) {
-    const lineNumbers = RE.exec(meta)[1]
-      .split(",")
-      .map(v => v.split("-").map(y => parseInt(y, 10)))
-    return index => {
+    let lineNumbers = RE.exec(meta)![1].split(",").map(v => v.split("-").map(y => parseInt(y, 10)))
+    return (index: number) => {
       const lineNumber = index + 1
       const inRange = lineNumbers.some(([start, end]) =>
         end ? lineNumber >= start && lineNumber <= end : lineNumber === start
@@ -99,7 +97,7 @@ const Wrapper = styled.div`
   }
 `
 
-export const Code = ({ codeString, language, ...props }) => {
+export const Code = ({ codeString, language, ...props }: any) => {
   const shouldHighlightLine = calculateLinesToHighlight(props.metastring)
 
   const handleClick = () => {

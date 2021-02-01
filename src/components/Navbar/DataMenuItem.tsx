@@ -15,8 +15,4 @@ export const itemIds = [
     name: "Internship",
     slug: "/internship",
   },
-  {
-    name: "Data structure",
-    slug: "/datastructure",
-  },
 ]

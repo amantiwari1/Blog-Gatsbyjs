@@ -1,12 +1,12 @@
 import React from "react"
-import { Navbar } from "."
+import { Navbar } from "./Navbar/Navbar";
 import { ThemeProvider } from "styled-components"
-import theme, { GlobalStyle } from "../themes/theme"
+import { GlobalStyle, lightTheme, darkTheme } from "../themes/theme"
 import { useTheme } from "./hooks/useTheme"
 import { MDXProvider } from "@mdx-js/react"
 import { Code, CodeWrapper } from "./Code/Code"
 import "bootstrap/dist/css/bootstrap.css"
-import Footer from "../components/Footer/footer"
+import Footer from "./Footer/footer"
 import {
   H2,
   H3,
@@ -18,20 +18,20 @@ import {
   Blockquote,
   A,
   Table,
-} from "../components/styles/MdxStyle"
+} from "./styles/MdxStyle"
 
 const components = {
-  table: props => <Table {...props} />,
-  h2: props => <H2 {...props} />,
-  h3: props => <H3 {...props} />,
-  h4: props => <H4 {...props} />,
-  h5: props => <H5 {...props} />,
-  h6: props => <H6 {...props} />,
-  p: props => <P {...props} />,
-  a: props => <A {...props} />,
-  blockquote: props => <Blockquote {...props} />,
-  "p.inlineCode": props => <InlineCode {...props} />,
-  pre: ({ children: { props } }) => {
+  table: (props: any) => <Table {...props} />,
+  h2: (props: any) => <H2 {...props} />,
+  h3: (props: any) => <H3 {...props} />,
+  h4: (props: any) => <H4 {...props} />,
+  h5: (props: any) => <H5 {...props} />,
+  h6: (props: any) => <H6 {...props} />,
+  p: (props: any) => <P {...props} />,
+  a: (props: any) => <A {...props} />,
+  blockquote: (props: any) => <Blockquote {...props} />,
+  "p.inlineCode": (props: any) => <InlineCode {...props} />,
+  pre: ({ children: { props}}: any) => {
     if (props.mdxType === "code") {
       return (
         <CodeWrapper>
@@ -46,12 +46,12 @@ const components = {
       )
     }
   },
-  wrapper: ({ children }) => <> {children} </>,
+  wrapper: ({ children }: any) => <> {children} </>,
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   const [mode, toggleMode] = useTheme()
-  const themeMode = mode === "light" ? theme.light : theme.dark
+  const themeMode = mode === "light" ? lightTheme : darkTheme
   const [show, setShow] = React.useState(false)
 
   return (

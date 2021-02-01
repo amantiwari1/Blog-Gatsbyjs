@@ -24,7 +24,7 @@ const Li = styled(motion.li)`
   padding: 0;
 `
 
-export const MenuItemMobile = ({ children }) => {
+export const MenuItemMobile = ({ children }: {children: any}) => {
   return (
     <Li
       variants={variants}

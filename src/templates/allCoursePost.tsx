@@ -10,7 +10,28 @@ const CnterDiv = styled.div`
   text-align: center;
 `
 
-const AllPosts = ({ data, pageContext }) => {
+interface Props {
+  data: {
+    allCourseCsv: {
+      nodes: 
+      {
+        fields: {
+          categorySlug: string
+          slug: string
+        }
+        title: string
+        category: string
+        localImage: any
+
+      }[]
+      
+    }
+    
+  }
+  pageContext: any
+}
+
+const AllPosts = ({ data, pageContext }: Props) => {
   const { currentPage, numPages } = pageContext
   const post = data.allCourseCsv.nodes
   return (

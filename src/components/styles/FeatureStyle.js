@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import Img from "gatsby-image"
+import React from "react"
 
-const FeatureImage = styled(Img)`
+const FeatureImage = styled((props)=> <Img {...props} />)`
   margin-bottom: 20px;
 `
 

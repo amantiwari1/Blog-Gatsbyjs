@@ -41,7 +41,7 @@ const SearchBtton = styled.button`
   }
 `
 
-export const NavBarMobile = ({ isDark, remove }) => {
+export const NavBarMobile = ({ isDark, remove }: {isDark: boolean, remove: (() => void)}) => {
   const [close, isClose] = React.useState(false)
 
   return (
@@ -63,11 +63,9 @@ export const NavBarMobile = ({ isDark, remove }) => {
             style={{ textDecoration: "none" }}
             to={`${i.slug}`}
           >
-            {" "}
             <MenuItemMobile>
-              {" "}
               <P>{i.name}</P>
-            </MenuItemMobile>{" "}
+            </MenuItemMobile>
           </LinkButton>
           <br />{" "}
         </div>

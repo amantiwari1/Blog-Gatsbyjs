@@ -2,16 +2,24 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+
+interface SEOProps {
+	title: string
+	description?: string
+	lang?: string
+	meta?: []
+  ogImage?: string
+  siteUrl?: string
+}
+
 const SEO = ({
   description,
-  lang,
-  meta,
-  keywords,
   title,
-  image,
-  url,
-  author,
-}) => {
+  lang="en",
+  meta,
+  ogImage,
+  siteUrl,
+}: SEOProps) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,7 +28,8 @@ const SEO = ({
             title
             description
             author
-            image
+            ogImage
+            siteUrl
           }
         }
       }
@@ -28,7 +37,7 @@ const SEO = ({
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const metaImage = image || site.siteMetadata.image
+  const metaImage = ogImage || site.siteMetadata.ogImage
   const metaTitle = title || site.siteMetadata.title
 
   return (
@@ -71,15 +80,10 @@ const SEO = ({
           name: `og:image`,
           content: metaImage,
         },
-      ].concat(meta)}
+      ].concat(meta ? meta : [])}
     />
   )
 }
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
 
 export default SEO

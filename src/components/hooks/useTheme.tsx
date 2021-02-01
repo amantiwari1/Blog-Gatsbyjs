@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 export const useTheme = () => {
   const [mode, setMode] = useState("light")
 
-  const setTheme = theme => {
+  const setTheme = (theme: string) => {
     window.localStorage.setItem("theme", theme)
     setMode(theme)
   }
@@ -17,5 +17,5 @@ export const useTheme = () => {
     localTheme && setTheme(localTheme)
   }, [])
 
-  return [mode, toggleMode]
+  return [mode, toggleMode] as const;
 }

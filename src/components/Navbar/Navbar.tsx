@@ -15,7 +15,14 @@ import {
 } from "./NavStyle"
 import { MenuItemDesktop } from "./MenuItemDeskop"
 
-export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }) => {
+interface NavbarProps {
+  isOpen: boolean
+  toggleOpen: React.Dispatch<React.SetStateAction<boolean>>
+  mode: string 
+  toggleMode: (() => void)
+}
+
+export const Navbar = ({ isOpen, toggleOpen, mode, toggleMode }: NavbarProps) => {
   return (
     <>
       {/*  Navbar Mobile */}

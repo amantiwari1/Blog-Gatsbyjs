@@ -3,7 +3,7 @@ import { CloseIcon, SearchIcon } from "./SearchIcons"
 import { Form } from "react-bootstrap"
 import { SearchButtonStyle } from "./NavStyle"
 
-export const SearchButton = ({ mode }) => {
+export const SearchButton = ({ mode }: {mode: string}) => {
   const [close, isClose] = React.useState(false)
 
   return (

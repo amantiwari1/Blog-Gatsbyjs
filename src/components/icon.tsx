@@ -13,7 +13,7 @@ const HeavenlyBody = styled.img`
   margin-left: 10px;
 `
 
-const Icon = ({ mode, toggleMode }) => {
+const Icon = ({ mode, toggleMode }: { mode: string, toggleMode: (() => void) }) => {
   const data = useStaticQuery(graphql`
     query {
       moon: file(relativePath: { eq: "moon.png" }) {

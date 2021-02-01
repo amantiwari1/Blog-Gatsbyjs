@@ -4,13 +4,18 @@ import { Card } from "../RecentPost/RecentPosts"
 import { NewCardContent } from "./Card"
 import { Topicstyle } from "../styles/Homestyle"
 
-const HomeFeatureCard = props => {
-  const { post } = props
+
+interface HomeFeatureProps {
+  post: any;
+}
+
+const HomeFeatureCard = (props: any ) => {
+  const { post }: HomeFeatureProps = props
 
   return (
     <Card>
       <Row>
-        {post.map(post => (
+        {post.map((post : any) => (
           <Col
             key={post.frontmatter.title}
             style={{ marginBottom: "20px" }}
@@ -31,12 +36,12 @@ const HomeFeatureCard = props => {
   )
 }
 
-const AllPostCard = props => {
-  const { post } = props
+const AllPostCard = (props: any) => {
+  const { post }: HomeFeatureProps = props
   return (
     <Card>
       <Row>
-        {post.map(post => (
+        {post.map((post : any) => (
           <Col
             key={post.frontmatter.title}
             style={{ marginBottom: "20px" }}
@@ -57,14 +62,14 @@ const AllPostCard = props => {
   )
 }
 
-const AllCourseCard = props => {
-  const { post } = props
+const AllCourseCard = (props : any )  => {
+  const { post }: HomeFeatureProps = props
 
   return (
     <Card>
       <Row>
-        {post.map(post => (
-          <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
+        {post.map((post : any) => (
+          <Col key={post.title} style={{ marginBottom: "20px" }} {...props} >
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
               catlink={post.fields.categorySlug}
@@ -78,14 +83,14 @@ const AllCourseCard = props => {
     </Card>
   )
 }
-const AllHomeCourseCard = props => {
-  const { post } = props
+const AllHomeCourseCard = (props: any)  => {
+  const { post }: HomeFeatureProps = props
 
   return (
     <Card>
       <Topicstyle>{post[0].category}</Topicstyle>
       <Row>
-        {post.map(post => (
+        {post.map((post : any) => (
           <Col key={post.title} style={{ marginBottom: "20px" }} {...props}>
             <NewCardContent
               image={post.localImage.childImageSharp.fluid}
@@ -101,15 +106,15 @@ const AllHomeCourseCard = props => {
   )
 }
 
-const HomeAllPostCard = props => {
-  const { post } = props
+const HomeAllPostCard = (props: any  )  => {
+  const { post }: HomeFeatureProps = props
 
   return (
     <Card>
       <Topicstyle>{post[0].frontmatter.category}</Topicstyle>
 
       <Row>
-        {post.map(post => (
+        {post.map((post : any) => (
           <Col
             key={post.frontmatter.title}
             style={{ marginBottom: "20px" }}

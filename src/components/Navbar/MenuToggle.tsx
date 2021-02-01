@@ -2,7 +2,7 @@ import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 
-const Pathstyle = props => (
+const Pathstyle = (props: any) => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
@@ -37,7 +37,7 @@ const Buttom = styled.button`
   }
 `
 
-export const MenuToggle = ({ toggle }) => (
+export const MenuToggle = ({ toggle }: {toggle: any}) => (
   <Buttom onClick={toggle}>
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path

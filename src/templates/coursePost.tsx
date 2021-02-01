@@ -24,7 +24,7 @@ const singlePost = ({ data }) => {
   return (
     <>
       <Container>
-        <SEO title={post.title} image={FeatureImageUrl.publicURL} />
+        <SEO title={post.title} ogImage={FeatureImageUrl.publicURL} />
         <Row>
           <Col lg="8">
             <Row>

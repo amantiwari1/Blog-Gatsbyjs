@@ -1,6 +1,5 @@
 import React from "react"
 import {
-  CardImgCustom,
   TimeToRead,
   Category,
   BodyCardText,
@@ -10,13 +9,24 @@ import {
 } from "./CardStyle"
 import { Link } from "gatsby"
 import { TimetoReadIcon } from "../../images/icons"
+import Img from "gatsby-image"
 
 
-export const NewCardContent = ({ time, title, link, cat, catlink, image }) => {
+interface CardProps {
+  time?: string;
+  title: string; 
+  link: string ;
+  cat: string ;
+  catlink: string; 
+  image: any;
+}
+
+
+export const NewCardContent = ({ time, title, link, cat, catlink, image }: CardProps) => {
   return (
     <Card>
       <TitleCardLink style={{ textDecoration: "none" }} to={`/${link}`}>
-        <CardImgCustom alt={title} fluid={image} />
+        <Img alt={title} fluid={image} />
         <CardBody>
           <Link to={`/${catlink}`}>
             <Category style={{ transition: "all 0.5s ease-out" }}>
@@ -25,7 +35,7 @@ export const NewCardContent = ({ time, title, link, cat, catlink, image }) => {
           </Link>
           {time && (
             <div>
-              <TimetoReadIcon />
+              <TimetoReadIcon  />
               <TimeToRead>{time} min read</TimeToRead>
             </div>
           )}

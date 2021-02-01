@@ -8,6 +8,7 @@
     "@makotot/paginated": "^0.1.3",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@types/styled-components": "^5.1.7",
     "babel-plugin-styled-components": "^1.12.0",
     "bootstrap": "^4.5.3",
     "framer-motion": "^3.1.1",
@@ -26,6 +27,7 @@
     "gatsby-plugin-robots-txt": "^1.5.5",
     "gatsby-plugin-sharp": "^2.12.0",
     "gatsby-plugin-styled-components": "^3.7.0",
+    "gatsby-plugin-typescript": "^2.11.0",
     "gatsby-remark-autolink-headers": "^2.9.0",
     "gatsby-remark-images": "^3.9.0",
     "gatsby-source-filesystem": "^2.8.1",
@@ -58,6 +60,15 @@
     "deploy": "gatsby build && firebase deploy --only hosting ",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "preload-fonts": "gatsby-preload-fonts"
+    "preload-fonts": "gatsby-preload-fonts",
+    "ggl-types": "graphql-codegen --config codegen.yml",
+    "ggl-types:watch": "graphql-codegen --config codegen.yml -w"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-helmet": "^6.1.0",
+    "gatsby-plugin-ts-config": "^1.1.5"
   }
 }

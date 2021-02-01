@@ -18,7 +18,7 @@ const Linked = styled(Link)`
   }
 `
 
-const DisableLink = styled(Linked)`
+const DisableLink: any = styled(Linked)`
   opacity: 0.5;
   pointer-events: none;
 `
@@ -30,7 +30,7 @@ const ActiveStyle = {
 
 const Paginateds = styled(Paginated)``
 
-export const Paginations = ({ currentPage, numPages }) => {
+export const Paginations = ({ currentPage, numPages }:{ currentPage: number, numPages: number }) => {
   return (
     <Paginateds
       currentPage={currentPage}

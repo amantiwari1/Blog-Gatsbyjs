@@ -1,9 +1,8 @@
 import styled from "styled-components"
-import Img from "gatsby-image"
 import { Link } from "gatsby"
 
 
-export const CardImgCustom = styled(Img)``
+
 
 const BodyCardText = styled.div`
   display: block;
